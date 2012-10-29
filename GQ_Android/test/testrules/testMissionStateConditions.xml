@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test>
+	<rule>
+		<action type="SetVariable" var="m_new.state">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+		<action type="SetVariable" var="m_success.state">
+			<value>
+				<num>2</num>
+			</value>
+		</action>
+		<action type="SetVariable" var="m_failed.state">
+			<value>
+				<num>4</num>
+			</value>
+		</action>
+		<action type="SetVariable" var="m_running.state">
+			<value>
+				<num>8</num>
+			</value>
+		</action>
+	</rule>
+
+	<rule>
+		<if>
+			<missionState id="m_new" state="new" />
+		</if>
+		<action type="SetVariable" var="v_new">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+	</rule>
+
+	<rule>
+		<if>
+			<missionState id="m_success" state="success" />
+		</if>
+		<action type="SetVariable" var="v_success">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+	</rule>
+
+	<rule>
+		<if>
+			<missionState id="m_failed" state="failed" />
+		</if>
+		<action type="SetVariable" var="v_failed">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+	</rule>
+
+	<rule>
+		<if>
+			<missionState id="m_running" state="running" />
+		</if>
+		<action type="SetVariable" var="v_running">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+	</rule>
+</test>

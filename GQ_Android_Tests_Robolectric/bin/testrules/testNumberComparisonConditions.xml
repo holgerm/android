@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test>
+	<rule>
+		<action type="SetVariable" var="a">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+	</rule>
+
+	<rule>
+		<if>
+			<lt>
+				<var>a</var>
+				<num>1.5</num>
+			</lt>
+		</if>
+		<action type="IncrementVariable" var="a" />
+	</rule>
+
+	<rule>
+		<if>
+			<gt>
+				<var>a</var>
+				<num>1.5</num>
+			</gt>
+		</if>
+		<action type="DecrementVariable" var="a" />
+	</rule>
+</test>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content">
+	<com.qeevee.ui.ZoomImageView android:id="@+id/npcimage"
+		android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+		android:layout_width="fill_parent" android:layout_height="140dip"
+		android:layout_marginTop="10dip" android:scaleType="fitCenter"
+		android:gravity="center_horizontal"
+		android:keepScreenOn="true" />
+
+	<Button android:id="@+id/npctalkbutton" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+		android:layout_marginTop="10dip" />
+
+
+
+	<ScrollView android:id="@+id/npc_scroll_view"
+		android:layout_below="@id/npcimage" android:layout_above="@id/npctalkbutton"
+		android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<TextView android:id="@+id/npctext" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:textSize="30sp">
+		</TextView>
+	</ScrollView>
+
+</RelativeLayout>

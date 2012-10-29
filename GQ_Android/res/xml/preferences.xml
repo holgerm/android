@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="Location Mocking">
+		<EditTextPreference android:name="Devices Name"
+			android:summary="This name is displayed on GeoControl map when you simulate location"
+			android:defaultValue="" android:title="Device Name" android:key="deviceNameForGPSMocking" />
+		<CheckBoxPreference android:title="GPS Mocking"
+			android:defaultValue="false"
+			android:summary="Enable or disable position simulation. Device name is required."
+			android:key="isGPSMocking" android:dependency="deviceNameForGPSMocking" />
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/pref_cat_server_settings" android:key="pref_cat_server_settings">
+		<edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedEditTextPreference android:key="pref_server_url"
+			android:title="@string/pref_server_url_title" android:summary="@string/pref_server_url_summary"
+			android:dialogTitle="@string/pref_server_url_dialog_title" android:dialogMessage="@string/pref_server_url_dialog_message">
+		</edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedEditTextPreference>
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/pref_cat_game_start" android:key="pref_cat_game_start">
+		<edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedCheckBoxPreference android:key="pref_auto_start_game_check"
+			android:title="@string/pref_auto_start_game_check_title" android:summary="@string/pref_auto_start_game_check_summary"
+			android:defaultValue="false">
+		</edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedCheckBoxPreference>
+		<edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedListPreference android:key="pref_auto_start_game"
+			android:title="@string/pref_auto_start_game_title" android:summary="@string/pref_auto_start_game_summary"
+			android:dialogTitle="@string/pref_auto_start_game_dialog_title" android:dependency="pref_auto_start_game_check">
+		</edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedListPreference>
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/pref_cat_security">
+		<edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedEditTextPreference android:key="pref_password"
+			android:title="@string/pref_password_title" android:summary="@string/pref_password_summary"
+			android:dialogTitle="@string/pref_password_dialog_title" android:dialogMessage="@string/pref_password_dialog_message">
+		</edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedEditTextPreference>
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/pref_cat_misc">
+		<edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedDialogPreference android:key="pref_clean_sdcard"
+			android:title="@string/pref_clean_sdcard_title" android:summary="@string/pref_clean_sdcard_summary"
+			android:dialogTitle="@string/pref_clean_sdcard_dlg_title" android:dialogMessage="@string/pref_clean_sdcard_dlg_msg">
+		</edu.bonn.mobilegaming.geoquest.pwprefs.PasswordProtectedDialogPreference>
+	</PreferenceCategory>
+</PreferenceScreen>

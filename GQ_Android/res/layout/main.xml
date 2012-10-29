@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/mainlayout" android:orientation="vertical"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<com.google.android.maps.MapView
+		android:id="@+id/mapview" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:clickable="true"
+		android:apiKey="0up_0-oJmElkBi1u9F85O78yHZZrer2Vf6yARtA"
+		android:keepScreenOn="true" />
+	<!-- Florian Debug    			0FBFv_WkNvBYMuTYltKVNvNFgao579s6tcyhSsQ -->
+	<!-- Pascal Debug 				0fdjnPzZbGGdpeKSFnPGgy9GegqB82ffh3UaGAA -->
+	<!-- Pascal export 				0fdjnPzZbGGeI-lR4ZMrL_A6Ik_0KsqU21f4hJA -->
+	<!-- Holger Debug				0up_0-oJmElkBi1u9F85O78yHZZrer2Vf6yARtA -->
+	<!-- Sven Debug					06mjENXzwGPyx2H6fK6NsEjiKPdWamzrM-sLwog -->
+
+	<!--
+		<TextView android:id="@+id/score" android:layout_width="280px"
+		android:layout_height="30px" android:textSize="20px"/> <ImageView
+		android:id="@+id/navigate" android:src="@drawable/navigate"
+		android:layout_width="40px" android:layout_height="40px"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true" />
+	-->
+
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:layout_alignParentRight="true" android:layout_centerVertical="true">
+
+		<Button android:id="@+id/zoom_in" android:background="@drawable/btn_plus_default"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+		<Button android:id="@+id/zoom_out" android:background="@drawable/btn_minus_default"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/startMissionPanel"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical" android:gravity="center"
+		android:layout_alignParentBottom="true">
+
+	</LinearLayout>
+
+
+</RelativeLayout>

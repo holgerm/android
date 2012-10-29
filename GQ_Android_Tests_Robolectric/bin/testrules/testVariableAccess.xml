@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test>
+	<rule>
+		<action type="SetVariable" var="v1">
+			<value>
+				<num>3</num>
+			</value>
+		</action>
+	</rule>
+
+	<rule>
+		<action type="IncrementVariable" var="v1" />
+	</rule>
+
+	<rule>
+		<action type="DecrementVariable" var="v1" />
+	</rule>
+
+	<rule>
+		<action type="SetVariable" var="v1">
+			<value>
+				<num>20</num>
+			</value>
+		</action>
+	</rule>
+</test>

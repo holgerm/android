@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<com.qeevee.ui.ZoomImageView android:id="@+id/audioRecordImageView"
+		android:layout_width="fill_parent" android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true" android:layout_height="140dip"
+		android:layout_marginTop="10dip" android:scaleType="fitCenter"
+		android:gravity="center_horizontal" android:keepScreenOn="true" />
+
+	<TextView android:id="@+id/audioRecordTextView"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:typeface="serif" android:textSize="30sp" android:gravity="center"
+		android:layout_weight="1" />
+
+	<Button android:id="@+id/audioRecordRecordButton"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+	<Button android:id="@+id/audioRecordPlayButton"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+	<Button android:id="@+id/audioRecordUploadButton"
+		android:layout_width="fill_parent" android:layout_height="wrap_content" />
+
+</LinearLayout>

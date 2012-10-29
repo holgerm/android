@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test>
+	<rule>
+		<action type="SetVariable" var="a">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+		<action type="SetVariable" var="b">
+			<value>
+				<num>1</num>
+			</value>
+		</action>
+	</rule>
+
+	<rule>
+		<if>
+			<and>
+				<leq>
+					<var>a</var>
+					<num>1</num>
+				</leq>
+				<leq>
+					<var>b</var>
+					<num>1</num>
+				</leq>
+			</and>
+		</if>
+		<action type="IncrementVariable" var="a" />
+		<action type="IncrementVariable" var="b" />
+	</rule>
+
+	<rule>
+		<if>
+			<and>
+				<geq>
+					<var>a</var>
+					<num>2</num>
+				</geq>
+				<geq>
+					<var>b</var>
+					<num>2</num>
+				</geq>
+			</and>
+		</if>
+		<action type="IncrementVariable" var="a" />
+		<action type="IncrementVariable" var="b" />
+	</rule>
+
+	<rule>
+		<if>
+			<and>
+			<eq>
+				<var>a</var>
+				<num>3</num>
+			</eq>
+			<eq>
+				<var>b</var>
+				<num>3</num>
+			</eq>
+			</and>
+		</if>
+		<action type="IncrementVariable" var="a" />
+		<action type="IncrementVariable" var="b" />
+	</rule>
+</test>
