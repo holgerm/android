@@ -392,7 +392,7 @@ public class Mission implements Serializable {
 		}
 	}
 
-	private static String getPackageBaseName() {
+	public static String getPackageBaseName() {
 		String className = Mission.class.getName();
 		int indexOfLastDot = className.lastIndexOf('.');
 		return className.substring(0, indexOfLastDot + 1);
