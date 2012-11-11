@@ -43,19 +43,62 @@ public class TestUtils {
 		return new File(xmlFileURL.getFile());
 	}
 
-	public static void setUpMissionTypeTest(String missionType, String missionID, GeoQuestActivity missionActivity) throws ClassNotFoundException {
-		setUpMissionTypeTest(missionType + "Test", missionType, missionID, missionActivity);
+	/**
+	 * Sets up the test for a single mission type using a prepared game file
+	 * (game.xml) which must be stored in "testgames" directory and named
+	 * "<missionName>Test".
+	 * 
+	 * @param missionType
+	 *            must be a valid mission type for which a class exists in the
+	 *            mission implementation package.
+	 * @param missionID
+	 * @return a new Object of the according type for the given mission type
+	 *         name.
+	 * @throws ClassNotFoundException
+	 */
+	public static GeoQuestActivity setUpMissionTypeTest(String missionType,
+			String missionID) throws ClassNotFoundException {
+		return setUpMissionTypeTest(missionType + "Test", missionType,
+				missionID);
 	}
 
-	public static void setUpMissionTypeTest(String gameFileName, String missionType, String missionID, GeoQuestActivity missionActivity) throws ClassNotFoundException {
+	/**
+	 * Sets up the test for a single mission type using a prepared game file
+	 * (game.xml) which must be stored in "testgames" directory.
+	 * 
+	 * @param gameFileName
+	 *            the filename of the xml game specification used for this test.
+	 * @param missionType
+	 *            must be a valid mission type for which a class exists in the
+	 *            mission implementation package.
+	 * @param missionID
+	 * @return a new Object of the according type for the given mission type
+	 *         name.
+	 * @throws ClassNotFoundException
+	 */
+	public static GeoQuestActivity setUpMissionTypeTest(String gameFileName,
+			String missionType, String missionID) throws ClassNotFoundException {
+		Class<?> missionClass = Class.forName(Mission.getPackageBaseName()
+				+ missionType);
+		GeoQuestActivity missionActivity = null;
+		try {
+			missionActivity = (GeoQuestActivity) missionClass.newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Start start = new Start();
 		GeoQuestApp app = (GeoQuestApp) start.getApplication();
 		app.onCreate();
 		Mission.setMainActivity(start);
 		GameLoader.startGame(null, TestUtils.getGameFile(gameFileName));
-		Intent startMCQIntent = new Intent(start, Class.forName(Mission.getPackageBaseName() + missionType));
+		Intent startMCQIntent = new Intent(start, missionClass);
 		startMCQIntent.putExtra("missionID", missionID);
 		Robolectric.shadowOf(missionActivity).setIntent(startMCQIntent);
+		return missionActivity;
 	}
 
 }
