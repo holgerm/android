@@ -158,7 +158,7 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 		Element xmlQuestion = (Element) mission.xmlMissionNode
 				.selectSingleNode("./question");
 		questionText = xmlQuestion.selectSingleNode("./questiontext").getText()
-				.replaceAll("\\s+", " ");
+				.replaceAll("\\s+", " ").trim();
 		List<Element> xmlAnswers = xmlQuestion.selectNodes("./answer");
 		for (Iterator<Element> j = xmlAnswers.iterator(); j.hasNext();) {
 			Element xmlAnswer = j.next();
