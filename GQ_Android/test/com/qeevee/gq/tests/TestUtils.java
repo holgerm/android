@@ -11,7 +11,6 @@ import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
 import android.content.Intent;
-import android.widget.TextView;
 
 import com.xtremelabs.robolectric.Robolectric;
 
@@ -116,7 +115,7 @@ public class TestUtils {
 		try {
 			Field f = obj.getClass().getDeclaredField(fieldName);
 			f.setAccessible(true);
-			value = (TextView) f.get(obj);
+			value = f.get(obj);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -127,8 +126,8 @@ public class TestUtils {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
+			fail("Implementation of type \"" + obj.getClass().getSimpleName()
+					+ "\" misses a field named \"" + fieldName + "\"");
 		}
 		return value;
 	}
