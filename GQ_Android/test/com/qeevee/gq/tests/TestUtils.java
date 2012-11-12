@@ -3,6 +3,7 @@ package com.qeevee.gq.tests;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.net.URL;
 
 import org.dom4j.Document;
@@ -10,6 +11,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.xtremelabs.robolectric.Robolectric;
 
@@ -99,6 +101,36 @@ public class TestUtils {
 		startMCQIntent.putExtra("missionID", missionID);
 		Robolectric.shadowOf(missionActivity).setIntent(startMCQIntent);
 		return missionActivity;
+	}
+
+	/**
+	 * Lets you access the values of private or protected fields in your tests.
+	 * You will have to cast the resulting object down to the real type.
+	 * 
+	 * @param obj
+	 * @param fieldName
+	 * @return
+	 */
+	public static Object getFieldValue(Object obj, String fieldName) {
+		Object value = null;
+		try {
+			Field f = obj.getClass().getDeclaredField(fieldName);
+			f.setAccessible(true);
+			value = (TextView) f.get(obj);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return value;
 	}
 
 }
