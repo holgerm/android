@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TEST GAME SPEC for TextQuestion Mission Type -->
+<game
+	name="TextQuestionTest"
+	xmlformat="5"
+>
+	<mission
+		id="With_Defaults"
+		type="TextQuestion"
+	>
+		<onStart>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onStart"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+			</rule>
+		</onStart>
+		<onSuccess>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onSuccess"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+			</rule>
+		</onSuccess>
+		<onFail>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onFail"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+			</rule>
+		</onFail>
+		<onEnd>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onEnd"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+				<action type="StartMission" id="With_Hint_Replies"/>
+			</rule>
+		</onEnd>
+		<question>
+			<questiontext>Text of the question.
+			</questiontext>
+			<accept>
+				<answer>Answer One</answer>
+				<answer>Answer Two</answer>
+				<answer>Answer Three</answer>
+			</accept>
+		</question>
+	</mission>
+	<mission
+		id="With_Hint_Replies"
+		type="TextQuestion"
+	>
+		<onEnd>
+			<rule>
+				<action type="StartMission" id="With_Loop"/>
+			</rule>
+		</onEnd>
+		<question>
+			<questiontext prompt="This is my personal hint for you ...">Text of the question.
+			</questiontext>
+			<accept>
+				<answer>Answer One</answer>
+				<answer>Answer Two</answer>
+				<answer>Answer Three</answer>
+			</accept>
+			<replyOnCorrect>You have chosen the right answer.</replyOnCorrect>
+			<replyOnWrong>Sorry, but this was a wrong answer.</replyOnWrong>
+		</question>
+	</mission>
+	<mission
+		id="With_Loop"
+		type="TextQuestion"
+		loopUntilSuccess="true"
+	>
+		<onFail>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onFail"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+			</rule>
+		</onFail>
+		<onEnd>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onEnd"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+				<action type="StartMission" id="Without_AcceptedAnswers"/>
+			</rule>
+		</onEnd>
+		<question>
+			<questiontext>Text of the question.
+			</questiontext>
+			<accept>
+				<answer>Answer One</answer>
+				<answer>Answer Two</answer>
+				<answer>Answer Three</answer>
+			</accept>
+		</question>
+	</mission>
+	<mission
+		id="Without_AcceptedAnswers"
+		type="TextQuestion"
+		loopUntilSuccess="true"
+	>
+		<onFail>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onFail"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+			</rule>
+		</onFail>
+		<onEnd>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onEnd"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+			</rule>
+		</onEnd>
+		<question>
+			<questiontext prompt="This is my personal hint for you ...">Text of the question.
+			</questiontext>
+		</question>
+	</mission>
+</game>
