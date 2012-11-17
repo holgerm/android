@@ -8,5 +8,10 @@ public class StringTools {
 		return original.substring(0, 1).toUpperCase(Locale.ENGLISH)
 				+ original.substring(1);
 	}
+	
+	public static String trim(String original) {
+	    return original.replaceAll("\\s+",
+		    " ").trim();
+	}
 
 }
