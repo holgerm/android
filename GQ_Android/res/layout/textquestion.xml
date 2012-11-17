@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/qanda_background"
+    android:keepScreenOn="true" >
+
+    <TextView
+        android:id="@+id/textquestion_questionTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:textSize="30sp" />
+
+    
+    <Button
+        android:id="@+id/textquestion_acceptBT"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <EditText
+        android:id="@+id/textquestion_answerET"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textquestion_acceptBT"
+        android:ems="10"
+        android:hint="@string/textquestion_answerET_hint_default"
+        android:inputType="text" >
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>
