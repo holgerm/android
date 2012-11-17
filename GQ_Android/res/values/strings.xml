@@ -65,6 +65,9 @@
 
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Enter your answer here ...</string>
+    
+    <!-- AudioRecord MISSION -->
+    <string name="audiorecord_file_default">audiorecord.3gp</string>
 
     <!-- External Mission -->
     <string name="external_mission_description_default">Starting external mission</string>
