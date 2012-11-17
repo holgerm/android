@@ -87,4 +87,16 @@ public abstract class InteractiveMission extends MissionActivity {
 		}
 	}
 
+	public void onBlockingStateUpdated(boolean isBlocking) {
+	    // TODO Auto-generated method stub
+	    
+	}
+
+	@Override
+	public void finish(Double status) {
+	    super.finish(status);
+	}
+	
+	
+
 }
