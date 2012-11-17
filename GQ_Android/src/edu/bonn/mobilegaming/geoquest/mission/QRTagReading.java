@@ -74,199 +74,222 @@ import edu.bonn.mobilegaming.geoquest.Variables;
  */
 
 public class QRTagReading extends InteractiveMission implements OnClickListener {
-	private static final String TAG = "QRTagReading";
+    private static final String TAG = "QRTagReading";
 
-	/** button to start the QRTag Reader */
-	private Button okButton;
+    /** button to start the QRTag Reader */
+    private Button okButton;
 
-	private TextView taskTextView;
-	private ImageView imageView;
+    private TextView taskTextView;
+    private ImageView imageView;
 
-	private static final int START_SCAN = 1;
-	private static final int END_MISSION = 2;
+    private static final int START_SCAN = 1;
+    private static final int END_MISSION = 2;
 
-	private int buttonMode;
+    private int buttonMode;
 
-	private static final int TREASURE = 1;
-	private static final int PRODUCT = 2;
-	private int missionMode = TREASURE;
+    private static final int TREASURE = 1;
+    private static final int PRODUCT = 2;
+    private int missionMode = TREASURE;
 
-	private CharSequence expectedContent;
-	private CharSequence ifWrongText;
-	private CharSequence ifRightText;
-	private CharSequence feedbackText;
-	private CharSequence endButtonText;
-	private CharSequence scanButtonText;
+    private CharSequence expectedContent;
+    private CharSequence ifWrongText;
+    private CharSequence ifRightText;
+    private CharSequence feedbackText;
+    private CharSequence endButtonText;
+    private CharSequence scanButtonText;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.qrtagreading);
+	setContentView(R.layout.qrtagreading);
 
-		// init Start Scan Button at bottom:
-		okButton = (Button) findViewById(R.id.qrtagreaderstartbutton);
-		scanButtonText = getMissionAttribute("buttontext",
-				R.string.qrtagreading_startscanbutton_default);
-		okButton.setText(scanButtonText);
-		okButton.setOnClickListener(this);
-		// init endbuttontext:
-		this.endButtonText = getMissionAttribute("endbuttontext",
-				R.string.default_endButtonText);
-		buttonMode = START_SCAN;
+	// init Start Scan Button at bottom:
+	okButton = (Button) findViewById(R.id.qrtagreaderstartbutton);
+	scanButtonText = getMissionAttribute("buttontext",
+					     R.string.qrtagreading_startscanbutton_default);
+	okButton.setText(scanButtonText);
+	okButton.setOnClickListener(this);
+	// init endbuttontext:
+	this.endButtonText = getMissionAttribute("endbuttontext",
+						 R.string.default_endButtonText);
+	buttonMode = START_SCAN;
 
-		// init task description text:
-		taskTextView = (TextView) findViewById(R.id.qrTextView);
-		taskTextView.setText(getMissionAttribute("taskdescription",
-				R.string.qrtagreading_taskdescription_default));
+	// init task description text:
+	taskTextView = (TextView) findViewById(R.id.qrTextView);
+	taskTextView
+		.setText(getMissionAttribute("taskdescription",
+					     R.string.qrtagreading_taskdescription_default));
 
-		// initial image:
-		imageView = (ImageView) findViewById(R.id.qrImageView);
-		setImage("initial_image");
+	// initial image:
+	imageView = (ImageView) findViewById(R.id.qrImageView);
+	setImage("initial_image");
 
-		// init mode and dependent attributes:
-		String modeAsString = mission.xmlMissionNode.attributeValue("mode");
-		if (modeAsString == null || modeAsString.equals("treasure")) {
-			this.missionMode = TREASURE;
-			this.feedbackText = getMissionAttribute("feedbacktext",
-					R.string.qrtagreader_treasure_feedback);
-		} else if (modeAsString.equals("product")) {
-			this.missionMode = PRODUCT;
-			this.expectedContent = getMissionAttribute("expected_content",
-					XMLUtilities.NECESSARY_ATTRIBUTE);
-			this.ifRightText = getMissionAttribute("if_right",
-					R.string.qrtagreader_product_ifright);
-			this.ifWrongText = getMissionAttribute("if_wrong",
-					R.string.qrtagreader_product_ifwrong);
-		}
+	// init mode and dependent attributes:
+	String modeAsString = mission.xmlMissionNode.attributeValue("mode");
+	if (modeAsString == null || modeAsString.equals("treasure")) {
+	    this.missionMode = TREASURE;
+	    this.feedbackText = getMissionAttribute("feedbacktext",
+						    R.string.qrtagreader_treasure_feedback);
+	} else if (modeAsString.equals("product")) {
+	    this.missionMode = PRODUCT;
+	    this.expectedContent = getMissionAttribute("expected_content",
+						       XMLUtilities.NECESSARY_ATTRIBUTE);
+	    this.ifRightText = getMissionAttribute("if_right",
+						   R.string.qrtagreader_product_ifright);
+	    this.ifWrongText = getMissionAttribute("if_wrong",
+						   R.string.qrtagreader_product_ifwrong);
 	}
+    }
 
-	private void setImage(String attributeName) {
-		CharSequence imagePath = getMissionAttribute(attributeName,
-				XMLUtilities.OPTIONAL_ATTRIBUTE);
-		if (imagePath != null) {
-			this.imageView.setVisibility(View.VISIBLE);
-			this.imageView.setImageBitmap(GeoQuestApp.loadBitmap(
-					imagePath.toString(), true));
+    private void setImage(String attributeName) {
+	CharSequence imagePath = getMissionAttribute(attributeName,
+						     XMLUtilities.OPTIONAL_ATTRIBUTE);
+	if (imagePath != null) {
+	    this.imageView.setVisibility(View.VISIBLE);
+	    this.imageView.setImageBitmap(GeoQuestApp
+		    .loadBitmap(imagePath.toString(),
+				true));
+	} else {
+	    // unset imageview:
+	    this.imageView.setVisibility(View.GONE);
+	}
+    }
+
+    private static final String TOKEN_SCAN_RESULT = "@result@";
+
+    @Override
+    public void onDestroy() {
+	super.onDestroy();
+    }
+
+    /**
+     * On Click handler for the button at the bottom.
+     */
+    public void onClick(View v) {
+	switch (buttonMode) {
+	case END_MISSION:
+	    finish(Globals.STATUS_SUCCESS);
+	    break;
+	case START_SCAN:
+	    Intent intentScan = new Intent(
+		    "com.google.zxing.client.android.SCAN");
+	    intentScan.addCategory(Intent.CATEGORY_DEFAULT);
+	    try {
+		startActivityForResult(intentScan,
+				       0x0ba7c0de);
+	    } catch (ActivityNotFoundException e) {
+		showDownloadDialog(this,
+				   DEFAULT_TITLE,
+				   DEFAULT_MESSAGE,
+				   DEFAULT_YES,
+				   DEFAULT_NO);
+	    }
+	    break;
+	default:
+	    Log.e(TAG,
+		  "unknown buttonMode: " + buttonMode);
+	}
+	return;
+    }
+
+    public static final String DEFAULT_TITLE = "Install Barcode Scanner?";
+    public static final String DEFAULT_MESSAGE = "This application requires Barcode Scanner. Would you like to install it?";
+    public static final String DEFAULT_YES = "Yes";
+    public static final String DEFAULT_NO = "No";
+
+    private AlertDialog showDownloadDialog(final Activity activity,
+					   CharSequence stringTitle,
+					   CharSequence stringMessage,
+					   CharSequence stringButtonYes,
+					   CharSequence stringButtonNo) {
+	AlertDialog.Builder downloadDialog = new AlertDialog.Builder(activity);
+	downloadDialog.setTitle(stringTitle);
+	downloadDialog.setMessage(stringMessage);
+	downloadDialog.setPositiveButton(stringButtonYes,
+					 new DialogInterface.OnClickListener() {
+					     public
+						     void
+						     onClick(DialogInterface dialogInterface,
+							     int i) {
+						 Uri uri = Uri
+							 .parse("market://search?q=pname:com.google.zxing.client.android");
+						 Intent intent = new Intent(
+							 Intent.ACTION_VIEW,
+							 uri);
+						 activity.startActivity(intent);
+					     }
+					 });
+	downloadDialog.setNegativeButton(stringButtonNo,
+					 new DialogInterface.OnClickListener() {
+					     public
+						     void
+						     onClick(DialogInterface dialogInterface,
+							     int i) {
+					     }
+					 });
+	return downloadDialog.show();
+    }
+
+    public void onActivityResult(int requestCode,
+				 int resultCode,
+				 Intent intent) {
+	IntentResult scanResult = IntentIntegrator
+		.parseActivityResult(requestCode,
+				     resultCode,
+				     intent);
+	if (intent != null && scanResult != null) {
+	    String scannedResult = scanResult.getContents();
+	    // set scanned result in mission specific variable:
+	    Variables.registerMissionResult(mission.id,
+					    scannedResult);
+
+	    // handle scan result depending on mode:
+	    switch (missionMode) {
+	    case TREASURE:
+		taskTextView.setText(this.feedbackText.toString()
+			.replaceAll(TOKEN_SCAN_RESULT,
+				    scannedResult));
+		setImage("if_right_image");
+		buttonMode = END_MISSION;
+		okButton.setText(endButtonText);
+		invokeOnSuccessEvents();
+		break;
+	    case PRODUCT:
+		// check content:
+		if (this.expectedContent.toString().equals(scannedResult)) {
+		    taskTextView.setText(this.ifRightText);
+		    setImage("if_right_image");
+		    buttonMode = END_MISSION;
+		    okButton.setText(endButtonText);
+		    invokeOnSuccessEvents();
 		} else {
-			// unset imageview:
-			this.imageView.setVisibility(View.GONE);
+		    taskTextView.setText(this.ifWrongText);
+		    setImage("if_wrong_image");
+		    buttonMode = START_SCAN;
+		    okButton.setText(scanButtonText);
+		    invokeOnFailEvents();
 		}
+		break;
+	    default:
+		Log.e(TAG,
+		      "undefined QRTagReading mission mode: " + missionMode);
+	    }
+	} else {
+	    buttonMode = START_SCAN;
+	    okButton.setText(scanButtonText);
+	    setImage("initial_image");
+	    taskTextView
+		    .setText(getMissionAttribute("taskdescription",
+						 R.string.qrtagreading_taskdescription_default));
+
+	    // taskTextView.setText(R.string.error_qrtagreader_noresult);
+	    // Log.e(TAG, "scanning rsulted in null");
 	}
+    }
 
-	private static final String TOKEN_SCAN_RESULT = "@result@";
+    public void onBlockingStateUpdated(boolean blocking) {
+	// TODO Auto-generated method stub
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-	}
-
-	/**
-	 * On Click handler for the button at the bottom.
-	 */
-	public void onClick(View v) {
-		switch (buttonMode) {
-		case END_MISSION:
-			finish(Globals.STATUS_SUCCESS);
-			break;
-		case START_SCAN:
-			Intent intentScan = new Intent(
-					"com.google.zxing.client.android.SCAN");
-			intentScan.addCategory(Intent.CATEGORY_DEFAULT);
-			try {
-				startActivityForResult(intentScan, 0x0ba7c0de);
-			} catch (ActivityNotFoundException e) {
-				showDownloadDialog(this, DEFAULT_TITLE, DEFAULT_MESSAGE,
-						DEFAULT_YES, DEFAULT_NO);
-			}
-			break;
-		default:
-			Log.e(TAG, "unknown buttonMode: " + buttonMode);
-		}
-		return;
-	}
-
-	public static final String DEFAULT_TITLE = "Install Barcode Scanner?";
-	public static final String DEFAULT_MESSAGE = "This application requires Barcode Scanner. Would you like to install it?";
-	public static final String DEFAULT_YES = "Yes";
-	public static final String DEFAULT_NO = "No";
-
-	private AlertDialog showDownloadDialog(final Activity activity,
-			CharSequence stringTitle, CharSequence stringMessage,
-			CharSequence stringButtonYes, CharSequence stringButtonNo) {
-		AlertDialog.Builder downloadDialog = new AlertDialog.Builder(activity);
-		downloadDialog.setTitle(stringTitle);
-		downloadDialog.setMessage(stringMessage);
-		downloadDialog.setPositiveButton(stringButtonYes,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialogInterface, int i) {
-						Uri uri = Uri
-								.parse("market://search?q=pname:com.google.zxing.client.android");
-						Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-						activity.startActivity(intent);
-					}
-				});
-		downloadDialog.setNegativeButton(stringButtonNo,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialogInterface, int i) {
-					}
-				});
-		return downloadDialog.show();
-	}
-
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		IntentResult scanResult = IntentIntegrator.parseActivityResult(
-				requestCode, resultCode, intent);
-		if (intent != null && scanResult != null) {
-			String scannedResult = scanResult.getContents();
-			// set scanned result in mission specific variable:
-			Variables.registerMissionResult(mission.id, scannedResult);
-
-			// handle scan result depending on mode:
-			switch (missionMode) {
-			case TREASURE:
-				taskTextView.setText(this.feedbackText.toString().replaceAll(
-						TOKEN_SCAN_RESULT, scannedResult));
-				setImage("if_right_image");
-				buttonMode = END_MISSION;
-				okButton.setText(endButtonText);
-				invokeOnSuccessEvents();
-				break;
-			case PRODUCT:
-				// check content:
-				if (this.expectedContent.toString().equals(
-						scannedResult)) {
-					taskTextView.setText(this.ifRightText);
-					setImage("if_right_image");
-					buttonMode = END_MISSION;
-					okButton.setText(endButtonText);
-					invokeOnSuccessEvents();
-				} else {
-					taskTextView.setText(this.ifWrongText);
-					setImage("if_wrong_image");
-					buttonMode = START_SCAN;
-					okButton.setText(scanButtonText);
-					invokeOnFailEvents();
-				}
-				break;
-			default:
-				Log.e(TAG, "undefined QRTagReading mission mode: "
-						+ missionMode);
-			}
-		} else {
-			buttonMode = START_SCAN;
-			okButton.setText(scanButtonText);
-			setImage("initial_image");
-			taskTextView.setText(getMissionAttribute("taskdescription",
-					R.string.qrtagreading_taskdescription_default));
-
-//			taskTextView.setText(R.string.error_qrtagreader_noresult);
-//			Log.e(TAG, "scanning rsulted in null");
-		}
-	}
-
-	public void onBlockingStateUpdated(boolean blocking) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 }
