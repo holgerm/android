@@ -7,13 +7,12 @@
     <string name="questionandanswer_rightAnswer">Right Answer :)</string>
     <string name="questionandanswer_wrongAnswer">Wrong Answer :(</string>
     <string name="questionandanswer_next">Proceed</string>
-	<string name="questionandanswer_again">Try again</string>
-	<string name="default_question_shuffle_mode">no</string>
-	<string name="app_name">GeoQuest</string>
+    <string name="questionandanswer_again">Try again</string>
+    <string name="default_question_shuffle_mode">no</string>
+    <string name="app_name">GeoQuest</string>
     <string name="default_endButtonText">Continue with next mission ...</string>
     <string name="error_qrtagreader_noresult">Sorry, tag reading did not have a result. \nMaybe
-		you should try again.
-	</string>
+		you should try again.</string>
     <string name="geoquest_server_url">http://geoquest.qeevee.org</string>
     <string name="webupdate_local_default_repository">default</string>
     <string name="locationMockupFalseMenu">Switch to mocked location</string>
@@ -33,8 +32,7 @@
     <string name="startingARView">Starting AR View ...</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="missing_hotspot_description">No description for this hotspot availbale. Sorry.
-	</string>
+    <string name="missing_hotspot_description">No description for this hotspot availbale. Sorry.</string>
     <string name="npctalk_nextDialogButtonText">Proceed ...</string>
     <string name="qrtagreading_startscanbutton_default">Start Scanning ...</string>
     <string name="qrtagreading_taskdescription_default">Search for the QR code and scan it ...</string>
@@ -55,6 +53,18 @@
     <string name="audioRecordFinishedButton">That\'s it! Go on ...</string>
     <string name="audioRecordUploadOK">OK. Your audio file has been uploaded.</string>
     <string name="audioRecordUploadERROR">Error. File could not be uploaded.</string>
+
+    <!-- Generic BUTTON Labels -->
+    <string name="button_text_repeat">Repeat</string>
+    <string name="button_text_accept">Accept</string>
+    <string name="button_text_proceed">Proceed</string>
+
+    <!-- All Question MISSIONS -->
+    <string name="question_reply_wrong_default">No, that was wrong.</string>
+    <string name="question_reply_correct_default">Yes, that was correct.</string>
+
+    <!-- TextQuestion MISSION -->
+    <string name="textquestion_answerET_hint_default">Enter your answer here ...</string>
 
     <!-- External Mission -->
     <string name="external_mission_description_default">Starting external mission</string>

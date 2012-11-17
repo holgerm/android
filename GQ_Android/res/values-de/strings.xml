@@ -1,104 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="questionandanswer_successfullyCompletedMission">Diese Mission ist erfolgreich beendet</string>
-	<string name="questionandanswer_notEnoughCorrectAnswers">Das waren leider nicht genügend richtige Antworten.
-	</string>
-	<string name="questionandanswer_rightAnswer">Richtige Antwort!</string>
-	<string name="questionandanswer_wrongAnswer">Falsche Antwort.</string>
-	<string name="questionandanswer_next">Weiter</string>
-	<string name="questionandanswer_again">Noch einmal</string>
-		<string name="npctalk_endButtonText">Spiel fortsetzen</string>
-	<string name="webupdate_downloadGamelist">Lade Liste der Spiele. Bitte Warten.</string>
-	<string name="webupdate_errorReadingGamelistFileNotFound">Fehler: gamelist kann nicht gelesen werden.
-	</string>
-	<string name="webupdate_errorReadingGamelistDocumentException">error: DocumentException beim lesen der gamelist.
-	</string>
-	<string name="webupdate_updating">Aktualisiere Spiel. Bitte Warten.</string>
-	<string name="webupdate_readingGamelist">Lese Gamelist. Bitte Warten.</string>
-	<string name="webupdate_chooseGame">Bitte wählen Sie ein Spiel.</string>
-	<string name="webupdate_aboutButtonText">Über</string>
-	<string name="webupdate_exitButtonText">Beenden</string>
-	<string name="webupdate_RepositoryButtonText">Wechsle Repository</string>
-
-	<string name="qrtagreading_startscanbutton_default">Scanner starten</string>
+    <string name="questionandanswer_notEnoughCorrectAnswers">Das waren leider nicht genügend richtige Antworten.</string>
+    <string name="questionandanswer_rightAnswer">Richtige Antwort!</string>
+    <string name="questionandanswer_wrongAnswer">Falsche Antwort.</string>
+    <string name="questionandanswer_next">Weiter</string>
+    <string name="questionandanswer_again">Noch einmal</string>
+    <string name="npctalk_endButtonText">Spiel fortsetzen</string>
+    <string name="webupdate_downloadGamelist">Lade Liste der Spiele. Bitte Warten.</string>
+    <string name="webupdate_errorReadingGamelistFileNotFound">Fehler: gamelist kann nicht gelesen werden.</string>
+    <string name="webupdate_errorReadingGamelistDocumentException">error: DocumentException beim lesen der gamelist.</string>
+    <string name="webupdate_updating">Aktualisiere Spiel. Bitte Warten.</string>
+    <string name="webupdate_readingGamelist">Lese Gamelist. Bitte Warten.</string>
+    <string name="webupdate_chooseGame">Bitte wählen Sie ein Spiel.</string>
+    <string name="webupdate_aboutButtonText">Über</string>
+    <string name="webupdate_exitButtonText">Beenden</string>
+    <string name="webupdate_RepositoryButtonText">Wechsle Repository</string>
+    <string name="qrtagreading_startscanbutton_default">Scanner starten</string>
     <string name="qrtagreading_taskdescription_default">Suche den QR Code und scanne ihn ein ...</string>
-	
+    <string name="npctalk_nextDialogButtonText">Weiter</string>
+    <string name="default_endButtonText">Spiel fortsetzen</string>
+    <string name="start_RecentlyPlayed">Zuletzt gespielt: </string>
+    <string name="start_SelectQuest">Wähle ein Quest ...</string>
+    <string name="start_RestartButton">Noch einmal</string>
+    <string name="start_SelectOtherButton">Ein anderes ...</string>
+    <string name="start_DialogTitle">Willkommen</string>
+    <string name="start_Welcome">Wähle bitte ein Quest aus ...</string>
+    <string name="start_SelectQuestButton">Zur Auswahl ...</string>
+    <string name="gamelistHeaderStart">Quests in</string>
+    <string name="repolistHeaderStart">Verfügbare Repositories</string>
+    <string name="audiorecord_taskdescription_default">Eure Aufgabe: Nehmt eine Audiodatei auf und ladet sie auf den Spiele Server!</string>
+    <string name="audioRecordFinishedButton">Fertig ...</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
 
-	<string name="npctalk_nextDialogButtonText">Weiter</string>
-	<string name="default_endButtonText">Spiel fortsetzen</string>
-	<string name="start_RecentlyPlayed">Zuletzt gespielt: </string>
-	<string name="start_SelectQuest">Wähle ein Quest ...</string>
-	<string name="start_RestartButton">Noch einmal</string>
-	<string name="start_SelectOtherButton">Ein anderes ...</string>
-	<string name="start_DialogTitle">Willkommen</string>
-	<string name="start_Welcome">Wähle bitte ein Quest aus ...</string>
-	<string name="start_SelectQuestButton">Zur Auswahl ...</string>
+ 
+    <!-- Generic BUTTON Labels -->
+    <string name="button_text_repeat">Weiderholen</string>
+    <string name="button_text_accept">OK</string>
+    <string name="button_text_proceed">Weiter</string>
 
-	<string name="gamelistHeaderStart">Quests in</string>
-	<string name="repolistHeaderStart">Verfügbare Repositories</string>
-	<string name="audiorecord_taskdescription_default">Eure Aufgabe: Nehmt eine Audiodatei auf und ladet sie auf den Spiele Server!</string>
-	<string name="audioRecordFinishedButton">Fertig ...</string>
-	
-	<string name="ok">OK</string>
-	<string name="cancel">Abbrechen</string>
-	
-		<!-- Password protected prefs -->
+    <!-- All Question MISSIONS -->
+    <string name="question_reply_wrong_default">Nein, das war falsch.</string>
+    <string name="question_reply_correct_default">Ja, richtig.</string>
 
-	<string name="pw_dialog_title">Passwort</string>
-	<string name="pw_dialog_descr">Diese Aktion ist Passwort-geschützt. Bitte gib dein Passwort ein.\nWenn du dein Passwort vergessen hast, musst du die App neu installieren!</string>
-	<string name="pw_dialog_wrong_pw">Falsches Passwort!</string>
-	
-	<!-- Server preferences -->
-	
-	<string name="pref_cat_server_settings">Server-Einstellungen</string>
-	<string name="pref_server_url_title">Server URL</string>
-	<string name="pref_server_url_summary">Die URL des Spiele-Servers. Ändere diese nicht, außer du möchtest einen eigenen Server nutzen.</string>
-	<string name="pref_server_url_dialog_title">Server URL</string>
-	<string name="pref_server_url_dialog_message">Ändere hier die URL des Spiele-Servers. Voreingestellt ist der Qeevee-Server. Ändere dies nur, wenn Du einen eigenen Server nutzen willst.</string>
-	
-	<!-- Game startup preferences-->
-	
-	<string name="pref_cat_game_start">Spielstart</string>
-	<string name="pref_auto_start_game_check_title">Lade ein Quest beim Anwendungsstart</string>
-	<string name="pref_auto_start_game_check_summary">Soll ein bestimmtes Quest beim Anwedungstart geladen werden?</string>
-	<string name="pref_auto_start_game_title">Start-Quest</string>
-	<string name="pref_auto_start_game_summary">Wähle ein Quest, welches beim Anwendungsstart geladen werden soll.</string>
-	<string name="pref_auto_start_game_dialog_title">Wähle ein Quest</string>
-	
-	<!-- Miscellaneous preferences -->
-	<string name="pref_cat_misc">Sonstiges</string>
-	<string name="pref_clean_sdcard_title">Lokale Spieldaten löschen</string>
-	<string name="pref_clean_sdcard_summary">Löscht alle heruntergeladenen Spieldaten von der SD-Karte.</string>
-	<string name="pref_clean_sdcard_dlg_title">Lokale Spieldaten löschen</string>
-	<string name="pref_clean_sdcard_dlg_msg">Du bist dabei alle heruntergeladenen Spieldaten von der SD-Karte zu löschen. Diese Daten müssen wieder heruntergeladen werden, bevor du neue Quests spielen kannst. Willst du wirklich fortfahren?</string>
-	<string name="pref_clean_sdcard_toast_success">Lokale Spieldaten wurden erfolgreich von der SD-Karte gelöscht.</string>
-	<string name="pref_clean_sdcard_toast_error">Lokale Spieldateien konnten nicht gelöscht werden.</string>
-	
-	<!-- Context menus -->
-	<string name="context_auto_start_game">Beim Anwendungsstart laden</string>
-	<string name="context_auto_start_game_toast">Automatischer Queststart aktiviert</string>
-	
-	<!-- Security preferences -->
-	<string name="pref_cat_security">Sicherheit</string>
-	<string name="pref_password_title">Passwort</string>
-	<string name="pref_password_summary">Ändere das Anwendungs-Passwort.</string>
-	<string name="pref_password_dialog_title">Neues Passwort</string>
-	<string name="pref_password_dialog_message">Gib das neue Passwort zweimal ein.\nDieses Passwort wird dazu genutzt, wichtige Einstellungen zu schützen. Merke es dir gut, da du die App neu installieren musst, falls du es vergessen hast!</string>
-	<string name="pref_password_dialog_error_empty_pw">Das Passwort darf nicht leer sein!</string>
-	
-	<!-- Start Activity -->
-	<string name="start_text_game_list_progress_download_text">Lade Repository-Daten vom Server...</string>
-	<string name="start_text_game_list_progress_process_text">Verarbeite Repository-Daten...</string>
-	<string name="start_button_game_list_text">Wähle ein neues Quest...</string>
-	<string name="start_button_last_game_text">Wiederhole letztes Quest...</string>
-	<string name="start_text_welcome_text">Willkommen zu GeoQuest!</string>
-	<string name="start_text_last_game_text">Zuletzt gespieltes Quest:</string>
-	<string name="start_text_last_game_text_no_game">Du hast zuletzt kein Quest gespielt...</string>
-	<string name="start_menu_reload">Repository-Daten neu laden</string>
-	<string name="start_toast_download_failed">Herunterladen der Repository-Daten fehlgeschlagen - überprüfe Deine Internetverbindung und versuche es erneut, indem du "Repository-Daten neu laden" aus dem Menü auswählst oder die App neu startest!</string>
-	
-	<!-- Error messages -->
-	<string name="error_fetching_remote_repo_list">Fehler beim Laden oder Verarbeiten der Repository-Daten vom Server</string>
-	<string name="error_fetching_local_repo_list">Fehler beim Laden oder Verarbeiten der lokalen Repository-Daten!</string>
+    <!-- TextQuestion MISSION -->
+    <string name="textquestion_answerET_hint_default">Antwort hier eingeben ...</string>
+
+    <!-- Password protected prefs -->
+
+    <string name="pw_dialog_title">Passwort</string>
+    <string name="pw_dialog_descr">Diese Aktion ist Passwort-geschützt. Bitte gib dein Passwort ein.\nWenn du dein Passwort vergessen hast, musst du die App neu installieren!</string>
+    <string name="pw_dialog_wrong_pw">Falsches Passwort!</string>
+
+    <!-- Server preferences -->
+
+    <string name="pref_cat_server_settings">Server-Einstellungen</string>
+    <string name="pref_server_url_title">Server URL</string>
+    <string name="pref_server_url_summary">Die URL des Spiele-Servers. Ändere diese nicht, außer du möchtest einen eigenen Server nutzen.</string>
+    <string name="pref_server_url_dialog_title">Server URL</string>
+    <string name="pref_server_url_dialog_message">Ändere hier die URL des Spiele-Servers. Voreingestellt ist der Qeevee-Server. Ändere dies nur, wenn Du einen eigenen Server nutzen willst.</string>
+
+    <!-- Game startup preferences -->
+
+    <string name="pref_cat_game_start">Spielstart</string>
+    <string name="pref_auto_start_game_check_title">Lade ein Quest beim Anwendungsstart</string>
+    <string name="pref_auto_start_game_check_summary">Soll ein bestimmtes Quest beim Anwedungstart geladen werden?</string>
+    <string name="pref_auto_start_game_title">Start-Quest</string>
+    <string name="pref_auto_start_game_summary">Wähle ein Quest, welches beim Anwendungsstart geladen werden soll.</string>
+    <string name="pref_auto_start_game_dialog_title">Wähle ein Quest</string>
+
+    <!-- Miscellaneous preferences -->
+    <string name="pref_cat_misc">Sonstiges</string>
+    <string name="pref_clean_sdcard_title">Lokale Spieldaten löschen</string>
+    <string name="pref_clean_sdcard_summary">Löscht alle heruntergeladenen Spieldaten von der SD-Karte.</string>
+    <string name="pref_clean_sdcard_dlg_title">Lokale Spieldaten löschen</string>
+    <string name="pref_clean_sdcard_dlg_msg">Du bist dabei alle heruntergeladenen Spieldaten von der SD-Karte zu löschen. Diese Daten müssen wieder heruntergeladen werden, bevor du neue Quests spielen kannst. Willst du wirklich fortfahren?</string>
+    <string name="pref_clean_sdcard_toast_success">Lokale Spieldaten wurden erfolgreich von der SD-Karte gelöscht.</string>
+    <string name="pref_clean_sdcard_toast_error">Lokale Spieldateien konnten nicht gelöscht werden.</string>
+
+    <!-- Context menus -->
+    <string name="context_auto_start_game">Beim Anwendungsstart laden</string>
+    <string name="context_auto_start_game_toast">Automatischer Queststart aktiviert</string>
+
+    <!-- Security preferences -->
+    <string name="pref_cat_security">Sicherheit</string>
+    <string name="pref_password_title">Passwort</string>
+    <string name="pref_password_summary">Ändere das Anwendungs-Passwort.</string>
+    <string name="pref_password_dialog_title">Neues Passwort</string>
+    <string name="pref_password_dialog_message">Gib das neue Passwort zweimal ein.\nDieses Passwort wird dazu genutzt, wichtige Einstellungen zu schützen. Merke es dir gut, da du die App neu installieren musst, falls du es vergessen hast!</string>
+    <string name="pref_password_dialog_error_empty_pw">Das Passwort darf nicht leer sein!</string>
+
+    <!-- Start Activity -->
+    <string name="start_text_game_list_progress_download_text">Lade Repository-Daten vom Server...</string>
+    <string name="start_text_game_list_progress_process_text">Verarbeite Repository-Daten...</string>
+    <string name="start_button_game_list_text">Wähle ein neues Quest...</string>
+    <string name="start_button_last_game_text">Wiederhole letztes Quest...</string>
+    <string name="start_text_welcome_text">Willkommen zu GeoQuest!</string>
+    <string name="start_text_last_game_text">Zuletzt gespieltes Quest:</string>
+    <string name="start_text_last_game_text_no_game">Du hast zuletzt kein Quest gespielt...</string>
+    <string name="start_menu_reload">Repository-Daten neu laden</string>
+    <string name="start_toast_download_failed">Herunterladen der Repository-Daten fehlgeschlagen - überprüfe Deine Internetverbindung und versuche es erneut, indem du "Repository-Daten neu laden" aus dem Menü auswählst oder die App neu startest!</string>
+
+    <!-- Error messages -->
+    <string name="error_fetching_remote_repo_list">Fehler beim Laden oder Verarbeiten der Repository-Daten vom Server</string>
+    <string name="error_fetching_local_repo_list">Fehler beim Laden oder Verarbeiten der lokalen Repository-Daten!</string>
+
 </resources>
-
