@@ -32,6 +32,8 @@ import edu.bonn.mobilegaming.geoquest.R;
  * A simple quiz mission. The player gets questions and have to select the right
  * answer. Multiple choice.
  * 
+ * @deprecated Do use either MultipleChoiceQuestion or TextQuestion instead.
+ * 
  * @author Krischan Udelhoven
  * @author Folker Hoffmann
  */
