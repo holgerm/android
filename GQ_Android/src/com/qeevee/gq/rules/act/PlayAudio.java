@@ -4,15 +4,19 @@ import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 
 public class PlayAudio extends Action {
 
-	@Override
-	protected boolean checkInitialization() {
-		return params.containsKey("file");
-	}
+    @Override
+    protected boolean checkInitialization() {
+	return (params.containsKey("file") || params.containsKey("runtimefile"));
+    }
 
-	@Override
-	public void execute() {
-		// TODO enable blocking behavior
-		GeoQuestApp.playAudio(params.get("file"), false);
-	}
+    @Override
+    public void execute() {
+	if (params.containsKey("file"))
+	    GeoQuestApp.playAudio(params.get("file"),
+				  false);
+	if (params.containsKey("runtimefile"))
+	    GeoQuestApp.playRuntimeAudioFile(params.get("runtimefile"),
+					     false);
+    }
 
 }
