@@ -103,6 +103,12 @@ public class TextQuestion extends InteractiveMission {
     private void init() {
 	setContentView(R.layout.textquestion);
 	textView = (TextView) findViewById(R.id.textquestion_questionTV);
+	initAnswerEditText();
+	initButton();
+	initContent();
+    }
+
+    public void initAnswerEditText() {
 	answerEditText = (EditText) findViewById(R.id.textquestion_answerET);
 	answerEditText.setHint(R.string.textquestion_answerET_hint_default);
 	answerEditText.addTextChangedListener(new TextWatcher() {
@@ -136,11 +142,11 @@ public class TextQuestion extends InteractiveMission {
 			return false;
 		    }
 		});
-
-	button = (Button) findViewById(R.id.textquestion_acceptBT);
-
-	//
 	answerEditText.setText("");
+    }
+
+    public void initButton() {
+	button = (Button) findViewById(R.id.textquestion_acceptBT);
 	button.setEnabled(false);
 
 	questionModeButtonOnClickListener = new OnClickListener() {
@@ -163,8 +169,6 @@ public class TextQuestion extends InteractiveMission {
 		    finish(Globals.STATUS_SUCCESS);
 	    }
 	};
-
-	initContent();
     }
 
     private boolean answerAccepted() {
