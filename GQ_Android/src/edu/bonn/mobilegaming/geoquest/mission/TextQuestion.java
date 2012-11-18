@@ -1,5 +1,7 @@
 package edu.bonn.mobilegaming.geoquest.mission;
 
+import static com.qeevee.util.StringTools.trim;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,14 +12,13 @@ import org.dom4j.Node;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import static com.qeevee.util.StringTools.trim;
-
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 
@@ -123,6 +124,19 @@ public class TextQuestion extends InteractiveMission {
 	    }
 
 	});
+	answerEditText
+		.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+		    public boolean onEditorAction(TextView v,
+						  int actionId,
+						  KeyEvent event) {
+			if (actionId == EditorInfo.IME_ACTION_DONE) {
+			    evaluateAnswer();
+			}
+			return false;
+		    }
+		});
+
 	button = (Button) findViewById(R.id.textquestion_acceptBT);
 
 	//
@@ -132,10 +146,7 @@ public class TextQuestion extends InteractiveMission {
 	questionModeButtonOnClickListener = new OnClickListener() {
 
 	    public void onClick(View v) {
-		if (answerAccepted())
-		    setMode(MODE_REPLY_TO_CORRECT_ANSWER);
-		else
-		    setMode(MODE_REPLY_TO_WRONG_ANSWER);
+		evaluateAnswer();
 	    }
 
 	};
@@ -166,12 +177,19 @@ public class TextQuestion extends InteractiveMission {
 	return found;
     }
 
+    private void evaluateAnswer() {
+	if (answerAccepted())
+	    setMode(MODE_REPLY_TO_CORRECT_ANSWER);
+	else
+	    setMode(MODE_REPLY_TO_WRONG_ANSWER);
+    }
+
     @SuppressWarnings("unchecked")
     private void initContent() {
 	Element xmlQuestion = (Element) mission.xmlMissionNode
 		.selectSingleNode("./question");
-	questionText = trim(xmlQuestion
-		.selectSingleNode("questiontext").getText());
+	questionText = trim(xmlQuestion.selectSingleNode("questiontext")
+		.getText());
 
 	String answerPrompt = ((Element) xmlQuestion
 		.selectSingleNode("./questiontext")).attributeValue("prompt");

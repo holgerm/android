@@ -13,7 +13,6 @@
         android:gravity="center_horizontal"
         android:textSize="30sp" />
 
-    
     <Button
         android:id="@+id/textquestion_acceptBT"
         android:layout_width="fill_parent"
@@ -28,6 +27,7 @@
         android:ems="10"
         android:hint="@string/textquestion_answerET_hint_default"
         android:inputType="text" >
+
         <requestFocus />
     </EditText>
 
