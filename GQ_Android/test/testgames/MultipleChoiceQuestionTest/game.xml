@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="MultipleChoiceQuestionTest"
+	xmlformat="5"
+>
+	<mission
+		id="M_1"
+		loopUntilSuccess="true"
+		type="MultipleChoiceQuestion"
+	>
+		<onStart>
+			<rule>
+				<action type="Vibrate" />
+				<action
+					file="sound/radiobot_station1_frage1.mp3"
+					type="PlayAudio" />
+			</rule>
+		</onStart>
+		<onSuccess>
+			<rule>
+				<action
+					type="PlayAudio"
+					file="sound/radiobot_richtig.mp3" />
+			</rule>
+		</onSuccess>
+		<onFail>
+			<rule>
+				<if>
+					<eq>
+						<var>$_M_S1_qa_radio_1.result</var>
+						<string>Noch einmal hören</string>
+					</eq>
+				</if>
+				<action
+					type="PlayAudio"
+					file="sound/erste_sendung.mp3" />
+			</rule>
+			<rule>
+				<if>
+					<not>
+						<eq>
+							<var>$_M_S1_qa_radio_1.result</var>
+							<string>Noch einmal hören</string>
+						</eq>
+					</not>
+				</if>
+				<action
+					type="PlayAudio"
+					file="sound/radiobot_falsch_geraten.mp3" />
+			</rule>
+		</onFail>
+		<onEnd>
+			<rule>
+				<action
+					id="M_S1_npc_radio_2"
+					type="StartMission" />
+			</rule>
+		</onEnd>
+		<question>
+			<questiontext>Text of the question.
+			</questiontext>
+			<answer
+				correct="0"
+				onChoose="Answer one is wrong."
+			>Answer One
+			</answer>
+			<answer
+				correct="1"
+				onChoose="Right!"
+			>Answer Two
+			</answer>
+			<answer
+				correct="0"
+				onChoose="Answer two is wrong."
+			>Answer Three
+			</answer>
+		</question>
+	</mission>
+</game>
