@@ -196,6 +196,30 @@ public class TextQuestionMissionTests {
     }
 
     @Test
+    public void correctAnswerIsStoredInResultVariable() {
+	initTestMission("With_Defaults");
+	et.setText("Answer One");
+	bt.performClick();
+	assertTrue("Variable for storing answer should have been registered",
+		   Variables.isDefined("$_With_Defaults.result"));
+	assertEquals("Correct answer should be stored in result variable for this mission",
+		     "Answer One",
+		     Variables.getValue("$_With_Defaults.result"));
+    }
+
+    @Test
+    public void wrongAnswerIsStoredInResultVariable() {
+	initTestMission("With_Defaults");
+	et.setText("Something wrong");
+	bt.performClick();
+	assertTrue("Variable for storing answer should have been registered",
+		   Variables.isDefined("$_With_Defaults.result"));
+	assertEquals("Wrong answer should be stored in result variable for this mission",
+		     "Something wrong",
+		     Variables.getValue("$_With_Defaults.result"));
+    }
+
+    @Test
     public void answerEditTextInitializedWithMyHint() {
 	initTestMission("With_Hint_Replies");
 	assertEquals("Specific hint as given in game spec should be displayed",

@@ -1,6 +1,7 @@
 package edu.bonn.mobilegaming.geoquest.mission;
 
 import static com.qeevee.util.StringTools.trim;
+import static edu.bonn.mobilegaming.geoquest.Variables.registerMissionResult;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -79,6 +80,8 @@ public class TextQuestion extends InteractiveMission {
 	    textView.setText(replyTextOnCorrect);
 	    answerEditText.setVisibility(View.INVISIBLE);
 	    button.setText(R.string.button_text_proceed);
+	    registerMissionResult(mission.id,
+				  answerEditText.getText().toString());
 	    invokeOnSuccessEvents();
 	    button.setOnClickListener(replyModeButtonOnClickListener);
 	    break;
@@ -89,6 +92,8 @@ public class TextQuestion extends InteractiveMission {
 		button.setText(R.string.button_text_repeat);
 	    else
 		button.setText(R.string.button_text_proceed);
+	    registerMissionResult(mission.id,
+				  answerEditText.getText().toString());
 	    invokeOnFailEvents();
 	    button.setOnClickListener(replyModeButtonOnClickListener);
 	    break;
