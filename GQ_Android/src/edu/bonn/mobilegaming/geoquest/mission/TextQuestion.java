@@ -103,8 +103,8 @@ public class TextQuestion extends InteractiveMission {
     private void init() {
 	setContentView(R.layout.textquestion);
 	textView = (TextView) findViewById(R.id.textquestion_questionTV);
-	initAnswerEditText();
 	initButton();
+	initAnswerEditText();
 	initContent();
     }
 
