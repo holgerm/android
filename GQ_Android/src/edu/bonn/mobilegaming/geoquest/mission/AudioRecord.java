@@ -1,22 +1,6 @@
 package edu.bonn.mobilegaming.geoquest.mission;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.InputStreamBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -27,50 +11,56 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.qeevee.gq.xml.XMLUtilities;
-
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
 
-public class AudioRecord extends MissionActivity {
+public class AudioRecord extends InteractiveMission {
 
     private static final String TAG = "AudioRecord";
 
-    private static final String LOG_TAG = "AudioRecordTest";
-    private String mFileName = null;
+    public static final int BUTTON_TAG_RECORD = 1;
+    public static final int BUTTON_TAG_STOP_RECORDING = 2;
+    public static final int BUTTON_TAG_PLAY = 3;
+    public static final int BUTTON_TAG_STOP_PLAYING = 4;
 
-    private Button mRecordButton = null;
+    public static final int MODE_INITIAL = 1;
+    public static final int MODE_RECORDING = 2;
+    public static final int MODE_READY = 3;
+    public static final int MODE_PLAYING = 4;
+    private int mode;
+
+    private TextView taskView;
+    private TextView activityIndicator;
+
+    private Button recBT = null;
+    private Button useBT = null;
+    private Button playBT = null;
+
     private MediaRecorder mRecorder = null;
-
-    private Button mPlayButton = null;
     private MediaPlayer mPlayer = null;
 
-    private Button uploadButton = null;
+    private String mFileName = null;
 
-    private CharSequence mURL;
-    private boolean recorded = false;
-    private boolean stored = false;
-    private boolean mStartRecording = true;
-    boolean mStartPlaying = true;
+    // private CharSequence mURL;
 
-    private TextView taskTextView;
+    @Override
+    public void onCreate(Bundle bundle) {
+	super.onCreate(bundle);
 
-    private void onRecord(boolean start) {
-	if (start) {
-	    startRecording();
-	} else {
-	    stopRecording();
-	}
-    }
+	setContentView(R.layout.audiorecord);
 
-    private void onPlay(boolean start) {
-	if (start) {
-	    startPlaying();
-	} else {
-	    stopPlaying();
-	}
+	mFileName = Environment.getExternalStorageDirectory().getAbsolutePath()
+		+ "/" + getMissionAttribute("file",
+					    R.string.audiorecord_file_default);
+
+	// mURL = getMissionAttribute("url",
+	// XMLUtilities.OPTIONAL_ATTRIBUTE);
+
+	initTaskViewAndActivityIndicator();
+	initButtons();
+
+	setMode(MODE_INITIAL);
     }
 
     private void startPlaying() {
@@ -80,15 +70,14 @@ public class AudioRecord extends MissionActivity {
 	    mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
 		public void onCompletion(MediaPlayer mp) {
-		    mPlayButton.setText("Start playing");
-		    mStartPlaying = !mStartPlaying;
+		    setMode(MODE_READY);
 		}
 	    });
 	    mPlayer.prepare();
 	    mPlayer.start();
 
 	} catch (IOException e) {
-	    Log.e(LOG_TAG,
+	    Log.e(TAG,
 		  "prepare() failed");
 	}
     }
@@ -108,7 +97,7 @@ public class AudioRecord extends MissionActivity {
 	try {
 	    mRecorder.prepare();
 	} catch (IOException e) {
-	    Log.e(LOG_TAG,
+	    Log.e(TAG,
 		  "prepare() failed");
 	}
 
@@ -119,84 +108,121 @@ public class AudioRecord extends MissionActivity {
 	mRecorder.stop();
 	mRecorder.release();
 	mRecorder = null;
-	recorded = true;
     }
 
-    @Override
-    public void onCreate(Bundle icicle) {
-	super.onCreate(icicle);
-
-	setContentView(R.layout.audiorecord);
-
-	mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-	CharSequence fileName = getMissionAttribute("file",
-						    XMLUtilities.OPTIONAL_ATTRIBUTE);
-	if (fileName == null) {
-	    fileName = getText(R.string.audiorecord_file_default);
+    private void setMode(int newMode) {
+	switch (newMode) {
+	case MODE_INITIAL:
+	    activityIndicator
+		    .setText(R.string.audiorecord_activityIndicator_initial);
+	    recBT.setEnabled(true);
+	    recBT.setTag(BUTTON_TAG_RECORD);
+	    useBT.setEnabled(false);
+	    playBT.setEnabled(false);
+	    playBT.setTag(BUTTON_TAG_PLAY);
+	    mode = newMode;
+	    break;
+	case MODE_RECORDING:
+	    activityIndicator
+		    .setText(R.string.audiorecord_activityIndicator_recording);
+	    recBT.setEnabled(true);
+	    recBT.setTag(BUTTON_TAG_STOP_RECORDING);
+	    useBT.setEnabled(false);
+	    playBT.setEnabled(false);
+	    playBT.setTag(BUTTON_TAG_PLAY);
+	    startRecording();
+	    mode = newMode;
+	    break;
+	case MODE_READY:
+	    activityIndicator
+		    .setText(R.string.audiorecord_activityIndicator_ready);
+	    recBT.setEnabled(true);
+	    recBT.setTag(BUTTON_TAG_RECORD);
+	    useBT.setEnabled(true);
+	    playBT.setEnabled(true);
+	    playBT.setTag(BUTTON_TAG_PLAY);
+	    if (mode == MODE_RECORDING)
+		stopRecording();
+	    if (mode == MODE_PLAYING)
+		stopPlaying();
+	    mode = newMode;
+	    break;
+	case MODE_PLAYING:
+	    activityIndicator
+		    .setText(R.string.audiorecord_activityIndicator_playing);
+	    recBT.setEnabled(false);
+	    recBT.setTag(BUTTON_TAG_RECORD);
+	    useBT.setEnabled(false);
+	    playBT.setEnabled(true);
+	    playBT.setTag(BUTTON_TAG_STOP_PLAYING);
+	    startPlaying();
+	    mode = newMode;
+	    break;
+	default:
+	    Log.e(TAG,
+		  "Undefined mode " + newMode);
 	}
-	mFileName += "/" + fileName;
+    }
 
-	// init upload url etc.:
-	mURL = getMissionAttribute("url",
-				   XMLUtilities.OPTIONAL_ATTRIBUTE);
-
-	// init Record Button at bottom:
-	mRecordButton = (Button) findViewById(R.id.audioRecordRecordButton);
-	mRecordButton.setText("Start recording");
-	mRecordButton.setOnClickListener(new OnClickListener() {
+    private void initButtons() {
+	recBT = (Button) findViewById(R.id.audioRecordRecordButton);
+	recBT.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
-		onRecord(mStartRecording);
-		if (mStartRecording) {
-		    mRecordButton.setText("Stop recording");
-		    uploadButton.setEnabled(false);
-		} else {
-		    mRecordButton.setText("Start recording");
-		    recorded = true;
-		    mPlayButton.setEnabled(true);
-		    uploadButton.setEnabled(true);
+		switch (mode) {
+		case MODE_INITIAL:
+		case MODE_READY:
+		    setMode(MODE_RECORDING);
+		    break;
+		case MODE_RECORDING:
+		    setMode(MODE_READY);
+		    break;
+		default:
+		    Log.e(TAG,
+			  "Record Button should not be enabled in mode " + mode);
 		}
-		mStartRecording = !mStartRecording;
 	    }
 	});
 
-	// init Play Button at bottom:
-	mPlayButton = (Button) findViewById(R.id.audioRecordPlayButton);
-	mPlayButton.setEnabled(false);
-	mPlayButton.setText("Start playing");
-	mPlayButton.setOnClickListener(new OnClickListener() {
+	playBT = (Button) findViewById(R.id.audioRecordPlayButton);
+	playBT.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
-		onPlay(mStartPlaying);
-		if (mStartPlaying) {
-		    mPlayButton.setText("Stop playing");
-		} else {
-		    mPlayButton.setText("Start playing");
+		switch (mode) {
+		case MODE_PLAYING:
+		    setMode(MODE_READY);
+		    break;
+		case MODE_READY:
+		    setMode(MODE_PLAYING);
+		    break;
+		default:
+		    Log.e(TAG,
+			  "Play Button should not be enabled in mode " + mode);
 		}
-		mStartPlaying = !mStartPlaying;
+
 	    }
 	});
 
-	// init Upload Button at bottom:
-	uploadButton = (Button) findViewById(R.id.audioRecordUploadButton);
-	uploadButton.setEnabled(false);
-	uploadButton.setText("Upload");
-	uploadButton.setOnClickListener(new OnClickListener() {
+	useBT = (Button) findViewById(R.id.audioRecordUploadButton);
+	useBT.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
-		if (recorded && !stored) {
-		    store();
-		}
-		if (stored) {
-		    finish(Globals.STATUS_SUCCESS);
+		switch (mode) {
+		case MODE_READY:
+		    performFinish();
+		    break;
+		default:
+		    Log.e(TAG,
+			  "Use Button should not be enabled in mode " + mode);
 		}
 	    }
 
 	});
+    }
 
-	// init task description text:
-	taskTextView = (TextView) findViewById(R.id.audioRecordTextView);
-	taskTextView
-		.setText(getMissionAttribute("taskdescription",
-					     R.string.audiorecord_taskdescription_default));
+    private void initTaskViewAndActivityIndicator() {
+	taskView = (TextView) findViewById(R.id.audioRecordTextView);
+	taskView.setText(getMissionAttribute("task",
+					     R.string.audiorecord_task_default));
 
+	activityIndicator = (TextView) findViewById(R.id.audioRecordActivityIndicator);
     }
 
     @Override
@@ -213,105 +239,103 @@ public class AudioRecord extends MissionActivity {
 	}
     }
 
-    private boolean upload() {
-	boolean uploaded = false;
-	// Create a new HttpClient and Post Header
-	HttpClient httpclient = new DefaultHttpClient();
-	HttpPost httppost = new HttpPost(mURL.toString());
+    // private boolean upload() {
+    // boolean uploaded = false;
+    // // Create a new HttpClient and Post Header
+    // HttpClient httpclient = new DefaultHttpClient();
+    // HttpPost httppost = new HttpPost(mURL.toString());
+    //
+    // try {
+    // // Adding data:
+    // MultipartEntity requestEntity = new MultipartEntity(
+    // HttpMultipartMode.BROWSER_COMPATIBLE);
+    // requestEntity.addPart("uploaded_file",
+    // new InputStreamBody(new ByteArrayInputStream(
+    // getBytesFromFile(mFileName)),
+    // "audio/3gpp", mFileName));
+    // requestEntity.addPart("secret",
+    // new StringBody(TAG));
+    // httppost.setEntity(requestEntity);
+    //
+    // // Execute HTTP Post Request
+    // HttpResponse response = httpclient.execute(httppost);
+    // CharSequence result = makeReadableResponse(response);
+    // if (result.equals(getText(R.string.audioRecordUploadOK))) {
+    // // TODO make generic
+    // uploaded = true;
+    // useBT.setText(R.string.audioRecordFinishedButton);
+    // }
+    // taskView.setText(result);
+    //
+    // } catch (ClientProtocolException e) {
+    // e.printStackTrace();
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    // return uploaded;
+    // }
+    //
+    // public static byte[] getBytesFromFile(String fileName) throws IOException
+    // {
+    // File file = new File(fileName);
+    // InputStream is = new FileInputStream(file);
+    //
+    // // Get the size of the file
+    // long length = file.length();
+    //
+    // if (length > Integer.MAX_VALUE) {
+    // // File is too large
+    // }
+    //
+    // // Create the byte array to hold the data
+    // byte[] bytes = new byte[(int) length];
+    //
+    // // Read in the bytes
+    // int offset = 0;
+    // int numRead = 0;
+    // while (offset < bytes.length
+    // && (numRead = is.read(bytes,
+    // offset,
+    // bytes.length - offset)) >= 0) {
+    // offset += numRead;
+    // }
+    //
+    // // Ensure all the bytes have been read in
+    // if (offset < bytes.length) {
+    // throw new IOException("Could not completely read file "
+    // + file.getName());
+    // }
+    //
+    // // Close the input stream and return bytes
+    // is.close();
+    // return bytes;
+    // }
+    //
+    // private CharSequence makeReadableResponse(HttpResponse response) {
+    // HttpEntity responseEntity = response.getEntity();
+    // ByteArrayOutputStream os = new ByteArrayOutputStream();
+    // try {
+    // responseEntity.writeTo(os);
+    // } catch (IOException e) {
+    // // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // }
+    // String responseText = os.toString();
+    // if (responseText.startsWith("OK")) {
+    // return getText(R.string.audioRecordUploadOK);
+    // } else {
+    // String errno = responseText.substring(0,
+    // responseText.indexOf(':'));
+    // return getText(R.string.audioRecordUploadERROR) + "  Error: "
+    // + errno;
+    // }
+    // }
 
-	try {
-	    // Adding data:
-	    MultipartEntity requestEntity = new MultipartEntity(
-		    HttpMultipartMode.BROWSER_COMPATIBLE);
-	    requestEntity.addPart("uploaded_file",
-				  new InputStreamBody(new ByteArrayInputStream(
-					  getBytesFromFile(mFileName)),
-					  "audio/3gpp", mFileName));
-	    requestEntity.addPart("secret",
-				  new StringBody(TAG));
-	    httppost.setEntity(requestEntity);
-
-	    // Execute HTTP Post Request
-	    HttpResponse response = httpclient.execute(httppost);
-	    CharSequence result = makeReadableResponse(response);
-	    if (result.equals(getText(R.string.audioRecordUploadOK))) {
-		// TODO make generic
-		uploaded = true;
-		uploadButton.setText(R.string.audioRecordFinishedButton);
-	    }
-	    taskTextView.setText(result);
-
-	} catch (ClientProtocolException e) {
-	    e.printStackTrace();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-	return uploaded;
-    }
-
-    public static byte[] getBytesFromFile(String fileName) throws IOException {
-	File file = new File(fileName);
-	InputStream is = new FileInputStream(file);
-
-	// Get the size of the file
-	long length = file.length();
-
-	if (length > Integer.MAX_VALUE) {
-	    // File is too large
-	}
-
-	// Create the byte array to hold the data
-	byte[] bytes = new byte[(int) length];
-
-	// Read in the bytes
-	int offset = 0;
-	int numRead = 0;
-	while (offset < bytes.length
-		&& (numRead = is.read(bytes,
-				      offset,
-				      bytes.length - offset)) >= 0) {
-	    offset += numRead;
-	}
-
-	// Ensure all the bytes have been read in
-	if (offset < bytes.length) {
-	    throw new IOException("Could not completely read file "
-		    + file.getName());
-	}
-
-	// Close the input stream and return bytes
-	is.close();
-	return bytes;
-    }
-
-    private CharSequence makeReadableResponse(HttpResponse response) {
-	HttpEntity responseEntity = response.getEntity();
-	ByteArrayOutputStream os = new ByteArrayOutputStream();
-	try {
-	    responseEntity.writeTo(os);
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-	String responseText = os.toString();
-	if (responseText.startsWith("OK")) {
-	    return getText(R.string.audioRecordUploadOK);
-	} else {
-	    String errno = responseText.substring(0,
-						  responseText.indexOf(':'));
-	    return getText(R.string.audioRecordUploadERROR) + "  Error: "
-		    + errno;
-	}
-    }
-
-    private void store() {
-	if (mURL != null) {
-	    stored = upload();
-	} else {
-	    stored = true;
-	}
+    private void performFinish() {
 	Variables.registerMissionResult(mission.id,
 					mFileName.toString());
+	invokeOnSuccessEvents();
+	finish(Globals.STATUS_SUCCESS);
     }
 
     public void onBlockingStateUpdated(boolean blocking) {
