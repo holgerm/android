@@ -4,23 +4,21 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <com.qeevee.ui.ZoomImageView
-        android:id="@+id/audioRecordImageView"
-        android:layout_width="fill_parent"
-        android:layout_height="140dip"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dip"
-        android:gravity="center_horizontal"
-        android:keepScreenOn="true"
-        android:scaleType="fitCenter" />
-
     <TextView
         android:id="@+id/audioRecordTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
+        android:textSize="30sp"
+        android:typeface="serif" />
+    
+    <TextView
+        android:id="@+id/audioRecordActivityIndicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/audiorecord_activityIndicator_initial"
         android:textSize="30sp"
         android:typeface="serif" />
 
