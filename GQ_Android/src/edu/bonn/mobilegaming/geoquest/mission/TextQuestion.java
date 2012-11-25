@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.dom4j.Element;
-import org.dom4j.Node;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -20,6 +19,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.qeevee.gq.xml.XMLUtilities;
+
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 
@@ -41,7 +43,7 @@ public class TextQuestion extends InteractiveMission {
 
     private CharSequence replyTextOnCorrect;
     private CharSequence replyTextOnWrong;
-    private String questionText;
+    private CharSequence questionText;
 
     private int mode = 0;
     private static final int MODE_QUESTION = 1;
@@ -115,7 +117,9 @@ public class TextQuestion extends InteractiveMission {
 
     public void initAnswerEditText() {
 	answerEditText = (EditText) findViewById(R.id.textquestion_answerET);
-	answerEditText.setHint(R.string.textquestion_answerET_hint_default);
+	answerEditText
+		.setHint(getMissionAttribute("prompt",
+					     R.string.textquestion_answerET_hint_default));
 	answerEditText.addTextChangedListener(new TextWatcher() {
 
 	    public void afterTextChanged(Editable s) {
@@ -195,29 +199,15 @@ public class TextQuestion extends InteractiveMission {
 
     @SuppressWarnings("unchecked")
     private void initContent() {
-	Element xmlQuestion = (Element) mission.xmlMissionNode
-		.selectSingleNode("./question");
-	questionText = trim(xmlQuestion.selectSingleNode("questiontext")
-		.getText());
+	questionText = getMissionAttribute("question",
+					   XMLUtilities.NECESSARY_ATTRIBUTE);
+	replyTextOnCorrect = getMissionAttribute("replyOnCorrect",
+						 R.string.question_reply_correct_default);
+	replyTextOnWrong = getMissionAttribute("replyOnWrong",
+					       R.string.question_reply_wrong_default);
 
-	String answerPrompt = ((Element) xmlQuestion
-		.selectSingleNode("./questiontext")).attributeValue("prompt");
-	if (answerPrompt != null)
-	    answerEditText.setHint(answerPrompt);
-
-	Node replyOnCorrectNode = xmlQuestion
-		.selectSingleNode("replyOnCorrect");
-	if (replyOnCorrectNode == null)
-	    replyTextOnCorrect = getText(R.string.question_reply_correct_default);
-	else
-	    replyTextOnCorrect = replyOnCorrectNode.getText();
-	Node replyOnWrongNode = xmlQuestion.selectSingleNode("replyOnWrong");
-	if (replyOnWrongNode == null)
-	    replyTextOnWrong = getText(R.string.question_reply_wrong_default);
-	else
-	    replyTextOnWrong = replyOnWrongNode.getText();
-
-	List<Element> xmlAnswers = xmlQuestion.selectNodes("accept/answer");
+	List<Element> xmlAnswers = ((Element) mission.xmlMissionNode)
+		.selectNodes("answers/answer");
 	for (Iterator<Element> j = xmlAnswers.iterator(); j.hasNext();) {
 	    Element xmlAnswer = j.next();
 	    answers.add(trim(xmlAnswer.getText()));
