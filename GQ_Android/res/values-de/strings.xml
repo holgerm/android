@@ -33,16 +33,15 @@
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
 
- 
     <!-- Generic BUTTON Labels -->
     <string name="button_text_accept">OK</string>
-    <string name="button_text_use">Wiedergeben</string>
+    <string name="button_text_play">Wiedergeben</string>
     <string name="button_text_proceed">Weiter</string>
     <string name="button_text_record">Aufnehmen</string>
     <string name="button_text_repeat">Wiederholen</string>
     <string name="button_text_stop">Stop</string>
     <string name="button_text_use">Benutzen</string>
-    
+
     <!-- All Question MISSIONS -->
     <string name="question_reply_wrong_default">Nein, das war falsch.</string>
     <string name="question_reply_correct_default">Ja, richtig.</string>
@@ -50,17 +49,14 @@
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Antwort hier eingeben ...</string>
 
-    
     <!-- AudioRecord MISSION -->
     <string name="audioRecordFinishedButton">Fertig ...</string>
-
-
     <string name="audiorecord_task_default">Eure Aufgabe: Nehmt eine Audiodatei auf!</string>
     <string name="audiorecord_activityIndicator_initial">Noch keine Aufnahme gemacht!</string>
     <string name="audiorecord_activityIndicator_recording">Aufnahme läuft ...</string>
     <string name="audiorecord_activityIndicator_ready">Aufnahme fertig.\nNeu aufnehmen? Benutzen? Hören?</string>
     <string name="audiorecord_activityIndicator_playing">Aufnahme wird vorgespielt ...</string>
-    
+
     <!-- Password protected prefs -->
     <string name="pw_dialog_title">Passwort</string>
     <string name="pw_dialog_descr">Diese Aktion ist Passwort-geschützt. Bitte gib dein Passwort ein.\nWenn du dein Passwort vergessen hast, musst du die App neu installieren!</string>
