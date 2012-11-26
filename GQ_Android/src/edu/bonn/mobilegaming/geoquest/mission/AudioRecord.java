@@ -117,10 +117,25 @@ public class AudioRecord extends InteractiveMission {
 		    .setText(R.string.audiorecord_activityIndicator_initial);
 	    recBT.setEnabled(true);
 	    recBT.setText(R.string.button_text_record);
+	    recBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_record),
+							  null,
+							  null);
 	    recBT.setTag(BUTTON_TAG_RECORD);
 	    useBT.setEnabled(false);
+	    useBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_use_disabled),
+							  null,
+							  null);
 	    playBT.setEnabled(false);
 	    playBT.setText(R.string.button_text_play);
+	    playBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							   getResources()
+								   .getDrawable(R.drawable.icon_play_disabled),
+							   null,
+							   null);
 	    playBT.setTag(BUTTON_TAG_PLAY);
 	    mode = newMode;
 	    break;
@@ -129,10 +144,25 @@ public class AudioRecord extends InteractiveMission {
 		    .setText(R.string.audiorecord_activityIndicator_recording);
 	    recBT.setEnabled(true);
 	    recBT.setText(R.string.button_text_stop);
+	    recBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_record_stop),
+							  null,
+							  null);
 	    recBT.setTag(BUTTON_TAG_STOP_RECORDING);
 	    useBT.setEnabled(false);
+	    useBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_use_disabled),
+							  null,
+							  null);
 	    playBT.setEnabled(false);
 	    playBT.setText(R.string.button_text_play);
+	    playBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							   getResources()
+								   .getDrawable(R.drawable.icon_play_disabled),
+							   null,
+							   null);
 	    playBT.setTag(BUTTON_TAG_PLAY);
 	    startRecording();
 	    mode = newMode;
@@ -142,10 +172,25 @@ public class AudioRecord extends InteractiveMission {
 		    .setText(R.string.audiorecord_activityIndicator_ready);
 	    recBT.setEnabled(true);
 	    recBT.setText(R.string.button_text_record);
+	    recBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_record),
+							  null,
+							  null);
 	    recBT.setTag(BUTTON_TAG_RECORD);
 	    useBT.setEnabled(true);
+	    useBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_use),
+							  null,
+							  null);
 	    playBT.setEnabled(true);
 	    playBT.setText(R.string.button_text_play);
+	    playBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							   getResources()
+								   .getDrawable(R.drawable.icon_play),
+							   null,
+							   null);
 	    playBT.setTag(BUTTON_TAG_PLAY);
 	    if (mode == MODE_RECORDING)
 		stopRecording();
@@ -158,9 +203,24 @@ public class AudioRecord extends InteractiveMission {
 		    .setText(R.string.audiorecord_activityIndicator_playing);
 	    recBT.setEnabled(false);
 	    recBT.setText(R.string.button_text_record);
+	    recBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_record_disabled),
+							  null,
+							  null);
 	    recBT.setTag(BUTTON_TAG_RECORD);
 	    useBT.setEnabled(false);
+	    useBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							  getResources()
+								  .getDrawable(R.drawable.icon_use_disabled),
+							  null,
+							  null);
 	    playBT.setEnabled(true);
+	    playBT.setCompoundDrawablesWithIntrinsicBounds(null,
+							   getResources()
+								   .getDrawable(R.drawable.icon_play_stop),
+							   null,
+							   null);
 	    playBT.setText(R.string.button_text_stop);
 	    playBT.setTag(BUTTON_TAG_STOP_PLAYING);
 	    startPlaying();
@@ -211,6 +271,11 @@ public class AudioRecord extends InteractiveMission {
 
 	useBT = (Button) findViewById(R.id.audioRecordUseButton);
 	useBT.setText(R.string.button_text_use);
+	useBT.setCompoundDrawablesWithIntrinsicBounds(null,
+						      getResources()
+							      .getDrawable(R.drawable.icon_use_disabled),
+						      null,
+						      null);
 	useBT.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
 		switch (mode) {
