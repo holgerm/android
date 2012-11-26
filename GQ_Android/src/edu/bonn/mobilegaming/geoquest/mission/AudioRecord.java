@@ -116,9 +116,11 @@ public class AudioRecord extends InteractiveMission {
 	    activityIndicator
 		    .setText(R.string.audiorecord_activityIndicator_initial);
 	    recBT.setEnabled(true);
+	    recBT.setText(R.string.button_text_record);
 	    recBT.setTag(BUTTON_TAG_RECORD);
 	    useBT.setEnabled(false);
 	    playBT.setEnabled(false);
+	    playBT.setText(R.string.button_text_play);
 	    playBT.setTag(BUTTON_TAG_PLAY);
 	    mode = newMode;
 	    break;
@@ -126,9 +128,11 @@ public class AudioRecord extends InteractiveMission {
 	    activityIndicator
 		    .setText(R.string.audiorecord_activityIndicator_recording);
 	    recBT.setEnabled(true);
+	    recBT.setText(R.string.button_text_stop);
 	    recBT.setTag(BUTTON_TAG_STOP_RECORDING);
 	    useBT.setEnabled(false);
 	    playBT.setEnabled(false);
+	    playBT.setText(R.string.button_text_play);
 	    playBT.setTag(BUTTON_TAG_PLAY);
 	    startRecording();
 	    mode = newMode;
@@ -137,9 +141,11 @@ public class AudioRecord extends InteractiveMission {
 	    activityIndicator
 		    .setText(R.string.audiorecord_activityIndicator_ready);
 	    recBT.setEnabled(true);
+	    recBT.setText(R.string.button_text_record);
 	    recBT.setTag(BUTTON_TAG_RECORD);
 	    useBT.setEnabled(true);
 	    playBT.setEnabled(true);
+	    playBT.setText(R.string.button_text_play);
 	    playBT.setTag(BUTTON_TAG_PLAY);
 	    if (mode == MODE_RECORDING)
 		stopRecording();
@@ -151,9 +157,11 @@ public class AudioRecord extends InteractiveMission {
 	    activityIndicator
 		    .setText(R.string.audiorecord_activityIndicator_playing);
 	    recBT.setEnabled(false);
+	    recBT.setText(R.string.button_text_record);
 	    recBT.setTag(BUTTON_TAG_RECORD);
 	    useBT.setEnabled(false);
 	    playBT.setEnabled(true);
+	    playBT.setText(R.string.button_text_stop);
 	    playBT.setTag(BUTTON_TAG_STOP_PLAYING);
 	    startPlaying();
 	    mode = newMode;
@@ -201,7 +209,8 @@ public class AudioRecord extends InteractiveMission {
 	    }
 	});
 
-	useBT = (Button) findViewById(R.id.audioRecordUploadButton);
+	useBT = (Button) findViewById(R.id.audioRecordUseButton);
+	useBT.setText(R.string.button_text_use);
 	useBT.setOnClickListener(new OnClickListener() {
 	    public void onClick(View v) {
 		switch (mode) {

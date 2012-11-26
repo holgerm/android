@@ -7,34 +7,47 @@
     <TextView
         android:id="@+id/audioRecordTextView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dip"
         android:layout_weight="1"
         android:gravity="center"
         android:textSize="30sp"
         android:typeface="serif" />
-    
+
     <TextView
         android:id="@+id/audioRecordActivityIndicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
         android:enabled="false"
+        android:gravity="center"
         android:text="@string/audiorecord_activityIndicator_initial"
         android:textSize="30sp"
         android:typeface="serif" />
 
-    <Button
-        android:id="@+id/audioRecordRecordButton"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/audioRecordPlayButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/audioRecordRecordButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
-    <Button
-        android:id="@+id/audioRecordUploadButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/audioRecordUseButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        
+        <Button
+            android:id="@+id/audioRecordPlayButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 </LinearLayout>
