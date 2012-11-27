@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textSize="30sp"
-        android:typeface="serif" />
+        android:typeface="sans" />
 
     <TextView
         android:id="@+id/audioRecordActivityIndicator"
@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="@string/audiorecord_activityIndicator_initial"
         android:textSize="30sp"
-        android:typeface="serif" />
+        android:typeface="sans" />
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -34,7 +34,8 @@
             android:id="@+id/audioRecordRecordButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:typeface="sans" />
 
         <Button
             android:id="@+id/audioRecordUseButton"
