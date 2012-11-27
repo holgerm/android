@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="VideoPlayTest"
+	xmlformat="5"
+>
+	<mission
+		type="VideoPlay"
+		id="With_Defaults"
+		file="video/example2.mp4"
+	>
+	</mission>
+	<mission
+		type="NPCTalk"
+		id="Use_audio"
+		image="drawable/ploppschutz.png"
+	>
+		<dialogitem>Tschüssi.
+		</dialogitem>
+	</mission>
+</game>
