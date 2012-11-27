@@ -82,6 +82,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mission.VideoPlay"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".mission.QuestionAndAnswer"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
