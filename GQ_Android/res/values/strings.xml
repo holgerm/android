@@ -68,7 +68,13 @@
     
     <!-- AudioRecord MISSION -->
     <string name="audiorecord_file_default">audiorecord.3gp</string>
-
+    
+    <!-- VideoPlay MISSION -->
+    <string name="videoplay_finishdialog_title">Ready to ...</string>
+    <string name="videoplay_finishdialog_message">leave this video?</string>
+    <string name="videoplay_finishdialog_keepwatching">Keep watching</string>
+    <string name="videoplay_finishdialog_leave">Leave it!</string>
+    
     <!-- External Mission -->
     <string name="external_mission_description_default">Starting external mission</string>
     <string name="external_mission_result_default">Back from external mission</string>
