@@ -75,8 +75,8 @@
     <string name="audiorecord_file_default">audiorecord.3gp</string>
     
     <!-- VideoPlay MISSION -->
-    <string name="videoplay_finishdialog_title">Ready to ...</string>
-    <string name="videoplay_finishdialog_message">leave this video?</string>
+    <string name="videoplay_finishdialog_title">Terminate this mission?</string>
+    <string name="videoplay_finishdialog_message">Leave the video?</string>
     <string name="videoplay_finishdialog_keepwatching">Keep watching</string>
     <string name="videoplay_finishdialog_leave">Leave it!</string>
     

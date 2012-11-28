@@ -2,6 +2,7 @@ package edu.bonn.mobilegaming.geoquest.mission;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +47,45 @@ public class VideoPlay extends InteractiveMission {
 	videoView.setMediaController(mc);
 	videoView.requestFocus();
 	videoView.setVisibility(View.VISIBLE);
+	videoView
+		.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+		    public void onCompletion(MediaPlayer mp) {
+			showExitAlertDialog();
+		    }
+
+		});
 	videoView.start();
+    }
+
+    private void showExitAlertDialog() {
+	AlertDialog exitDialog = new AlertDialog.Builder(VideoPlay.this)
+		.setTitle(R.string.videoplay_finishdialog_title)
+		.setMessage(R.string.videoplay_finishdialog_message)
+		.setPositiveButton(R.string.videoplay_finishdialog_keepwatching,
+				   null)
+		.setNegativeButton(R.string.videoplay_finishdialog_leave,
+				   new DialogInterface.OnClickListener() {
+				       public void
+					       onClick(DialogInterface dialog,
+						       int which) {
+					   finish(Globals.STATUS_SUCCESS);
+				       }
+				   }).show();
+	exitDialog
+		.getButton(AlertDialog.BUTTON_POSITIVE)
+		.setCompoundDrawablesWithIntrinsicBounds(getResources()
+								 .getDrawable(R.drawable.icon_again),
+							 null,
+							 null,
+							 null);
+	exitDialog
+		.getButton(AlertDialog.BUTTON_NEGATIVE)
+		.setCompoundDrawablesWithIntrinsicBounds(null,
+							 null,
+							 getResources()
+								 .getDrawable(R.drawable.icon_leave),
+							 null);
     }
 
     public void onBlockingStateUpdated(boolean blocking) {
@@ -57,23 +96,7 @@ public class VideoPlay extends InteractiveMission {
     private View.OnClickListener finishButtonClickListener = new View.OnClickListener() {
 
 	public void onClick(View v) {
-	    AlertDialog exitDialog = new AlertDialog.Builder(VideoPlay.this)
-		    .setTitle(R.string.videoplay_finishdialog_title)
-		    .setMessage(R.string.videoplay_finishdialog_message)
-		    .setPositiveButton(R.string.videoplay_finishdialog_keepwatching,
-				       null)
-		    .setNegativeButton(R.string.videoplay_finishdialog_leave,
-				       new DialogInterface.OnClickListener() {
-					   public
-						   void
-						   onClick(DialogInterface dialog,
-							   int which) {
-					       finish(Globals.STATUS_SUCCESS);
-					   }
-				       }).create();
-	    // exitDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setCompoundDrawables(null,
-	    // null, R.drawable., bottom)
-	    exitDialog.show();
+	    showExitAlertDialog();
 	}
     };
 
