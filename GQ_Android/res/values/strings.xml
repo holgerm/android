@@ -49,16 +49,16 @@
     <string name="centerMapMenu">Center Map</string>
     <string name="audioRecordUploadURLDefault">http://geoquest.qeevee.org/upload-audio/upload.php</string>
     <string name="imageCaptureUploadURLDefault">http://geoquest.qeevee.org/upload-images/upload.php</string>
-    <string name="audiorecord_taskdescription_default">Your task: record a piece of audio and upload it on the game server!</string>
-    <string name="audioRecordFinishedButton">That\'s it! Go on ...</string>
-    <string name="audioRecordUploadOK">OK. Your audio file has been uploaded.</string>
-    <string name="audioRecordUploadERROR">Error. File could not be uploaded.</string>
 
     <!-- Generic BUTTON Labels -->
-    <string name="button_text_repeat">Repeat</string>
     <string name="button_text_accept">Accept</string>
+    <string name="button_text_play">Play</string>
     <string name="button_text_proceed">Proceed</string>
-
+    <string name="button_text_record">Record</string>
+    <string name="button_text_repeat">Repeat</string>
+    <string name="button_text_stop">Stop</string>
+    <string name="button_text_use">Use</string>
+    
     <!-- All Question MISSIONS -->
     <string name="question_reply_wrong_default">No, that was wrong.</string>
     <string name="question_reply_correct_default">Yes, that was correct.</string>
@@ -67,6 +67,11 @@
     <string name="textquestion_answerET_hint_default">Enter your answer here ...</string>
     
     <!-- AudioRecord MISSION -->
+    <string name="audiorecord_task_default">Your task: record a piece of audio!</string>
+    <string name="audiorecord_activityIndicator_initial">No recording made yet!</string>
+    <string name="audiorecord_activityIndicator_recording">Recording ...</string>
+    <string name="audiorecord_activityIndicator_ready">You made an audio record!\nRecord again? Use it? Replay?</string>
+    <string name="audiorecord_activityIndicator_playing">Playing your recorded audio ...</string>
     <string name="audiorecord_file_default">audiorecord.3gp</string>
     
     <!-- VideoPlay MISSION -->
