@@ -4,17 +4,55 @@
 	xmlformat="5"
 >
 	<mission
-		type="VideoPlay"
-		id="With_Defaults"
-		file="video/example2.mp4"
+		type="NPCTalk"
+		id="Intro_3gp"
+		image="drawable/tv.jpg"
 	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Video_3gp" />
+			</rule>
+		</onEnd>
+		<dialogitem>Jetzt kommt gleich eine VideoPlay Mission.
+		</dialogitem>
+		<dialogitem nextbuttontext="Also los!">Hier wird 3gp Format verwendet.
+		</dialogitem>
+	</mission>
+	<mission
+		type="VideoPlay"
+		id="Video_3gp"
+		file="video/jokes.3gp"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Intro_mp4" />
+			</rule>
+		</onEnd>
 	</mission>
 	<mission
 		type="NPCTalk"
-		id="Use_audio"
-		image="drawable/ploppschutz.png"
+		id="Intro_mp4"
+		image="drawable/tv.jpg"
 	>
-		<dialogitem>Tschüssi.
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Video_mp4" />
+			</rule>
+		</onEnd>
+		<dialogitem>Jetzt kommt gleich noch eine VideoPlay Mission.
+		</dialogitem>
+		<dialogitem nextbuttontext="Also los!">Diesmal im mp4 Format.
 		</dialogitem>
 	</mission>
+	<mission
+		type="VideoPlay"
+		id="Video_mp4"
+		file="video/jokes.mp4"
+	/>
 </game>
