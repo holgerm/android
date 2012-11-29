@@ -54,5 +54,33 @@
 		type="VideoPlay"
 		id="Video_mp4"
 		file="video/jokes.mp4"
-	/>
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Intro_YouTube" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission
+		type="NPCTalk"
+		id="Intro_YouTube"
+		image="drawable/youtube.png"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Video_Youtube" />
+			</rule>
+		</onEnd>
+		<dialogitem nextbuttontext="Also los!">Und nun als letztes noch das
+			gleiche Video online aus der GeoQuest Demo DropBox.
+		</dialogitem>
+	</mission>
+	<mission
+		type="VideoPlay"
+		id="Video_Youtube"
+		url="https://www.dropbox.com/s/6z3xlzuc5is0xpz/jokes.mp4" />
 </game>
