@@ -593,7 +593,12 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
     public static File getGameRessourceFile(String ressourceFilePath) {
 	String resourcePath = getRunningGameDir().getAbsolutePath() + "/"
 		+ ressourceFilePath;
-	return new File(resourcePath);
+	File file = new File(resourcePath);
+	if (file.exists() && file.canRead())
+	    return file;
+	else
+	    throw new IllegalArgumentException(
+		    "No ressource file found at path \"" + resourcePath + "\".");
     }
 
     // SOUND STUFF FOLLOWS:

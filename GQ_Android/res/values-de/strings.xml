@@ -49,6 +49,13 @@
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Antwort hier eingeben ...</string>
 
+    <!-- VideoPlay MISSION -->
+    <string name="videoplay_finishdialog_title">Diese Mission beenden?</string>
+    <string name="videoplay_finishdialog_message">Video abbrechen?</string>
+    <string name="videoplay_finishdialog_keepwatching">Weiter ansehen</string>
+    <string name="videoplay_finishdialog_leave">Fertig!</string>
+    <string name="videoplay_errordialog_message">Das Video kann nicht abgespielt werden.</string>
+    
     <!-- AudioRecord MISSION -->
     <string name="audioRecordFinishedButton">Fertig ...</string>
     <string name="audiorecord_task_default">Eure Aufgabe: Nehmt eine Audiodatei auf!</string>
@@ -114,5 +121,6 @@
     <!-- Error messages -->
     <string name="error_fetching_remote_repo_list">Fehler beim Laden oder Verarbeiten der Repository-Daten vom Server</string>
     <string name="error_fetching_local_repo_list">Fehler beim Laden oder Verarbeiten der lokalen Repository-Daten!</string>
-
+    <string name="error_dialog_title">Entschuldigung, aber es gibt ein Problem.</string>
+    
 </resources>
