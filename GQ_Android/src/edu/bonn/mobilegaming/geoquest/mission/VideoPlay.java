@@ -19,41 +19,17 @@ import edu.bonn.mobilegaming.geoquest.R;
 public class VideoPlay extends InteractiveMission {
 
     private static final String TAG = "VideoPlay";
-
-    CharSequence filePath = null;
-    CharSequence uriString = null;
-    Uri uri = null;
+    
+    CharSequence videoUriCharSequence = null;
 
     private VideoView videoView;
-
-    // private CharSequence mURL;
 
     @Override
     public void onCreate(Bundle bundle) {
 	super.onCreate(bundle);
 	this.setContentView(R.layout.videoplay);
 	videoView = (VideoView) this.findViewById(R.id.videoplay_videoview);
-	filePath = getMissionAttribute("file",
-				       XMLUtilities.OPTIONAL_ATTRIBUTE);
-	if (filePath == null) {
-	    // attribute FILE NOT given => try to use URL:
-	    try {
-		uriString = getMissionAttribute("url",
-						XMLUtilities.NECESSARY_ATTRIBUTE);
-	    } catch (IllegalArgumentException iae) {
-		Log.e(TAG,
-		      "Both attributes file and url missing in VideoPlay Mission "
-			      + mission.id + ". At least one must be given.",
-		      iae);
-		finish();
-	    }
-	    uri = Uri.parse(uriString.toString());
-	} else {
-	    // attribute FILE given:
-	    uri = Uri.fromFile(GeoQuestApp.getGameRessourceFile(filePath
-		    .toString()));
-	}
-	videoView.setVideoURI(uri);
+	videoView.setVideoURI(initVideoUri());
 	MediaController mc = new MediaController(this);
 	mc.setPrevNextListeners(finishButtonClickListener,
 				null);
@@ -75,12 +51,39 @@ public class VideoPlay extends InteractiveMission {
 				   int extra) {
 		Log.e(TAG,
 		      "Problem occurred when trying to play the video: "
-			      + uri.toString());
+			      + videoUriCharSequence.toString());
 		showErrorAlertDialog();
 		return true;
 	    }
 	});
+	
+	if (bundle != null && bundle.containsKey("position")) {
+	    videoView.seekTo(bundle.getInt("position"));
+	}
 	videoView.start();
+    }
+
+    public Uri initVideoUri() {
+	videoUriCharSequence = getMissionAttribute("file",
+				       XMLUtilities.OPTIONAL_ATTRIBUTE);
+	if (videoUriCharSequence == null) {
+	    // attribute FILE NOT given => try to use URL:
+	    try {
+		videoUriCharSequence = getMissionAttribute("url",
+						XMLUtilities.NECESSARY_ATTRIBUTE);
+	    } catch (IllegalArgumentException iae) {
+		Log.e(TAG,
+		      "Both attributes file and url missing in VideoPlay Mission "
+			      + mission.id + ". At least one must be given.",
+		      iae);
+		finish();
+	    }
+	    return Uri.parse(videoUriCharSequence.toString());
+	} else {
+	    // attribute FILE given:
+	    return Uri.fromFile(GeoQuestApp.getGameRessourceFile(videoUriCharSequence
+		    .toString()));
+	}
     }
 
     private void showErrorAlertDialog() {
@@ -146,4 +149,16 @@ public class VideoPlay extends InteractiveMission {
 	}
     };
 
+    @Override
+    protected void onPause() {
+	videoView.pause();
+	super.onPause();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+	outState.putInt("position",
+			videoView.getCurrentPosition());
+	super.onSaveInstanceState(outState);
+    }
 }

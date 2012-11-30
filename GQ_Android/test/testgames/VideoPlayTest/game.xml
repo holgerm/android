@@ -75,12 +75,16 @@
 					id="Video_Youtube" />
 			</rule>
 		</onEnd>
-		<dialogitem nextbuttontext="Also los!">Und nun als letztes noch das
-			gleiche Video online aus der GeoQuest Demo DropBox.
+		<dialogitem>Und nun als letztes noch das gleiche Video online von
+			YouTube.
+		</dialogitem>
+		<dialogitem nextbuttontext="Also los!">Um von YouTube Videos den URL
+			Parameter zu bekommen, muss man übrigens den Link zum Video von deren
+			mobiler Seite speichern.
 		</dialogitem>
 	</mission>
 	<mission
 		type="VideoPlay"
 		id="Video_Youtube"
-		url="https://www.dropbox.com/s/6z3xlzuc5is0xpz/jokes.mp4" />
+		url="rtsp://v1.cache1.c.youtube.com/CjYLENy73wIaLQm8vbdlwobelBMYDSANFEIJbXYtZ29vZ2xlSARSBXdhdGNoYMKY4L-1kYSvUAw=/0/0/0/video.3gp" />
 </game>
