@@ -17,7 +17,7 @@
 		</onEnd>
 		<dialogitem>Jetzt kommt gleich eine VideoPlay Mission.
 		</dialogitem>
-		<dialogitem nextbuttontext="Also los!">Hier wird 3gp Format verwendet.
+		<dialogitem nextdialogbuttontext="Also los!">Hier wird 3gp Format verwendet.
 		</dialogitem>
 	</mission>
 	<mission
@@ -47,7 +47,7 @@
 		</onEnd>
 		<dialogitem>Jetzt kommt gleich noch eine VideoPlay Mission.
 		</dialogitem>
-		<dialogitem nextbuttontext="Also los!">Diesmal im mp4 Format.
+		<dialogitem nextdialogbuttontext="Also los!">Diesmal im mp4 Format.
 		</dialogitem>
 	</mission>
 	<mission
@@ -78,7 +78,7 @@
 		<dialogitem>Und nun als letztes noch das gleiche Video online von
 			YouTube.
 		</dialogitem>
-		<dialogitem nextbuttontext="Also los!">Um von YouTube Videos den URL
+		<dialogitem nextdialogbuttontext="Also los!">Um von YouTube Videos den URL
 			Parameter zu bekommen, muss man übrigens den Link zum Video von deren
 			mobiler Seite speichern.
 		</dialogitem>
