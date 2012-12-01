@@ -49,15 +49,15 @@
     <string name="centerMapMenu">Center Map</string>
     <string name="audioRecordUploadURLDefault">http://geoquest.qeevee.org/upload-audio/upload.php</string>
     <string name="imageCaptureUploadURLDefault">http://geoquest.qeevee.org/upload-images/upload.php</string>
-    <string name="audiorecord_taskdescription_default">Your task: record a piece of audio and upload it on the game server!</string>
-    <string name="audioRecordFinishedButton">That\'s it! Go on ...</string>
-    <string name="audioRecordUploadOK">OK. Your audio file has been uploaded.</string>
-    <string name="audioRecordUploadERROR">Error. File could not be uploaded.</string>
 
     <!-- Generic BUTTON Labels -->
-    <string name="button_text_repeat">Repeat</string>
     <string name="button_text_accept">Accept</string>
+    <string name="button_text_play">Play</string>
     <string name="button_text_proceed">Proceed</string>
+    <string name="button_text_record">Record</string>
+    <string name="button_text_repeat">Repeat</string>
+    <string name="button_text_stop">Stop</string>
+    <string name="button_text_use">Use</string>
 
     <!-- All Question MISSIONS -->
     <string name="question_reply_wrong_default">No, that was wrong.</string>
@@ -65,9 +65,21 @@
 
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Enter your answer here ...</string>
-    
+
     <!-- AudioRecord MISSION -->
+    <string name="audiorecord_task_default">Your task: record a piece of audio!</string>
+    <string name="audiorecord_activityIndicator_initial">No recording made yet!</string>
+    <string name="audiorecord_activityIndicator_recording">Recording ...</string>
+    <string name="audiorecord_activityIndicator_ready">You made an audio record!\nRecord again? Use it? Replay?</string>
+    <string name="audiorecord_activityIndicator_playing">Playing your recorded audio ...</string>
     <string name="audiorecord_file_default">audiorecord.3gp</string>
+
+    <!-- VideoPlay MISSION -->
+    <string name="videoplay_finishdialog_title">Terminate this mission?</string>
+    <string name="videoplay_finishdialog_message">Leave the video?</string>
+    <string name="videoplay_finishdialog_keepwatching">Keep watching</string>
+    <string name="videoplay_finishdialog_leave">Leave it!</string>
+    <string name="videoplay_errordialog_message">I can not play that video.</string>
 
     <!-- External Mission -->
     <string name="external_mission_description_default">Starting external mission</string>
@@ -135,5 +147,6 @@
     <string name="error_fetching_remote_repo_list_io">Error: Problem with communication to GeoQuest server.</string>
     <string name="error_fetching_remote_repo_list_document">Error: Game information received from GeoQuest server invalid.</string>
     <string name="error_fetching_local_repo_list">Error fetching or processing local repository list - ignore, if this was the first app start!</string>
-
+    <string name="error_dialog_title">Sorry, but there is a problem.</string>
+    
 </resources>

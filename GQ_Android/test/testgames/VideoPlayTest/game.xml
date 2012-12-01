@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="VideoPlayTest"
+	xmlformat="5"
+>
+	<mission
+		type="NPCTalk"
+		id="Intro_3gp"
+		image="drawable/tv.jpg"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Video_3gp" />
+			</rule>
+		</onEnd>
+		<dialogitem>Jetzt kommt gleich eine VideoPlay Mission.
+		</dialogitem>
+		<dialogitem nextdialogbuttontext="Also los!">Hier wird 3gp Format verwendet.
+		</dialogitem>
+	</mission>
+	<mission
+		type="VideoPlay"
+		id="Video_3gp"
+		file="video/jokes.3gp"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Intro_mp4" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission
+		type="NPCTalk"
+		id="Intro_mp4"
+		image="drawable/tv.jpg"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Video_mp4" />
+			</rule>
+		</onEnd>
+		<dialogitem>Jetzt kommt gleich noch eine VideoPlay Mission.
+		</dialogitem>
+		<dialogitem nextdialogbuttontext="Also los!">Diesmal im mp4 Format.
+		</dialogitem>
+	</mission>
+	<mission
+		type="VideoPlay"
+		id="Video_mp4"
+		file="video/jokes.mp4"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Intro_YouTube" />
+			</rule>
+		</onEnd>
+	</mission>
+	<mission
+		type="NPCTalk"
+		id="Intro_YouTube"
+		image="drawable/youtube.png"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="Video_Youtube" />
+			</rule>
+		</onEnd>
+		<dialogitem>Und nun als letztes noch das gleiche Video online von
+			YouTube.
+		</dialogitem>
+		<dialogitem nextdialogbuttontext="Also los!">Um von YouTube Videos den URL
+			Parameter zu bekommen, muss man übrigens den Link zum Video von deren
+			mobiler Seite speichern.
+		</dialogitem>
+	</mission>
+	<mission
+		type="VideoPlay"
+		id="Video_Youtube"
+		url="rtsp://v1.cache1.c.youtube.com/CjYLENy73wIaLQm8vbdlwobelBMYDSANFEIJbXYtZ29vZ2xlSARSBXdhdGNoYMKY4L-1kYSvUAw=/0/0/0/video.3gp" />
+</game>
