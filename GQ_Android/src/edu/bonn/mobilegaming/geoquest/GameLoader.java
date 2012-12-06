@@ -264,6 +264,7 @@ public class GameLoader {
 
 	    if (firstMission != null) {
 		// TODO ReportingService muss jetzt schon gestartet sein!
+		GameSessionManager.setSessionID(Mission.documentRoot.attributeValue("name"));
 		firstMission.startMission();
 	    }
 	} catch (Exception e) {
