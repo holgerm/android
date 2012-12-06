@@ -2,14 +2,14 @@ package edu.bonn.mobilegaming.geoquest;
 
 public class GameSessionManager {
     
-    private String sessionID = null;
+    private static String sessionID = null;
 
-    public String getSessionID() {
+    public static String getSessionID() {
 	return sessionID;
     }
 
-    public void setSessionID(String sessionID) {
-	this.sessionID = sessionID;
+    public static void setSessionID(String gameName) {
+	GameSessionManager.sessionID = gameName;
     }
 
 }
