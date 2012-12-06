@@ -78,6 +78,7 @@
     <string name="videoplay_finishdialog_title">Terminate this mission?</string>
     <string name="videoplay_finishdialog_message">Leave the video?</string>
     <string name="videoplay_finishdialog_keepwatching">Keep watching</string>
+    <string name="videoplay_finishdialog_watchagain">Watch again</string>
     <string name="videoplay_finishdialog_leave">Leave it!</string>
     <string name="videoplay_errordialog_message">I can not play that video.</string>
 
@@ -148,5 +149,5 @@
     <string name="error_fetching_remote_repo_list_document">Error: Game information received from GeoQuest server invalid.</string>
     <string name="error_fetching_local_repo_list">Error fetching or processing local repository list - ignore, if this was the first app start!</string>
     <string name="error_dialog_title">Sorry, but there is a problem.</string>
-    
+
 </resources>

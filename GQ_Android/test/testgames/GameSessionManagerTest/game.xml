@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="GameSessionManagerTest"
+	xmlformat="5"
+>
+	<mission
+		type="NPCTalk"
+		id="m1"
+		image="drawable/ploppschutz.png"
+	>
+		<dialogitem>What a simple tour this is ...
+		</dialogitem>
+	</mission>
+</game>

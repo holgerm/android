@@ -85,6 +85,8 @@ public class TestUtils {
     public static GeoQuestActivity setUpMissionTypeTest(String gameFileName,
 							String missionType,
 							String missionID) {
+	Start start = startGameForTest(gameFileName);
+
 	Class<?> missionClass = null;
 	GeoQuestActivity missionActivity = null;
 
@@ -99,17 +101,21 @@ public class TestUtils {
 	} catch (ClassNotFoundException e) {
 	    throw new RuntimeException(e);
 	}
+	Intent startMissionIntent = new Intent(start, missionClass);
+	startMissionIntent.putExtra("missionID",
+				missionID);
+	Robolectric.shadowOf(missionActivity).setIntent(startMissionIntent);
+	return missionActivity;
+    }
+
+    public static Start startGameForTest(String gameFileName) {
 	Start start = new Start();
 	GeoQuestApp app = (GeoQuestApp) start.getApplication();
 	app.onCreate();
 	Mission.setMainActivity(start);
 	GameLoader.startGame(null,
 			     TestUtils.getGameFile(gameFileName));
-	Intent startMCQIntent = new Intent(start, missionClass);
-	startMCQIntent.putExtra("missionID",
-				missionID);
-	Robolectric.shadowOf(missionActivity).setIntent(startMCQIntent);
-	return missionActivity;
+	return start;
     }
 
     /**
