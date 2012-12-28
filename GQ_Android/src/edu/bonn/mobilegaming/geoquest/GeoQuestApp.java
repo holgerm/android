@@ -629,31 +629,6 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
 	return false;
     }
 
-    public static boolean playRuntimeAudioFile(String filename,
-					       boolean blocking) {
-	mPlayer = new MediaPlayer();
-	try {
-	    mPlayer.setDataSource(Environment.getExternalStorageDirectory()
-		    .getAbsolutePath()
-		    + "/" + filename);
-	    mPlayer.prepare();
-	    mPlayer.start();
-	} catch (IllegalArgumentException e) {
-	    Log.e(TAG,
-		  "Could not start Media Player. " + e);
-	    return false;
-	} catch (IllegalStateException e) {
-	    Log.e(TAG,
-		  "Could not start Media Player. " + e);
-	    return false;
-	} catch (IOException e) {
-	    Log.e(TAG,
-		  "Could not start Media Player. " + e);
-	    return false;
-	}
-	return true;
-    }
-
     /**
      * Plays a resource sound file either blocking or non-blocking regarding the
      * user interaction options on the currently active mission or tool.
