@@ -14,9 +14,6 @@ public class PlayAudio extends Action {
 	if (params.containsKey("file"))
 	    GeoQuestApp.playAudio(params.get("file"),
 				  false);
-	if (params.containsKey("runtimefile"))
-	    GeoQuestApp.playRuntimeAudioFile(params.get("runtimefile"),
-					     false);
     }
 
 }

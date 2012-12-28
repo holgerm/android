@@ -85,6 +85,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
      */
     private void startDialogItem(DialogItem i) {
 	dialogText.append(i.getFormattedSpeaker());
+	scrollView.fullScroll(View.FOCUS_DOWN);
 	int numParts = i.getNumParts();
 	final long milliseconds_per_part = 100;
 	long millisecondsInFuture = milliseconds_per_part * (numParts + 1); // +1
@@ -226,7 +227,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 
 	@Override
 	public void onFinish() {
-	    // Zur Sicherheit, da manchmal W�rter verschluckt werden (nicht
+	    // Zur Sicherheit, da manchmal Wörter verschluckt werden (nicht
 	    // ausreichend genauer timer!)
 	    CharSequence next = dialogItem.getNextPart();
 	    while (next != null) {

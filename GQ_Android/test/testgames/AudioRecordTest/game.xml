@@ -58,7 +58,7 @@
 			<rule>
 				<action
 					type="PlayAudio"
-					runtimefile="test_recording.3gp" />
+					file="@_test_recording.3gp" />
 			</rule>
 		</onStart>
 		<dialogitem>Now you should hear your recent recording.
