@@ -28,7 +28,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
-import android.net.Uri;
 import android.os.Environment;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -36,6 +35,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.maps.MapView;
+import com.qeevee.gq.res.ResourceManager;
 import com.qeevee.ui.BitmapUtil;
 
 import edu.bonn.mobilegaming.geoquest.adaptioninterfaces.AdaptionEngineInterface;
@@ -640,15 +640,15 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
 	    mPlayer.start();
 	} catch (IllegalArgumentException e) {
 	    Log.e(TAG,
-		  "Could not start Media Player.");
+		  "Could not start Media Player. " + e);
 	    return false;
 	} catch (IllegalStateException e) {
 	    Log.e(TAG,
-		  "Could not start Media Player.");
+		  "Could not start Media Player. " + e);
 	    return false;
 	} catch (IOException e) {
 	    Log.e(TAG,
-		  "Could not start Media Player.");
+		  "Could not start Media Player. " + e);
 	    return false;
 	}
 	return true;
@@ -668,23 +668,27 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
      */
     public static boolean playAudio(String path,
 				    boolean blocking) {
-
-	Uri soundUri;
 	stopAudio();
-
+	mPlayer = new MediaPlayer();
 	try {
-	    soundUri = Uri.parse(getGameRessourceFile(path).getAbsolutePath());
-	    mPlayer = MediaPlayer.create(GeoQuestApp.getContext(),
-					 soundUri);
+	    mPlayer.setDataSource(ResourceManager.getResourcePath(path));
+	    mPlayer.prepare();
 	    mPlayer.start();
 	    if (blocking)
 		blockInteractionOnCurrentActivityByMediaPlayer();
-	} catch (Exception e) {
+	} catch (IllegalArgumentException e) {
 	    Log.e(TAG,
-		  "Could not start Media Player.");
+		  "Could not start Media Player. " + e);
+	    return false;
+	} catch (IllegalStateException e) {
+	    Log.e(TAG,
+		  "Could not start Media Player. " + e);
+	    return false;
+	} catch (IOException e) {
+	    Log.e(TAG,
+		  "Could not start Media Player. " + e);
 	    return false;
 	}
-
 	return true;
     }
 
@@ -701,7 +705,7 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
      * Blocks the user interaction on the currently active mission or tool until
      * the media player signals completion. This is used for example to prevent
      * the user to click on proceed buttons before the audio file has not
-     * finished playing yet.
+     * completely played yet.
      */
     public static void blockInteractionOnCurrentActivityByMediaPlayer() {
 	final BlockableAndReleasable releaseCallBack = getCurrentActivity()
