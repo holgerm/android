@@ -1,11 +1,5 @@
 package edu.bonn.mobilegaming.geoquest;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import com.qeevee.gq.history.HistoryActivity;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -14,8 +8,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
+
+import com.qeevee.gq.history.HistoryActivity;
+
 import edu.bonn.mobilegaming.geoquest.contextmanager.ContextManager;
 import edu.bonn.mobilegaming.geoquest.gameaccess.GameItem;
+import edu.bonn.mobilegaming.geoquest.ui.MenuMaker;
 
 public abstract class GeoQuestActivity extends Activity {
 
@@ -24,53 +23,20 @@ public abstract class GeoQuestActivity extends Activity {
 	super.onResume();
     }
 
-    /**
-     * Declare Menu ID Constants
-     */
-    static final protected int QUIT_MENU_ID = Menu.FIRST;
-    static final protected int END_GAME_MENU_ID = Menu.FIRST + 1;
-    static final protected int PREFS_MENU_ID = Menu.FIRST + 2;
-    static final protected int HISTORY_MENU_ID = Menu.FIRST + 3;
     protected static final int MENU_ID_OFFSET = Menu.FIRST + 4;
     public static ContextManager contextManager = null;
 
     static final String TAG = "GeoQuestActivity";
 
-    /**
-     * This map is used by all GeoQuest-Activities to enable or disable the
-     * default menu items. This map is initialized with all items enabled by
-     * default. This map just handles the default items. It is not possible to
-     * add new items outside GeoQuestActivity.
-     * 
-     * @see
-     */
-    private Map<Integer, Boolean> menuItemStatusMap = new HashMap<Integer, Boolean>();
-
     private ProgressDialog downloadAndStartGameDialog;
     private ProgressDialog startLocalGameDialog;
-
-    public void setMenuItemStatus(int menuItemId,
-				  boolean enabled) {
-	if (menuItemStatusMap.containsKey(menuItemId)) {
-	    menuItemStatusMap.put(menuItemId,
-				  enabled);
-	}
-    }
+    
+    protected MenuMaker menuMaker = new MenuMaker();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	((GeoQuestApp) getApplication()).addActivity(this);
-
-	// set default status value (enabled) to all default menu items
-	menuItemStatusMap.put(QUIT_MENU_ID,
-			      true);
-	menuItemStatusMap.put(END_GAME_MENU_ID,
-			      true);
-	menuItemStatusMap.put(PREFS_MENU_ID,
-			      true);
-	menuItemStatusMap.put(HISTORY_MENU_ID,
-			      true);
 
 	// Init progress dialogs:
 	downloadAndStartGameDialog = new ProgressDialog(this);
@@ -88,74 +54,32 @@ public abstract class GeoQuestActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 	super.onCreateOptionsMenu(menu);
+	menuMaker.addMenuItems(MenuMaker.END_GAME_MENU_ID,
+						    MenuMaker.QUIT_MENU_ID);
+	menuMaker.addMenuItem(MenuMaker.PREFS_MENU_ID,
+		       new OnMenuItemClickListener() {
+
+			   public boolean onMenuItemClick(MenuItem item) {
+			       Intent settingsActivity = new Intent(
+				       getBaseContext(), Preferences.class);
+			       startActivity(settingsActivity);
+			       return true;
+			   }
+
+		       });
+	menuMaker.addMenuItem(MenuMaker.HISTORY_MENU_ID,
+		       new OnMenuItemClickListener() {
+
+			   public boolean onMenuItemClick(MenuItem item) {
+			       Intent historyActivity = new Intent(
+				       getBaseContext(), HistoryActivity.class);
+			       startActivity(historyActivity);
+			       return true;
+			   }
+
+		       });
+	menuMaker.setupMenu(menu);
 	return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-	Iterator<Integer> i = menuItemStatusMap.keySet().iterator();
-	while (i.hasNext()) {
-	    int menuItem = i.next();
-	    if (menu.findItem(menuItem) == null
-		    && menuItemStatusMap.get(menuItem) == true) {
-		/*
-		 * TODO: not that sexy - better create a new MenuItem structure
-		 * which incorporates ID and String value and get rid of this
-		 * ugly switch-statement.
-		 */
-		switch (menuItem) {
-		case QUIT_MENU_ID:
-		    menu.add(0,
-			     menuItem,
-			     0,
-			     R.string.quitMenu);
-		    break;
-		case END_GAME_MENU_ID:
-		    menu.add(0,
-			     menuItem,
-			     0,
-			     R.string.endGameMenu);
-		    break;
-		case PREFS_MENU_ID:
-		    menu.add(0,
-			     menuItem,
-			     0,
-			     R.string.menuPrefs);
-		    break;
-		case HISTORY_MENU_ID:
-		    menu.add(0,
-			     menuItem,
-			     0,
-			     R.string.historyMenu);
-		    break;
-		default:
-		    break;
-		}
-	    }
-	}
-	return super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-	switch (item.getItemId()) {
-	case QUIT_MENU_ID:
-	    GeoQuestApp.getInstance().terminateApp();
-	    break;
-	case END_GAME_MENU_ID:
-	    GeoQuestApp.getInstance().endGame();
-	    break;
-	case PREFS_MENU_ID:
-	    Intent settingsActivity = new Intent(getBaseContext(),
-		    Preferences.class);
-	    startActivity(settingsActivity);
-	    break;
-	case HISTORY_MENU_ID:
-	    Intent historyActivity = new Intent(getBaseContext(), HistoryActivity.class);
-	    startActivity(historyActivity);
-	    break;
-	}
-	return super.onOptionsItemSelected(item);
     }
 
     public void startContextManager() {

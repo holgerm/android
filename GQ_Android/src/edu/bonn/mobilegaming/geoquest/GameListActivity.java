@@ -22,98 +22,145 @@ import edu.bonn.mobilegaming.geoquest.gameaccess.GameItem;
 
 public class GameListActivity extends GeoQuestListActivity {
 
-	ListAdapter gameListAdapter;
-	CharSequence repoName;
-	
-	private final static boolean enable_long_click_auto_game = false;
-	
-	private GameListActivity getInstance(){
-		return this;
-	}
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    ListAdapter gameListAdapter;
+    CharSequence repoName;
 
-		setContentView(R.layout.gamelist);
+    private final static boolean enable_long_click_auto_game = false;
 
-		// init menu items (i.e. disable not necessary default ones)
-		setMenuItemStatus(END_GAME_MENU_ID, false);
-		
-		this.repoName = getIntent().getCharSequenceExtra(
-				"edu.bonn.mobilegaming.geoquest.REPO");
+    private GameListActivity getInstance() {
+	return this;
+    }
 
-		String headerText = getText(R.string.gamelistHeaderStart).toString()
-				+ " \"" + this.repoName + "\":";
-		((TextView) findViewById(R.id.gamelistHeader)).setText(headerText);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
 
-		// Init data adapter:
-		gameListAdapter = new ArrayAdapter<String>(this, R.layout.game_item,
-				GeoQuestApp.getGameNamesForRepository(repoName.toString()));
-		setListAdapter(gameListAdapter);
-		
-		if (enable_long_click_auto_game) {  // remove this if-clause if you want a context menu to be shown under any circumstances
-			registerForContextMenu(getListView());
-		}
-	}
-	
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		if (enable_long_click_auto_game) {
-			menu.add(R.string.context_auto_start_game);
-		}
-		super.onCreateContextMenu(menu, v, menuInfo);
-	}
-	
-	@Override
-	public boolean onContextItemSelected(final MenuItem item) {
-		if (item.getTitle().equals(getString(R.string.context_auto_start_game))){
-			// create and show password dialog
-			LinearLayout layout = new LinearLayout(this);
-			layout.setOrientation(LinearLayout.VERTICAL);
-			layout.setGravity(Gravity.CENTER_HORIZONTAL);
-			final EditText input = new EditText(this);
-			input.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
-			layout.setPadding(10, 0, 10, 0);
-			layout.addView(input);
-			
-			new AlertDialog.Builder(this)
-			.setTitle(R.string.pw_dialog_title)
-			.setMessage(R.string.pw_dialog_descr)
-			.setView(layout)
-			.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton) {
-					String pw = input.getText().toString();
-					if (pw != null && pw.equals(PreferenceManager.getDefaultSharedPreferences(getInstance()).getString("pref_password", null))){
-						AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-						String quest = (String) getListAdapter().getItem(menuInfo.position);
-						SharedPreferences mainPrefs = PreferenceManager.getDefaultSharedPreferences(getInstance());
-						mainPrefs.edit().putBoolean(Preferences.PREF_KEY_AUTO_START_GAME_CHECK, true).commit();
-						mainPrefs.edit().putString(Preferences.PREF_KEY_AUTO_START_REPO, repoName.toString()).commit();
-						mainPrefs.edit().putString(Preferences.PREF_KEY_AUTO_START_GAME, quest).commit();
-						Toast.makeText(getInstance(), R.string.context_auto_start_game_toast, Toast.LENGTH_SHORT).show();
-					} else {
-						new AlertDialog.Builder(getInstance())
-						.setMessage(R.string.pw_dialog_wrong_pw)
-						.show();
-					}
-				}
-			}).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton) {
-				}
-			}).show();
-		}
-		return super.onContextItemSelected(item);
-	}
-	
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		final String gameName = (String) gameListAdapter.getItem(position);
-		final GameItem gameItem = GeoQuestApp.getGameItem(repoName, gameName);
-		final String selectedRepo = repoName.toString();
+	setContentView(R.layout.gamelist);
 
-		startGame(gameItem, selectedRepo);
+	this.repoName = getIntent()
+		.getCharSequenceExtra("edu.bonn.mobilegaming.geoquest.REPO");
+
+	String headerText = getText(R.string.gamelistHeaderStart).toString()
+		+ " \"" + this.repoName + "\":";
+	((TextView) findViewById(R.id.gamelistHeader)).setText(headerText);
+
+	// Init data adapter:
+	gameListAdapter = new ArrayAdapter<String>(this, R.layout.game_item,
+		GeoQuestApp.getGameNamesForRepository(repoName.toString()));
+	setListAdapter(gameListAdapter);
+
+	if (enable_long_click_auto_game) { // remove this if-clause if you want
+					   // a context menu to be shown under
+					   // any circumstances
+	    registerForContextMenu(getListView());
 	}
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu,
+				    View v,
+				    ContextMenuInfo menuInfo) {
+	if (enable_long_click_auto_game) {
+	    menu.add(R.string.context_auto_start_game);
+	}
+	super.onCreateContextMenu(menu,
+				  v,
+				  menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(final MenuItem item) {
+	if (item.getTitle().equals(getString(R.string.context_auto_start_game))) {
+	    // create and show password dialog
+	    LinearLayout layout = new LinearLayout(this);
+	    layout.setOrientation(LinearLayout.VERTICAL);
+	    layout.setGravity(Gravity.CENTER_HORIZONTAL);
+	    final EditText input = new EditText(this);
+	    input.setTransformationMethod(android.text.method.PasswordTransformationMethod
+		    .getInstance());
+	    layout.setPadding(10,
+			      0,
+			      10,
+			      0);
+	    layout.addView(input);
+
+	    new AlertDialog.Builder(this)
+		    .setTitle(R.string.pw_dialog_title)
+		    .setMessage(R.string.pw_dialog_descr)
+		    .setView(layout)
+		    .setPositiveButton(R.string.ok,
+				       new DialogInterface.OnClickListener() {
+					   public
+						   void
+						   onClick(DialogInterface dialog,
+							   int whichButton) {
+					       String pw = input.getText()
+						       .toString();
+					       if (pw != null
+						       && pw.equals(PreferenceManager
+							       .getDefaultSharedPreferences(getInstance())
+							       .getString("pref_password",
+									  null))) {
+						   AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item
+							   .getMenuInfo();
+						   String quest = (String) getListAdapter()
+							   .getItem(menuInfo.position);
+						   SharedPreferences mainPrefs = PreferenceManager
+							   .getDefaultSharedPreferences(getInstance());
+						   mainPrefs
+							   .edit()
+							   .putBoolean(Preferences.PREF_KEY_AUTO_START_GAME_CHECK,
+								       true)
+							   .commit();
+						   mainPrefs
+							   .edit()
+							   .putString(Preferences.PREF_KEY_AUTO_START_REPO,
+								      repoName.toString())
+							   .commit();
+						   mainPrefs
+							   .edit()
+							   .putString(Preferences.PREF_KEY_AUTO_START_GAME,
+								      quest)
+							   .commit();
+						   Toast.makeText(getInstance(),
+								  R.string.context_auto_start_game_toast,
+								  Toast.LENGTH_SHORT)
+							   .show();
+					       } else {
+						   new AlertDialog.Builder(
+							   getInstance())
+							   .setMessage(R.string.pw_dialog_wrong_pw)
+							   .show();
+					       }
+					   }
+				       })
+		    .setNegativeButton(R.string.cancel,
+				       new DialogInterface.OnClickListener() {
+					   public
+						   void
+						   onClick(DialogInterface dialog,
+							   int whichButton) {
+					   }
+				       }).show();
+	}
+	return super.onContextItemSelected(item);
+    }
+
+    @Override
+    protected void onListItemClick(ListView l,
+				   View v,
+				   int position,
+				   long id) {
+	super.onListItemClick(l,
+			      v,
+			      position,
+			      id);
+	final String gameName = (String) gameListAdapter.getItem(position);
+	final GameItem gameItem = GeoQuestApp.getGameItem(repoName,
+							  gameName);
+	final String selectedRepo = repoName.toString();
+
+	startGame(gameItem,
+		  selectedRepo);
+    }
 }
