@@ -151,10 +151,15 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
      */
     @SuppressWarnings("unchecked")
     private void readXML() {
-	// LoadImage:
-	String imgsrc = getMissionAttribute("image",
-					    XMLUtilities.NECESSARY_ATTRIBUTE)
-		.toString();
+    	
+	// try to load the image:
+    String imgsrc = null;
+    try{
+    		imgsrc = getMissionAttribute("image",
+				    XMLUtilities.NECESSARY_ATTRIBUTE)
+			.toString();
+    } catch(IllegalArgumentException iae){
+	}
 
 	// Prepare endButtonText:
 	String ebt = mission.xmlMissionNode.attributeValue("endbuttontext");
@@ -181,9 +186,24 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	    this.nextDialogButtonText = ndbt;
 	}
 
-	Bitmap bitmap = GeoQuestApp.loadBitmap(imgsrc,
-					       true);
-	charImage.setImageBitmap(bitmap);
+	//try to load image, make image element invisible, if failed
+	Bitmap bitmap = null;
+	try{
+		if(imgsrc != null){
+			bitmap = GeoQuestApp.loadBitmap(imgsrc,
+				       true);
+		}	
+	}
+	catch(IllegalArgumentException iae){
+	}
+	
+	if(bitmap!= null){
+		charImage.setImageBitmap(bitmap);
+	}
+	else{
+		charImage.setVisibility(ZoomImageView.INVISIBLE);
+	}
+	
 
 	// Load Dialog Items:
 	List<Element> dialogItemList = mission.xmlMissionNode
