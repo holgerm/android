@@ -18,9 +18,6 @@
     <string name="locationMockupFalseMenu">Switch to mocked location</string>
     <string name="locationMockupTrueMenu">Switch to real location</string>
     <string name="timestep_realmode">2000</string>
-    <string name="quitMenu">Quit</string>
-    <string name="endGameMenu">End game</string>
-    <string name="menuPrefs">Prefs</string>
     <string name="preferencesTitle">Preferences</string>
     <string name="webupdate_downloadingGameFromServer">Downloading game from GeoQuest server ...</string>
     <string name="webupdate_startingGameFromExternalStorage">Starting locally stored game ...</string>
@@ -150,4 +147,10 @@
     <string name="error_fetching_local_repo_list">Error fetching or processing local repository list - ignore, if this was the first app start!</string>
     <string name="error_dialog_title">Sorry, but there is a problem.</string>
 
+    <!-- Menu Entries -->
+    <string name="quitMenu">Quit</string>
+    <string name="endGameMenu">End game</string>
+    <string name="menuPrefs">Prefs</string>
+    <string name="historyMenu">History</string>
+    
 </resources>
