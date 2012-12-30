@@ -30,6 +30,11 @@
     <string name="start_SelectQuestButton">Zur Auswahl ...</string>
     <string name="gamelistHeaderStart">Quests in</string>
     <string name="repolistHeaderStart">Verfügbare Repositories</string>
+    <string name="sortoptionsHeaderStart">Sortiere nach:</string>
+    <string name="sortByName">Name</string>
+    <string name="sortByDate">Datum (neuste zuerst)</string>
+    <string name="sortByDistance">Distanz</string>
+    <string name="sortByLastPlayed">Zuletzt gespielt</string>
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
 
@@ -119,6 +124,10 @@
     <string name="start_menu_reload">Repository-Daten neu laden</string>
     <string name="start_toast_download_failed">Herunterladen der Repository-Daten fehlgeschlagen - überprüfe Deine Internetverbindung und versuche es erneut, indem du "Repository-Daten neu laden" aus dem Menü auswählst oder die App neu startest!</string>
 
+    
+    <!-- GameListActivity -->
+    <string name="game_list_sort">Quests sortieren nach...</string>
+    
     <!-- Error messages -->
     <string name="error_fetching_remote_repo_list">Fehler beim Laden oder Verarbeiten der Repository-Daten vom Server</string>
     <string name="error_fetching_local_repo_list">Fehler beim Laden oder Verarbeiten der lokalen Repository-Daten!</string>

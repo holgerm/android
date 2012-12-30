@@ -46,6 +46,11 @@
     <string name="imageCapture_UploadERROR">Error while uploading your picture.</string>
     <string name="gamelistHeaderStart">Games in</string>
     <string name="repolistHeaderStart">Accessible Repositories</string>
+    <string name="sortoptionsHeaderStart">Sort by:</string>
+    <string name="sortByName">Name</string>
+    <string name="sortByDate">Date (neuste zuerst)</string>
+    <string name="sortByDistance">Distance</string>
+    <string name="sortByLastPlayed">Last played</string>
     <string name="centerMapMenu">Center Map</string>
     <string name="audioRecordUploadURLDefault">http://geoquest.qeevee.org/upload-audio/upload.php</string>
     <string name="imageCaptureUploadURLDefault">http://geoquest.qeevee.org/upload-images/upload.php</string>
@@ -142,6 +147,9 @@
     <string name="start_menu_reload">Reload game list</string>
     <string name="start_toast_download_failed">Repo list download failed - check your internet connection and try again by choosing "Reload repo data" from menu or restarting the app!</string>
 
+     <!-- GameListActivity -->
+    <string name="game_list_sort">Sort quests by...</string>
+    
     <!-- Error messages -->
     <string name="error_fetching_remote_repo_list">Error fetching or processing repository list from server!</string>
     <string name="error_fetching_remote_repo_list_url">Error: GeoQuest server URL malformed!</string>

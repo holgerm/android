@@ -1,5 +1,8 @@
 package edu.bonn.mobilegaming.geoquest.gameaccess;
 
+import java.text.Collator;
+import java.util.Locale;
+
 import org.dom4j.Element;
 
 import android.util.Log;
@@ -7,7 +10,13 @@ import android.util.Log;
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.R;
 
-public class GameItem {
+public class GameItem implements Comparable<GameItem>{
+	
+    public static final int SORT_GAMELIST_BY_NAME = 0;
+    public static final int SORT_GAMELIST_BY_DATE = 1;
+    public static final int SORT_GAMELIST_BY_DISTANCE = 2;
+    public static final int SORT_GAMELIST_BY_LAST_PLAYED = 3;
+    public static final int SORT_GAMELIST_BY_DEFAULT = SORT_GAMELIST_BY_DATE;	
 
 //	private String xmlVersion = "";
 	private String name = "";
@@ -20,6 +29,7 @@ public class GameItem {
 //	private boolean updateAvailable = false;
 	private boolean onServer = false;
 	private boolean onClient = false;
+	private int sortMode = SORT_GAMELIST_BY_DEFAULT;
 
 	public boolean isOnServer() {
 		return onServer;
@@ -201,4 +211,58 @@ public class GameItem {
 		return this.fileName;
 	}
 
+	public void setSortingMode(int sortMode){
+		this.sortMode = sortMode;
+	}
+	
+	public int compareTo(GameItem compareObject) {
+		
+		Collator collator;
+		switch (sortMode)
+        {
+          case SORT_GAMELIST_BY_NAME:
+             
+        	  collator = Collator.getInstance(Locale.getDefault());
+        	  collator.setStrength(Collator.PRIMARY);
+        	  return collator.compare(getName(), compareObject.getName());
+        	  
+          case SORT_GAMELIST_BY_DATE:
+             
+        	  if(getLastmodifiedServerSide() != 0.){
+        	  
+        		  if (getLastmodifiedServerSide() > compareObject.getLastmodifiedServerSide())
+        			  return -1;
+        		  else if (getLastmodifiedServerSide() == compareObject.getLastmodifiedServerSide())
+        			  return 0;
+        		  else
+                      return 1;
+        	  }
+        	  //if the game only exists local the server date will be 0, so we can only compare the client date
+        	  else{
+            	  
+        		  if (getLastmodifiedClientSide() > compareObject.getLastmodifiedClientSide())
+        			  return -1;
+        		  else if (getLastmodifiedClientSide() == compareObject.getLastmodifiedClientSide())
+        			  return 0;
+        		  else
+                      return 1;
+        	  }
+        	 
+              
+        	  
+          case SORT_GAMELIST_BY_DISTANCE:
+             //TODO not sure if geolocation is already known at this point
+        	       	  
+        	  
+          case SORT_GAMELIST_BY_LAST_PLAYED:
+             //TODO this information is not available yet
+        	  
+        	  
+          default:
+        	  //sort by name, if nothing else matches
+        	  collator = Collator.getInstance(Locale.getDefault());
+        	  collator.setStrength(Collator.PRIMARY);
+        	  return collator.compare(getName(), compareObject.getName());
+        }
+	}
 }

@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -236,6 +237,8 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
 	    if (curRepoItem.gameNames().size() > 0)
 		namesOfNonEmptyRepos.add(curRepoItem.getName());
 	}
+	//sort repolist by name
+	Collections.sort(namesOfNonEmptyRepos);
 	return namesOfNonEmptyRepos;
     }
 
@@ -251,6 +254,7 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
 	    Log.e(TAG,
 		  "Error: repoitem is null");
 	}
+	repoItem.sortGameItemsBy(currentSortMode);
 	return repoItem.gameNames();
     }
 
@@ -271,6 +275,7 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
     private static Map<String, RepositoryItem> repositoryItems = new HashMap<String, RepositoryItem>();
     private static File runningGameDir;
     private boolean repoDataAvailable = false;
+    public static int currentSortMode = GameItem.SORT_GAMELIST_BY_DEFAULT;
 
     public static boolean loadRepoData(GeoQuestProgressHandler handler) {
 	boolean result = loadRepoDataFromServer(handler);

@@ -2,14 +2,18 @@ package edu.bonn.mobilegaming.geoquest;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -47,10 +51,10 @@ public class GameListActivity extends GeoQuestListActivity {
 				+ " \"" + this.repoName + "\":";
 		((TextView) findViewById(R.id.gamelistHeader)).setText(headerText);
 
-		// Init data adapter:
-		gameListAdapter = new ArrayAdapter<String>(this, R.layout.game_item,
-				GeoQuestApp.getGameNamesForRepository(repoName.toString()));
-		setListAdapter(gameListAdapter);
+//		// Init data adapter - moved this code to onResume():
+//		gameListAdapter = new ArrayAdapter<String>(this, R.layout.game_item,
+//				GeoQuestApp.getGameNamesForRepository(repoName.toString()));
+//		setListAdapter(gameListAdapter);
 		
 		if (enable_long_click_auto_game) {  // remove this if-clause if you want a context menu to be shown under any circumstances
 			registerForContextMenu(getListView());
@@ -115,5 +119,28 @@ public class GameListActivity extends GeoQuestListActivity {
 		final String selectedRepo = repoName.toString();
 
 		startGame(gameItem, selectedRepo);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuItem sortItem = menu.add(R.string.game_list_sort);
+		sortItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent i = new Intent(GeoQuestApp.getContext(), edu.bonn.mobilegaming.geoquest.SortingOptionsActivity.class);
+				startActivity(i);
+				return false;
+			}
+		});
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		// refresh the list of games, so that the new sorting mode applies
+		gameListAdapter = new ArrayAdapter<String>(this, R.layout.game_item,
+				GeoQuestApp.getGameNamesForRepository(repoName.toString()));
+		setListAdapter(gameListAdapter);
 	}
 }
