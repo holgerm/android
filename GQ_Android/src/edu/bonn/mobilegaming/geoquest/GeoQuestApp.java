@@ -161,7 +161,7 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
      * Should NOT be invoked e.g. when Home Button is pressed.
      * 
      */
-    void terminateApp() {
+    public void terminateApp() {
 	Activity[] allActivities = new Activity[activities.size()];
 	activities.toArray(allActivities);
 	for (int i = 0; i < allActivities.length; i++) {
