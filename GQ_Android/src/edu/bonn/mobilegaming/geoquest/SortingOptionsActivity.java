@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +46,9 @@ public class SortingOptionsActivity extends ListActivity{
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		GeoQuestApp.currentSortMode = position;
+		GeoQuestApp.currentSortMode = position;		
+		SharedPreferences prefs = GeoQuestApp.getContext().getSharedPreferences(GeoQuestApp.MAIN_PREF_FILE_NAME, Context.MODE_PRIVATE);
+		prefs.edit().putInt(Preferences.PREF_KEY_SORTING_MODE, position).commit();
 		finish();
 	}
 }

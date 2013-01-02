@@ -132,5 +132,6 @@
     <string name="error_fetching_remote_repo_list">Fehler beim Laden oder Verarbeiten der Repository-Daten vom Server</string>
     <string name="error_fetching_local_repo_list">Fehler beim Laden oder Verarbeiten der lokalen Repository-Daten!</string>
     <string name="error_dialog_title">Entschuldigung, aber es gibt ein Problem.</string>
+     <string name="error_getting_device_location">Aktuelle Position konnte leider nicht bestimmt werden.</string>
     
 </resources>

@@ -27,6 +27,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -197,6 +198,12 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
 			   theApp.getText(R.string.webupdate_local_default_repository)
 				   .toString());
     }
+    public static int getRecentSortingMode(){
+    	return theApp
+    			.getSharedPreferences(GeoQuestApp.MAIN_PREF_FILE_NAME,
+    					      Context.MODE_PRIVATE)
+    			.getInt(Preferences.PREF_KEY_SORTING_MODE, GameItem.SORT_GAMELIST_BY_DEFAULT);
+    }
 
     public static String getRecentGameFileName() {
 	return theApp.getSharedPreferences(GeoQuestApp.MAIN_PREF_FILE_NAME,
@@ -254,7 +261,22 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
 	    Log.e(TAG,
 		  "Error: repoitem is null");
 	}
-	repoItem.sortGameItemsBy(currentSortMode);
+	if(currentSortMode == GameItem.SORT_GAMELIST_BY_DISTANCE){
+		GeoQuestLocationListener locationListener = new GeoQuestLocationListener(getContext());
+		locationListener.connect();
+		Location aktLocation = locationListener.getLastLocation();
+		locationListener.disconnect();
+		if(aktLocation == null){
+			Toast.makeText(getContext(), R.string.error_getting_device_location, Toast.LENGTH_SHORT).show();
+		}
+		else{
+			repoItem.sortGameItemsBy(currentSortMode, aktLocation);
+		}	
+	}
+	else{
+		repoItem.sortGameItemsBy(currentSortMode);
+	}
+	
 	return repoItem.gameNames();
     }
 

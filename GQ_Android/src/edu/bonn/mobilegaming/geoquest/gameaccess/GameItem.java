@@ -5,6 +5,9 @@ import java.util.Locale;
 
 import org.dom4j.Element;
 
+import com.qeevee.util.location.Distance;
+
+import android.location.Location;
 import android.util.Log;
 
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
@@ -16,7 +19,7 @@ public class GameItem implements Comparable<GameItem>{
     public static final int SORT_GAMELIST_BY_DATE = 1;
     public static final int SORT_GAMELIST_BY_DISTANCE = 2;
     public static final int SORT_GAMELIST_BY_LAST_PLAYED = 3;
-    public static final int SORT_GAMELIST_BY_DEFAULT = SORT_GAMELIST_BY_DATE;	
+    public static final int SORT_GAMELIST_BY_DEFAULT = SORT_GAMELIST_BY_NAME;	
 
 //	private String xmlVersion = "";
 	private String name = "";
@@ -30,6 +33,7 @@ public class GameItem implements Comparable<GameItem>{
 	private boolean onServer = false;
 	private boolean onClient = false;
 	private int sortMode = SORT_GAMELIST_BY_DEFAULT;
+	private Location deviceLocation;
 
 	public boolean isOnServer() {
 		return onServer;
@@ -215,6 +219,10 @@ public class GameItem implements Comparable<GameItem>{
 		this.sortMode = sortMode;
 	}
 	
+	public void setDeviceLocation(Location location){
+		this.deviceLocation = location;
+	}
+	
 	public int compareTo(GameItem compareObject) {
 		
 		Collator collator;
@@ -246,12 +254,22 @@ public class GameItem implements Comparable<GameItem>{
         			  return 0;
         		  else
                       return 1;
-        	  }
-        	 
-              
+        	  }           
         	  
           case SORT_GAMELIST_BY_DISTANCE:
-             //TODO not sure if geolocation is already known at this point
+        	  
+        	  //put games without location at the end of the list
+        	  if(this.latitude == 0 || this.longitude == 0) return 1;
+        	  
+        	  double distanceThis = Distance.distance(this.latitude, this.longitude, deviceLocation.getLatitude(), deviceLocation.getLongitude());
+        	  double distanceCompareObject = Distance.distance(compareObject.latitude, compareObject.longitude, deviceLocation.getLatitude(), deviceLocation.getLongitude());
+        	  
+        	  if (distanceThis < distanceCompareObject)
+    			  return -1;
+    		  else if (distanceThis == distanceCompareObject)
+    			  return 0;
+    		  else
+                  return 1;
         	       	  
         	  
           case SORT_GAMELIST_BY_LAST_PLAYED:

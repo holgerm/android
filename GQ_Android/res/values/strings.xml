@@ -48,7 +48,7 @@
     <string name="repolistHeaderStart">Accessible Repositories</string>
     <string name="sortoptionsHeaderStart">Sort by:</string>
     <string name="sortByName">Name</string>
-    <string name="sortByDate">Date (neuste zuerst)</string>
+    <string name="sortByDate">Date (newest first)</string>
     <string name="sortByDistance">Distance</string>
     <string name="sortByLastPlayed">Last played</string>
     <string name="centerMapMenu">Center Map</string>
@@ -157,5 +157,6 @@
     <string name="error_fetching_remote_repo_list_document">Error: Game information received from GeoQuest server invalid.</string>
     <string name="error_fetching_local_repo_list">Error fetching or processing local repository list - ignore, if this was the first app start!</string>
     <string name="error_dialog_title">Sorry, but there is a problem.</string>
+    <string name="error_getting_device_location">Unfortunately the current position could not be determined.</string>
 
 </resources>

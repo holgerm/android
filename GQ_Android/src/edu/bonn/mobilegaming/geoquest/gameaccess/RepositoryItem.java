@@ -3,9 +3,17 @@ package edu.bonn.mobilegaming.geoquest.gameaccess;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.google.android.maps.GeoPoint;
+
+import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
+import edu.bonn.mobilegaming.geoquest.GeoQuestLocationListener;
+import edu.bonn.mobilegaming.geoquest.HotspotOld;
+
+import android.location.Location;
 import android.util.Log;
 
 /**
@@ -44,6 +52,14 @@ public class RepositoryItem {
 	
 	public void sortGameItemsBy(int sortMode){
 		for(int i = 0; i<games.size(); i++){
+			games.get(i).setSortingMode(sortMode);
+		}
+		Collections.sort(games);
+	}
+	
+	public void sortGameItemsBy(int sortMode, Location location){
+		for(int i = 0; i<games.size(); i++){
+			games.get(i).setDeviceLocation(location);
 			games.get(i).setSortingMode(sortMode);
 		}
 		Collections.sort(games);

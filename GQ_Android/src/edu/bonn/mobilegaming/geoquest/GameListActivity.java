@@ -138,7 +138,9 @@ public class GameListActivity extends GeoQuestListActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		// refresh the list of games, so that the new sorting mode applies
+		
+		GeoQuestApp.currentSortMode = GeoQuestApp.getRecentSortingMode();
+		// get the gamelist
 		gameListAdapter = new ArrayAdapter<String>(this, R.layout.game_item,
 				GeoQuestApp.getGameNamesForRepository(repoName.toString()));
 		setListAdapter(gameListAdapter);
