@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.qeevee.gq.history.TextItem;
+import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.gq.xml.XMLUtilities;
 import com.qeevee.ui.ZoomImageView;
 
@@ -72,8 +74,8 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 
 	readXML();
 	currDialogItem = dialogItems.iterator();
-	Log.d("RuntimeMeasure",
-	      "NPCTalk " + (System.currentTimeMillis() - start) + " ms");
+	Log.d(TAG,
+	      "RuntimeMeasure " + (System.currentTimeMillis() - start) + " ms");
 	gotoNextDialogItem();
     }
 
@@ -103,6 +105,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	// we always show the next dialogItem starting with the first.
 
 	if (!currDialogItem.hasNext()) {
+	    new TransitionItem(this.getClass());
 	    finish(Globals.STATUS_SUCCESS);
 	    return;
 	}
@@ -236,6 +239,11 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 		next = dialogItem.getNextPart();
 	    }
 	    scrollView.fullScroll(View.FOCUS_DOWN);
+	    /*
+	     * Store history item. TODO: add more argument for image, audio and
+	     * thumbnail.
+	     */
+	    new TextItem(currItem.getText());
 	    // release blocked interaction on the NPCTalk using this Timer as
 	    // Blocker monitor:
 	    NPCTalk.this.releaseInteraction(this);
