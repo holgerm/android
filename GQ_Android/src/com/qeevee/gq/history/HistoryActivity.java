@@ -3,19 +3,13 @@ package com.qeevee.gq.history;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 public class HistoryActivity extends ListActivity {
     private static final String TAG = HistoryActivity.class.getSimpleName();
 
     public void onCreate(Bundle icicle) {
 	super.onCreate(icicle);
-	String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-		"Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-		"Linux", "OS/2" };
-	ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-		android.R.layout.simple_list_item_1, values);
-	setListAdapter(adapter);
+	setListAdapter(new HistoryListAdapter());
     }
 
     @Override
@@ -30,7 +24,7 @@ public class HistoryActivity extends ListActivity {
     protected void onRestart() {
 	// TODO Auto-generated method stub
 	Log.d(TAG,
-		      "onRestart()");
+	      "onRestart()");
 	super.onRestart();
     }
 
@@ -38,7 +32,7 @@ public class HistoryActivity extends ListActivity {
     protected void onResume() {
 	// TODO Auto-generated method stub
 	Log.d(TAG,
-		      "onResume()");
+	      "onResume()");
 	super.onResume();
     }
 
@@ -46,7 +40,7 @@ public class HistoryActivity extends ListActivity {
     protected void onStart() {
 	// TODO Auto-generated method stub
 	Log.d(TAG,
-		      "onStart()");
+	      "onStart()");
 	super.onStart();
     }
 
@@ -54,7 +48,7 @@ public class HistoryActivity extends ListActivity {
     protected void onStop() {
 	// TODO Auto-generated method stub
 	Log.d(TAG,
-		      "onStop()");
+	      "onStop()");
 	super.onStop();
     }
 
