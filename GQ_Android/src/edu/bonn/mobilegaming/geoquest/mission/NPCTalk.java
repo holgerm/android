@@ -105,7 +105,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	// we always show the next dialogItem starting with the first.
 
 	if (!currDialogItem.hasNext()) {
-	    new TransitionItem(this.getClass());
+	    new TransitionItem(this);
 	    finish(Globals.STATUS_SUCCESS);
 	    return;
 	}
@@ -125,8 +125,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	}; // Ende Countdowntimer
 
 	// Start interaction with player:
-	// First start audio file if given (does not block interaction yet, but
-	// it should; TODO):
+	// First start audio file if given:
 	if (currItem.getAudioFilePath() != null)
 	    GeoQuestApp.playAudio(currItem.getAudioFilePath(),
 				  currItem.blocking);
@@ -243,7 +242,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	     * Store history item. TODO: add more argument for image, audio and
 	     * thumbnail.
 	     */
-	    new TextItem(currItem.getText());
+	    new TextItem(currItem.getText(), NPCTalk.this);
 	    // release blocked interaction on the NPCTalk using this Timer as
 	    // Blocker monitor:
 	    NPCTalk.this.releaseInteraction(this);

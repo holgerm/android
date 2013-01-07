@@ -2,6 +2,7 @@ package com.qeevee.gq.history;
 
 import android.view.View;
 import android.widget.TextView;
+import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 
@@ -16,20 +17,18 @@ import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
  */
 public class TransitionItem extends HistoryItem {
 
-    private Class<? extends MissionActivity> from;
-    private Class<? extends MissionActivity> to;
+    private Class<? extends GeoQuestActivity> to;
 
-    public TransitionItem(Class<? extends MissionActivity> predeccessorMissionClass) {
-	super();
-	from = predeccessorMissionClass;
+    public TransitionItem(GeoQuestActivity predeccessorActivity) {
+	super(predeccessorActivity);
 	to = MissionActivity.class;
     }
 
     @Override
     public View getView(View convertView) {
 	TextView view = new TextView(GeoQuestApp.getContext());
-	view.setText("Transition between: " + from.getCanonicalName() + " and "
-		+ to + ".");
+	view.setText("Transition between: " + activityType.getSimpleName()
+		+ " and " + to.getSimpleName() + ".");
 	return view;
     }
 
