@@ -7,6 +7,9 @@ import java.util.List;
 import org.dom4j.Attribute;
 import org.dom4j.Element;
 
+import com.qeevee.gq.history.TextItem;
+import com.qeevee.gq.history.TextType;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,17 +31,17 @@ public class MultipleChoiceQuestion extends InteractiveMission {
     private LinearLayout mcButtonPanel;
     /** text view for displaying text */
     private TextView mcTextView;
-    private Button proceedButton;
-    private Button restartButton;
+    private Button bottomButton;
 
     private int mode = 0; // UNDEFINED MODE AT START IS USED TO TRIGGER INIT!
     private static final int MODE_QUESTION = 1;
     private static final int MODE_REPLY_TO_CORRECT_ANSWER = 2;
     private static final int MODE_REPLY_TO_WRONG_ANSWER = 3;
 
-    public List<Answer> answers = new ArrayList<Answer>();
+    private List<Answer> answers = new ArrayList<Answer>();
     private Answer selectedAnswer;
-    public String questionText;
+    private String questionText;
+    private OnClickListener proceed, restart;
 
     /**
      * The attribute shuffle can be omitted. If it's set to the value "answers",
@@ -71,44 +74,52 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 	    break;
 	case MODE_REPLY_TO_CORRECT_ANSWER:
 	    setMCTextViewToReply();
-	    setMCButtonPanel(proceedButton);
+	    setMCButtonPanel(loopUntilSuccess);
 	    invokeOnSuccessEvents();
 	    break;
 	case MODE_REPLY_TO_WRONG_ANSWER:
 	    setMCTextViewToReply();
-	    setMCButtonPanel(restartButton);
+	    if (loopUntilSuccess)
+		setMCButtonPanel(loopUntilSuccess);
+	    else
+		setMCButtonPanel(loopUntilSuccess);
 	    invokeOnFailEvents();
 	    break;
 	}
     }
 
-    private void setMCButtonPanel(Button button) {
-	mcButtonPanel.addView(button);
+    private void setMCButtonPanel(boolean loop) {
+	mcButtonPanel.addView(bottomButton);
 	// set the button text:
 	if (selectedAnswer.nextbuttontext != null) {
 	    // game specific if specified:
-	    button.setText(selectedAnswer.nextbuttontext);
+	    bottomButton.setText(selectedAnswer.nextbuttontext);
 	} else {
 	    // generic if not specified:
-	    if (button == proceedButton)
-		button.setText(getString(R.string.questionandanswer_next));
-	    if (button == restartButton)
-		button.setText(getString(R.string.questionandanswer_again));
+	    if (loop) {
+		bottomButton
+			.setText(getString(R.string.question_repeat_button));
+		bottomButton.setOnClickListener(restart);
+	    } else {
+		bottomButton
+			.setText(getString(R.string.question_proceed_button));
+		bottomButton.setOnClickListener(proceed);
+	    }
 	}
     }
 
     private void setMCTextViewToReply() {
+	String answerToShow;
 	if (selectedAnswer.onChoose != null) {
-	    mcTextView.setText(selectedAnswer.onChoose);
+	    answerToShow = selectedAnswer.onChoose;
 	} else {
-	    if (selectedAnswer.correct) {
-		mcTextView
-			.setText(getString(R.string.questionandanswer_rightAnswer));
-	    } else {
-		mcTextView
-			.setText(getString(R.string.questionandanswer_wrongAnswer));
-	    }
+	    answerToShow = selectedAnswer.correct ? getString(R.string.questionandanswer_rightAnswer)
+		    : getString(R.string.questionandanswer_wrongAnswer);
 	}
+	mcTextView.setText(answerToShow);
+	new TextItem(answerToShow, this,
+		selectedAnswer.correct ? TextType.REACTION_ON_CORRECT
+			: TextType.REACTION_ON_WRONG);
     }
 
     private void initContentView() {
@@ -116,22 +127,19 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 	mcTextView = (TextView) findViewById(R.id.mcTextView);
 	mcButtonPanel = (LinearLayout) findViewById(R.id.mcButtonPanel);
 	// prefab neccessary buttons:
-	makeProceedButton();
-	makeRestartButton();
+	prepareBottomButton();
     }
 
-    private void makeProceedButton() {
-	proceedButton = new Button(this);
-	proceedButton.setText(getString(R.string.questionandanswer_next));
-	proceedButton.setWidth(LayoutParams.FILL_PARENT);
-	proceedButton.setOnClickListener(new OnClickListener() {
+    private void prepareBottomButton() {
+	bottomButton = new Button(this);
+	bottomButton.setWidth(LayoutParams.FILL_PARENT);
+	proceed = new OnClickListener() {
 
 	    public void onClick(View v) {
 		// TODO rework and test
 		if (selectedAnswer.correct) {
 		    invokeOnSuccessEvents();
-		}
-		else {
+		} else {
 		    invokeOnFailEvents();
 		}
 		if (loopUntilSuccess) {
@@ -145,19 +153,14 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 			    : Globals.STATUS_FAIL);
 		}
 	    }
-	});
-    }
+	};
 
-    private void makeRestartButton() {
-	restartButton = new Button(this);
-	restartButton.setText(getString(R.string.questionandanswer_again));
-	restartButton.setWidth(LayoutParams.FILL_PARENT);
-	restartButton.setOnClickListener(new OnClickListener() {
+	restart = new OnClickListener() {
 
 	    public void onClick(View v) {
 		setMode(MODE_QUESTION);
 	    }
-	});
+	};
     }
 
     @SuppressWarnings("unchecked")
@@ -207,7 +210,11 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 
     private void setUpQuestionView() {
 	mcButtonPanel.removeAllViews();
+	// show question:
 	mcTextView.setText(questionText);
+	new TextItem(questionText, this, TextType.QUESTION);
+
+	// list answers:
 	for (Iterator<Answer> i = answers.iterator(); i.hasNext();) {
 	    Answer answer = i.next();
 	    Button answerButton = new Button(MultipleChoiceQuestion.this);

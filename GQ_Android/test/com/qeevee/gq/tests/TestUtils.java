@@ -103,7 +103,7 @@ public class TestUtils {
 	}
 	Intent startMissionIntent = new Intent(start, missionClass);
 	startMissionIntent.putExtra("missionID",
-				missionID);
+				    missionID);
 	Robolectric.shadowOf(missionActivity).setIntent(startMissionIntent);
 	return missionActivity;
     }
@@ -185,6 +185,30 @@ public class TestUtils {
 	    throw new RuntimeException(e);
 	}
 	return returnValue;
+    }
+
+    public static Object
+	    getStaticFieldValue(@SuppressWarnings("rawtypes") Class clazz,
+				String fieldName) {
+	Object value = null;
+	try {
+	    Field field = clazz.getDeclaredField(fieldName);
+	    field.setAccessible(true);
+	    value = field.get(null);
+	} catch (SecurityException e) {
+	    e.printStackTrace();
+	    throw new RuntimeException(e);
+	} catch (NoSuchFieldException e) {
+	    fail("Implementation of type \"" + clazz.getSimpleName()
+		    + "\" misses a field named \"" + fieldName + "\"");
+	} catch (IllegalArgumentException e) {
+	    e.printStackTrace();
+	    throw new RuntimeException(e);
+	} catch (IllegalAccessException e) {
+	    e.printStackTrace();
+	    throw new RuntimeException(e);
+	}
+	return value;
     }
 
     public static String getResString(int id) {

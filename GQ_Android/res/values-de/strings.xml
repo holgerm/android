@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="questionandanswer_successfullyCompletedMission">Diese Mission ist erfolgreich beendet</string>
-    <string name="questionandanswer_notEnoughCorrectAnswers">Das waren leider nicht genügend richtige Antworten.</string>
-    <string name="questionandanswer_rightAnswer">Richtige Antwort!</string>
-    <string name="questionandanswer_wrongAnswer">Falsche Antwort.</string>
-    <string name="questionandanswer_next">Weiter</string>
-    <string name="questionandanswer_again">Noch einmal</string>
     <string name="npctalk_endButtonText">Spiel fortsetzen</string>
     <string name="webupdate_downloadGamelist">Lade Liste der Spiele. Bitte Warten.</string>
     <string name="webupdate_errorReadingGamelistFileNotFound">Fehler: gamelist kann nicht gelesen werden.</string>
@@ -45,6 +39,14 @@
     <!-- All Question MISSIONS -->
     <string name="question_reply_wrong_default">Nein, das war falsch.</string>
     <string name="question_reply_correct_default">Ja, richtig.</string>
+    <string name="question_proceed_button">Weiter</string>
+    <string name="question_repeat_button">Noch einmal</string>
+    
+    <!-- QuestionAndAnswer MISSION OUTDATED -->
+    <string name="questionandanswer_successfullyCompletedMission">Diese Mission ist erfolgreich beendet</string>
+    <string name="questionandanswer_notEnoughCorrectAnswers">Das waren leider nicht genügend richtige Antworten.</string>
+    <string name="questionandanswer_rightAnswer">Richtige Antwort!</string>
+    <string name="questionandanswer_wrongAnswer">Falsche Antwort.</string>
 
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Antwort hier eingeben ...</string>

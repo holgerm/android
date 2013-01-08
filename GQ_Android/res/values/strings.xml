@@ -2,13 +2,6 @@
 <resources>
 
     <string name="xmlformat">5</string>
-    <string name="questionandanswer_successfullyCompletedMission">You successfully completed this mission.</string>
-    <string name="questionandanswer_notEnoughCorrectAnswers">You have not enough correct answers.</string>
-    <string name="questionandanswer_rightAnswer">Right Answer :)</string>
-    <string name="questionandanswer_wrongAnswer">Wrong Answer :(</string>
-    <string name="questionandanswer_next">Proceed</string>
-    <string name="questionandanswer_again">Try again</string>
-    <string name="default_question_shuffle_mode">no</string>
     <string name="app_name">GeoQuest</string>
     <string name="default_endButtonText">Continue with next mission ...</string>
     <string name="error_qrtagreader_noresult">Sorry, tag reading did not have a result. \nMaybe
@@ -59,6 +52,15 @@
     <!-- All Question MISSIONS -->
     <string name="question_reply_wrong_default">No, that was wrong.</string>
     <string name="question_reply_correct_default">Yes, that was correct.</string>
+    <string name="question_proceed_button">Proceed</string>
+    <string name="question_repeat_button">Try again</string>
+    
+    <!-- QuestionAndAnswer MISSION OUTDATED TODO -->
+    <string name="questionandanswer_successfullyCompletedMission">You successfully completed this mission.</string>
+    <string name="questionandanswer_notEnoughCorrectAnswers">You have not enough correct answers.</string>
+    <string name="questionandanswer_rightAnswer">Right Answer :)</string>
+    <string name="questionandanswer_wrongAnswer">Wrong Answer :(</string>
+    <string name="default_question_shuffle_mode">no</string>
 
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Enter your answer here ...</string>
