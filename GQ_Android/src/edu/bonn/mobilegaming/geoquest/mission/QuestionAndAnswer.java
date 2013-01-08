@@ -170,7 +170,7 @@ public class QuestionAndAnswer extends InteractiveMission {
 
 	private MyOnClickListener setupButton() {
 		button = new Button(this);
-		button.setText(getString(R.string.questionandanswer_next));
+		button.setText(getString(R.string.question_proceed_button));
 		button.setWidth(LayoutParams.FILL_PARENT);
 		MyOnClickListener listener = new MyOnClickListener();
 		button.setOnClickListener(listener);
