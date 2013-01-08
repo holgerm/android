@@ -44,6 +44,10 @@ public class History {
 	return list.get(position);
     }
 
+    public HistoryItem getLastItem() {
+	return getItem(numberOfItems() - 1);
+    }
+
     public long getItemId(int position) {
 	return list.get(position).getId();
     }
