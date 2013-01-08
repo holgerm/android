@@ -131,9 +131,9 @@ public class MultipleChoiceQuestionMissionTests {
 				       "onEnd");
 	shouldShowText(DEFAULT_RESPONSE_ON_CORRECT_ANSWER);
 	shouldShowProceedButton();
+	historyListShouldHaveLength(2);
 	lastItemInHistoryShouldBe(TextItem.class,
 				  TextType.REACTION_ON_CORRECT);
-	historyListShouldHaveLength(2);
     }
 
     @Test
