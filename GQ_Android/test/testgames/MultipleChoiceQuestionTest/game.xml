@@ -4,58 +4,85 @@
 	xmlformat="5"
 >
 	<mission
-		id="M_1"
-		loopUntilSuccess="true"
+		id="No_Loop__No_onChoose"
 		type="MultipleChoiceQuestion"
 	>
 		<onStart>
 			<rule>
-				<action type="Vibrate" />
 				<action
-					file="sound/radiobot_station1_frage1.mp3"
-					type="PlayAudio" />
+					type="SetVariable"
+					var="onStart"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
 			</rule>
 		</onStart>
 		<onSuccess>
 			<rule>
 				<action
-					type="PlayAudio"
-					file="sound/radiobot_richtig.mp3" />
+					type="SetVariable"
+					var="onSuccess"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
 			</rule>
 		</onSuccess>
 		<onFail>
 			<rule>
-				<if>
-					<eq>
-						<var>$_M_S1_qa_radio_1.result</var>
-						<string>Noch einmal hören</string>
-					</eq>
-				</if>
 				<action
-					type="PlayAudio"
-					file="sound/erste_sendung.mp3" />
-			</rule>
-			<rule>
-				<if>
-					<not>
-						<eq>
-							<var>$_M_S1_qa_radio_1.result</var>
-							<string>Noch einmal hören</string>
-						</eq>
-					</not>
-				</if>
-				<action
-					type="PlayAudio"
-					file="sound/radiobot_falsch_geraten.mp3" />
+					type="SetVariable"
+					var="onFail"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
 			</rule>
 		</onFail>
 		<onEnd>
 			<rule>
 				<action
-					id="M_S1_npc_radio_2"
-					type="StartMission" />
+					type="SetVariable"
+					var="onEnd"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
 			</rule>
 		</onEnd>
+		<question>
+			<questiontext>Text of the question.
+			</questiontext>
+			<answer correct="0">Answer One
+			</answer>
+			<answer correct="1">Answer Two
+			</answer>
+			<answer correct="0">Answer Three
+			</answer>
+		</question>
+	</mission>
+	<mission
+		id="Loop_onChoose"
+		type="MultipleChoiceQuestion"
+		loopUntilSuccess="true"
+	>
+		<onFail>
+			<rule>
+				<action
+					type="SetVariable"
+					var="onFail"
+				>
+					<value>
+						<num>1</num>
+					</value>
+				</action>
+			</rule>
+		</onFail>
 		<question>
 			<questiontext>Text of the question.
 			</questiontext>
@@ -71,8 +98,13 @@
 			</answer>
 			<answer
 				correct="0"
-				onChoose="Answer two is wrong."
+				onChoose="Answer three is wrong."
 			>Answer Three
+			</answer>
+			<answer
+				correct="1"
+				onChoose="Also right!"
+			>Answer Four
 			</answer>
 		</question>
 	</mission>
