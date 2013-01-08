@@ -39,7 +39,7 @@
     <!-- All Question MISSIONS -->
     <string name="question_reply_wrong_default">Nein, das war falsch.</string>
     <string name="question_reply_correct_default">Ja, richtig.</string>
-    <string name=question_proceed_button>Weiter</string>
+    <string name="question_proceed_button">Weiter</string>
     <string name="question_repeat_button">Noch einmal</string>
     
     <!-- QuestionAndAnswer MISSION OUTDATED -->
