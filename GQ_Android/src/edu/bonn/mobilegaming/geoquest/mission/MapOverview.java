@@ -237,8 +237,7 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 				R.string.map_menu_mockGPS);
 		menu.add(0, START_AR_VIEW_ID, 0, R.string.startARViewMenu);
 		menu.add(0, CENTER_MAP_ON_CURRENT_LOCATION_ID, 0,
-				R.string.centerMapMenu);
-
+				R.string.map_menu_centerMap);
 		return true;
 	}
 
