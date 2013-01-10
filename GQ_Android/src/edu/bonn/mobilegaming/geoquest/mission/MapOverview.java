@@ -425,7 +425,7 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 		case READXML_DIALOG:
 			readxmlDialog = new ProgressDialog(this);
 			readxmlDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			readxmlDialog.setMessage(getString(R.string.webupdate_loadingMap));
+			readxmlDialog.setMessage(getString(R.string.map_loading));
 			readxmlThread = new ReadxmlThread(readxmlHandler);
 			readxmlThread.start();
 			return readxmlDialog;
