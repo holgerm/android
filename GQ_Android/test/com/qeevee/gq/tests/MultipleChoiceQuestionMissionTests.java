@@ -3,6 +3,7 @@ package com.qeevee.gq.tests;
 import static com.qeevee.gq.tests.TestUtils.getFieldValue;
 import static com.qeevee.gq.tests.TestUtils.getResString;
 import static com.qeevee.gq.tests.TestUtils.getStaticFieldValue;
+import static com.qeevee.gq.tests.TestUtils.nthLastItemInHistoryShouldBe;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -19,8 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.qeevee.gq.history.History;
-import com.qeevee.gq.history.HistoryItem;
-import com.qeevee.gq.history.HistoryItemModifier;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
 import com.xtremelabs.robolectric.Robolectric;
@@ -49,7 +48,6 @@ public class MultipleChoiceQuestionMissionTests {
     private MultipleChoiceQuestion mcqM;
     private String questionText;
     private List<Button> answerButtons;
-    private History h = History.getInstance();
     private int mode;
     private Button bottomButton;
 
@@ -110,9 +108,10 @@ public class MultipleChoiceQuestionMissionTests {
 	numberOfAnswersShouldBe(3);
 	shouldStoreQuestionText();
 	shouldShowText("Text of the question.");
-	lastItemInHistoryShouldBe(TextItem.class,
-				  TextType.QUESTION);
-	historyListShouldHaveLength(1);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.QUESTION);
+	TestUtils.historyListShouldHaveLength(1);
     }
 
     @Test
@@ -131,9 +130,10 @@ public class MultipleChoiceQuestionMissionTests {
 				       "onEnd");
 	shouldShowText(DEFAULT_RESPONSE_ON_CORRECT_ANSWER);
 	shouldShowProceedButton();
-	historyListShouldHaveLength(2);
-	lastItemInHistoryShouldBe(TextItem.class,
-				  TextType.REACTION_ON_CORRECT);
+	TestUtils.historyListShouldHaveLength(2);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.REACTION_ON_CORRECT);
     }
 
     @Test
@@ -169,10 +169,11 @@ public class MultipleChoiceQuestionMissionTests {
 				       "onEnd");
 	shouldShowText(DEFAULT_RESPONSE_ON_WRONG_ANSWER);
 	shouldShowProceedButton();
-	historyListShouldHaveLength(2);
-	lastItemInHistoryShouldBe(TextItem.class,
-				  TextType.REACTION_ON_WRONG);
-   }
+	TestUtils.historyListShouldHaveLength(2);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.REACTION_ON_WRONG);
+    }
 
     @Test
     public void proceedAfterWrongAnswer_No_Loop__No_onChoose() {
@@ -204,9 +205,10 @@ public class MultipleChoiceQuestionMissionTests {
 	numberOfAnswersShouldBe(4);
 	shouldStoreQuestionText();
 	shouldShowText("Text of the question.");
-	historyListShouldHaveLength(1);
-	lastItemInHistoryShouldBe(TextItem.class,
-				  TextType.QUESTION);
+	TestUtils.historyListShouldHaveLength(1);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.QUESTION);
     }
 
     @Test
@@ -222,9 +224,10 @@ public class MultipleChoiceQuestionMissionTests {
 	shouldHaveTriggeredEvents("onFail");
 	shouldShowText("Answer one is wrong.");
 	shouldShowRestartButton();
-	historyListShouldHaveLength(2);
-	lastItemInHistoryShouldBe(TextItem.class,
-				  TextType.REACTION_ON_WRONG);
+	TestUtils.historyListShouldHaveLength(2);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.REACTION_ON_WRONG);
     }
 
     @Test
@@ -241,9 +244,10 @@ public class MultipleChoiceQuestionMissionTests {
 	numberOfAnswersShouldBe(4);
 	shouldStoreQuestionText();
 	shouldShowText("Text of the question.");
-	historyListShouldHaveLength(3);
-	lastItemInHistoryShouldBe(TextItem.class,
-				  TextType.QUESTION);
+	TestUtils.historyListShouldHaveLength(3);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.QUESTION);
     }
 
     @Test
@@ -262,9 +266,10 @@ public class MultipleChoiceQuestionMissionTests {
 	shouldShowText("Answer three is wrong.");
 	shouldShowRestartButton();
 	shouldHaveTriggeredEvents("onFail");
-	historyListShouldHaveLength(4);
-	lastItemInHistoryShouldBe(TextItem.class,
-				  TextType.REACTION_ON_WRONG);
+	TestUtils.historyListShouldHaveLength(4);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.REACTION_ON_WRONG);
     }
 
     // === HELPER METHODS FOLLOW =============================================
@@ -281,11 +286,6 @@ public class MultipleChoiceQuestionMissionTests {
 
     private void clearEventRecognition() {
 	Variables.clean();
-    }
-
-    private void historyListShouldHaveLength(int i) {
-	assertEquals(i,
-		     h.numberOfItems());
     }
 
     private void shouldHaveFinishedActivity(boolean shouldHaveFinished) {
@@ -332,19 +332,5 @@ public class MultipleChoiceQuestionMissionTests {
     private void shouldStoreQuestionText() {
 	assertEquals("Text of the question.",
 		     questionText);
-    }
-
-    private
-	    void
-	    lastItemInHistoryShouldBe(Class<? extends HistoryItem> expectedItemClass,
-				      HistoryItemModifier... expectedItemModifier) {
-	HistoryItem lastItem = h.getLastItem();
-	assertEquals(expectedItemClass,
-		     lastItem.getClass());
-	for (int i = 0; i < expectedItemModifier.length; i++) {
-	    assertEquals(expectedItemModifier[i],
-			 lastItem.getModifier(expectedItemModifier[i]
-				 .getClass()));
-	}
     }
 }

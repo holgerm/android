@@ -1,5 +1,6 @@
 package com.qeevee.gq.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -14,6 +15,9 @@ import org.dom4j.io.SAXReader;
 
 import android.content.Intent;
 
+import com.qeevee.gq.history.History;
+import com.qeevee.gq.history.HistoryItem;
+import com.qeevee.gq.history.HistoryItemModifier;
 import com.xtremelabs.robolectric.Robolectric;
 
 import edu.bonn.mobilegaming.geoquest.GameLoader;
@@ -213,6 +217,34 @@ public class TestUtils {
 
     public static String getResString(int id) {
 	return GeoQuestApp.getContext().getResources().getString(id);
+    }
+
+    /**
+     * Checks that the last n items in the history are correctly characterized
+     * by the given item class and modifiers.
+     * 
+     * @param n
+     * @param expectedItemClass
+     * @param expectedItemModifier
+     */
+    public static
+	    void
+	    nthLastItemInHistoryShouldBe(int n,
+					 Class<? extends HistoryItem> expectedItemClass,
+					 HistoryItemModifier... expectedItemModifier) {
+	HistoryItem lastItem = History.getInstance().getNthLastItem(n);
+	assertEquals(expectedItemClass,
+		     lastItem.getClass());
+	for (int i = 0; i < expectedItemModifier.length; i++) {
+	    assertEquals(expectedItemModifier[i],
+			 lastItem.getModifier(expectedItemModifier[i]
+				 .getClass()));
+	}
+    }
+
+    public static void historyListShouldHaveLength(int i) {
+	assertEquals(i,
+		     History.getInstance().numberOfItems());
     }
 
 }

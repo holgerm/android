@@ -44,8 +44,12 @@ public class History {
 	return list.get(position);
     }
 
-    public HistoryItem getLastItem() {
-	return getItem(numberOfItems() - 1);
+    public HistoryItem getNthLastItem(int n) {
+	int index = numberOfItems() - n;
+	if (index < 0 || index >= numberOfItems())
+	    return null;
+	else
+	    return getItem(numberOfItems() - n);
     }
 
     public long getItemId(int position) {
