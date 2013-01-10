@@ -103,7 +103,7 @@ public class Start extends GeoQuestActivity {
 					   Typeface.NORMAL);
 		lastGameButton.setText(recentGame);
 	    } else {
-		disableLastGameButton(R.string.start_text_last_game_text_game_not_found);
+		disableLastGameButton(R.string.start_gameNotFound);
 	    }
 	} else {
 	    disableLastGameButton(R.string.start_text_last_game_text_no_game);
@@ -198,7 +198,7 @@ public class Start extends GeoQuestActivity {
 		startLocalGameDialog
 			.setMessage(GeoQuestApp
 				.getContext()
-				.getText(R.string.webupdate_startingGameFromExternalStorage));
+				.getText(R.string.start_startGame));
 		showDialog(GeoQuestApp.DIALOG_ID_START_GAME);
 		startGameHandler = new GeoQuestProgressHandler(
 			startLocalGameDialog,

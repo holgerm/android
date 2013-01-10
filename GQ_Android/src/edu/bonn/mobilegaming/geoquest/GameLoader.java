@@ -191,7 +191,7 @@ public class GameLoader {
 	    Message msg = handler.obtainMessage();
 	    msg.what = GeoQuestProgressHandler.MSG_TELL_MAX_AND_TITLE;
 	    msg.arg1 = lenght / BYTE_SIZE;
-	    msg.arg2 = R.string.webupdate_downloadingGameFromServer;
+	    msg.arg2 = R.string.start_downloadGame;
 	    handler.sendMessage(msg);
 
 	    byte by[] = new byte[BYTE_SIZE];
@@ -327,7 +327,7 @@ public class GameLoader {
 	    Message msg = handler.obtainMessage();
 	    msg.what = GeoQuestProgressHandler.MSG_TELL_MAX_AND_TITLE;
 	    msg.arg1 = num_missions;
-	    msg.arg2 = R.string.webupdate_expandingGame;
+	    msg.arg2 = R.string.start_initializeGame;
 	    handler.sendMessage(msg);
 	}
     }

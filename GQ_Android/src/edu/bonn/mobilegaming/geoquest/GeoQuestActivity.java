@@ -105,7 +105,7 @@ public abstract class GeoQuestActivity extends Activity {
 	if (gameMustBeDownloaded) {
 	    downloadAndStartGameDialog.setProgress(0);
 	    downloadAndStartGameDialog.setMessage(GeoQuestApp.getContext()
-		    .getText(R.string.webupdate_downloadingGameFromServer));
+		    .getText(R.string.start_downloadGame));
 	    showDialog(GeoQuestApp.DIALOG_ID_DOWNLOAD_GAME);
 	    downloadGameHandler = new GeoQuestProgressHandler(
 		    downloadAndStartGameDialog,
@@ -118,7 +118,7 @@ public abstract class GeoQuestActivity extends Activity {
 	    startLocalGameDialog
 		    .setMessage(GeoQuestApp
 			    .getContext()
-			    .getText(R.string.webupdate_startingGameFromExternalStorage));
+			    .getText(R.string.start_startGame));
 	    showDialog(GeoQuestApp.DIALOG_ID_START_GAME);
 	    downloadGameHandler = null; // unused in this case.
 	    startGameHandler = new GeoQuestProgressHandler(

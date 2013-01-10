@@ -325,7 +325,7 @@ public class Preferences extends PreferenceActivity implements
 
 			downloadRepoDataDialog.setProgress(0);
 			downloadRepoDataDialog.setMessage(GeoQuestApp.getContext().getText(
-					R.string.webupdate_FetchingRepoDataFromServer));
+					R.string.start_fetchingDataFromServer));
 			downloadRepoDataHandler = new GeoQuestProgressHandler(
 					downloadRepoDataDialog,
 					GeoQuestProgressHandler.LAST_IN_CHAIN, this);

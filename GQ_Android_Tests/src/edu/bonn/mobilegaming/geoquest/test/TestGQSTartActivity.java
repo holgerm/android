@@ -43,7 +43,7 @@ public class TestGQSTartActivity extends
 					|| lastPlayedButton
 							.getText()
 							.equals(mActivity
-									.getText(edu.bonn.mobilegaming.geoquest.R.string.start_text_last_game_text_game_not_found)));
+									.getText(edu.bonn.mobilegaming.geoquest.R.string.start_gameNotFound)));
 		}
 	}
 
