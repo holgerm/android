@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="npctalk_endButtonText">Spiel fortsetzen</string>
-    <string name="webupdate_downloadGamelist">Lade Liste der Spiele. Bitte Warten.</string>
-    <string name="webupdate_errorReadingGamelistFileNotFound">Fehler: gamelist kann nicht gelesen werden.</string>
-    <string name="webupdate_errorReadingGamelistDocumentException">error: DocumentException beim lesen der gamelist.</string>
-    <string name="webupdate_updating">Aktualisiere Spiel. Bitte Warten.</string>
-    <string name="webupdate_readingGamelist">Lese Gamelist. Bitte Warten.</string>
-    <string name="webupdate_chooseGame">Bitte wählen Sie ein Spiel.</string>
-    <string name="webupdate_aboutButtonText">Über</string>
-    <string name="webupdate_exitButtonText">Beenden</string>
-    <string name="webupdate_RepositoryButtonText">Wechsle Repository</string>
-    <string name="qrtagreading_startscanbutton_default">Scanner starten</string>
-    <string name="qrtagreading_taskdescription_default">Suche den QR Code und scanne ihn ein ...</string>
-    <string name="npctalk_nextDialogButtonText">Weiter</string>
     <string name="default_endButtonText">Spiel fortsetzen</string>
-    <string name="start_RecentlyPlayed">Zuletzt gespielt: </string>
-    <string name="start_SelectQuest">Wähle ein Quest ...</string>
-    <string name="start_RestartButton">Noch einmal</string>
-    <string name="start_SelectOtherButton">Ein anderes ...</string>
-    <string name="start_DialogTitle">Willkommen</string>
-    <string name="start_Welcome">Wähle bitte ein Quest aus ...</string>
-    <string name="start_SelectQuestButton">Zur Auswahl ...</string>
-    <string name="gamelistHeaderStart">Quests in</string>
-    <string name="repolistHeaderStart">Verfügbare Repositories</string>
+
+    <!-- Generic Values -->
+    <string name="xmlformat">5</string>
+    <string name="app_name">GeoQuest</string>
+    <string name="local_default_repository">default</string>
     <string name="ok">OK</string>
     <string name="cancel">Abbrechen</string>
+
+    <!-- Start Activities -->
+    <string name="start_text_game_list_progress_download_text">Lade Repository-Daten vom Server</string>
+    <string name="start_text_game_list_progress_process_text">Verarbeite Repository-Daten</string>
+    <string name="start_button_game_list_text">Wähle ein neues Quest</string>
+    <string name="start_welcome">Willkommen zu GeoQuest!</string>
+    <string name="start_text_last_game_text">Zuletzt gespieltes Quest:</string>
+    <string name="start_text_last_game_text_no_game">Du hast zuletzt kein Quest gespielt</string>
+    <string name="start_gameNotFound">Spiel konnte nicht gefunden werden</string>
+    <string name="start_toast_download_failed">Herunterladen der Repository-Daten fehlgeschlagen - überprüfe Deine Internetverbindung und versuche es erneut, indem du "Repository-Daten neu laden" aus dem Menü auswählst oder die App neu startest!</string>
+    <string name="start_downloadGame">Lade Quest vom Server</string>
+    <string name="start_startGame">Spiel wird gestartet</string>
+    <string name="start_fetchingDataFromServer">Spielinfos werden vom Server geladen</string>
+    <string name="start_initializeGame">Spiel wird initialisiert</string>
+    <string name="start_gameFileCouldNotBeParsed">Quest Datei ist fehlerhaft!</string>
+    <string name="start_gameList_headerPart">Quests in</string>
+    <string name="start_repoList_header">Verfügbare Repositories</string>
 
     <!-- Generic BUTTON Labels -->
     <string name="button_text_accept">OK</string>
@@ -36,17 +36,65 @@
     <string name="button_text_stop">Stop</string>
     <string name="button_text_use">Benutzen</string>
 
+    <!-- Generic MENU Entries -->
+    <string name="quitMenu">App beenden</string>
+    <string name="endGameMenu">Quest beenden</string>
+    <string name="prefsMenu">Einstellungen</string>
+    <string name="historyMenu">Verlauf</string>
+    <string name="reloadGamesMenu">Spiele neu laden</string>
+
+    <!-- AudioRecord MISSION -->
+    <string name="audiorecord_task_default">Eure Aufgabe: Nehmt eine Audiodatei auf!</string>
+    <string name="audiorecord_activityIndicator_initial">Noch keine Aufnahme gemacht!</string>
+    <string name="audiorecord_activityIndicator_recording">Aufnahme läuft ...</string>
+    <string name="audiorecord_activityIndicator_ready">Aufnahme fertig.\nNeu aufnehmen? Benutzen? Hören?</string>
+    <string name="audiorecord_activityIndicator_playing">Aufnahme wird vorgespielt ...</string>
+    <string name="audiorecord_file_default">audiorecord.3gp</string>
+
+    <!-- AugmentedRealityView TOOL -->
+    <string name="startARViewMenu">AR View</string>
+    <string name="startingARView">Starte AR View</string>
+
+    <!-- External MISSION -->
+    <string name="external_mission_description_default">Externe Mission wird gestartet</string>
+    <string name="external_mission_result_default">Von externer Mission zurück</string>
+
+    <!-- ImageCapture MISSION -->
+    <string name="imageCapture_UploadOK">OK, das Foto wird auf den Server geladen.</string>
+    <string name="imageCapture_UploadERROR">Fehler beim Upload!.</string>
+    <string name="imageCaptureUploadURLDefault">http://geoquest.qeevee.org/upload-images/upload.php</string>
+
+    <!-- Map MISSION and TOOL -->
+    <string name="map_loading">Karte wird geladen</string>
+    <string name="map_menu_centerMap">Center Map</string>
+    <string name="map_menu_mockGPS">GPS simulieren</string>
+    <string name="map_menu_realGPS">Reales GPS nutzen</string>
+    <string name="map_mockGPSTimeInterval">2000</string>
+
+    <!-- NPCTalk MISSION -->
+    <string name="npctalk_endButtonText">Spiel fortsetzen</string>
+
+    <!-- MultipleChoiceQuestion MISSION -->
+    <string name="multipleChoiceQuestion_default_shuffle_mode">false</string>
+
     <!-- All Question MISSIONS -->
     <string name="question_reply_wrong_default">Nein, das war falsch.</string>
     <string name="question_reply_correct_default">Ja, richtig.</string>
     <string name="question_proceed_button">Weiter</string>
     <string name="question_repeat_button">Noch einmal</string>
-    
+
     <!-- QuestionAndAnswer MISSION OUTDATED -->
     <string name="questionandanswer_successfullyCompletedMission">Diese Mission ist erfolgreich beendet</string>
     <string name="questionandanswer_notEnoughCorrectAnswers">Das waren leider nicht genügend richtige Antworten.</string>
     <string name="questionandanswer_rightAnswer">Richtige Antwort!</string>
     <string name="questionandanswer_wrongAnswer">Falsche Antwort.</string>
+
+    <!-- QRTagReading MISSION -->
+    <string name="qrtagreading_startscanbutton_default">Scanner starten</string>
+    <string name="qrtagreading_taskdescription_default">Suche den QR Code und scanne ihn ein ...</string>
+    <string name="qrtagreader_product_ifright">Toll, du hast den QR-Code gefunden!</string>
+    <string name="qrtagreader_product_ifwrong">Das war leider der falsche QR-Code!</string>
+    <string name="qrtagreader_treasure_feedback">"@result@"</string>
 
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Antwort hier eingeben ...</string>
@@ -59,29 +107,27 @@
     <string name="videoplay_finishdialog_leave">Fertig!</string>
     <string name="videoplay_errordialog_message">Das Video kann nicht abgespielt werden.</string>
 
-    <!-- AudioRecord MISSION -->
-    <string name="audioRecordFinishedButton">Fertig ...</string>
-    <string name="audiorecord_task_default">Eure Aufgabe: Nehmt eine Audiodatei auf!</string>
-    <string name="audiorecord_activityIndicator_initial">Noch keine Aufnahme gemacht!</string>
-    <string name="audiorecord_activityIndicator_recording">Aufnahme läuft ...</string>
-    <string name="audiorecord_activityIndicator_ready">Aufnahme fertig.\nNeu aufnehmen? Benutzen? Hören?</string>
-    <string name="audiorecord_activityIndicator_playing">Aufnahme wird vorgespielt ...</string>
+    <!-- HOTSPOTS -->
+    <string name="missing_hotspot_description">Für diesen Hotspot ist leider keine Beschriebung verfügbar.</string>
 
-    <!-- Password protected prefs -->
+    <!-- PREFERENCES -->
+    <string name="preferencesTitle">Preferences</string>
+
+    <!-- Password protected PREFERENCES -->
     <string name="pw_dialog_title">Passwort</string>
     <string name="pw_dialog_descr">Diese Aktion ist Passwort-geschützt. Bitte gib dein Passwort ein.\nWenn du dein Passwort vergessen hast, musst du die App neu installieren!</string>
     <string name="pw_dialog_wrong_pw">Falsches Passwort!</string>
 
-    <!-- Server preferences -->
-
+    <!-- Server PREFERENCES -->
     <string name="pref_cat_server_settings">Server-Einstellungen</string>
     <string name="pref_server_url_title">Server URL</string>
     <string name="pref_server_url_summary">Die URL des Spiele-Servers. Ändere diese nicht, außer du möchtest einen eigenen Server nutzen.</string>
     <string name="pref_server_url_dialog_title">Server URL</string>
     <string name="pref_server_url_dialog_message">Ändere hier die URL des Spiele-Servers. Voreingestellt ist der Qeevee-Server. Ändere dies nur, wenn Du einen eigenen Server nutzen willst.</string>
+    <string name="geoquest_server_url">http://geoquest.qeevee.org</string>
+    <string name="geoquest_repolist_relpath">/repositories/repolist.php</string>
 
-    <!-- Game startup preferences -->
-
+    <!-- Game startup PREFERENCES -->
     <string name="pref_cat_game_start">Spielstart</string>
     <string name="pref_auto_start_game_check_title">Lade ein Quest beim Anwendungsstart</string>
     <string name="pref_auto_start_game_check_summary">Soll ein bestimmtes Quest beim Anwedungstart geladen werden?</string>
@@ -89,7 +135,7 @@
     <string name="pref_auto_start_game_summary">Wähle ein Quest, welches beim Anwendungsstart geladen werden soll.</string>
     <string name="pref_auto_start_game_dialog_title">Wähle ein Quest</string>
 
-    <!-- Miscellaneous preferences -->
+    <!-- Miscellaneous PREFERENCES -->
     <string name="pref_cat_misc">Sonstiges</string>
     <string name="pref_clean_sdcard_title">Lokale Spieldaten löschen</string>
     <string name="pref_clean_sdcard_summary">Löscht alle heruntergeladenen Spieldaten von der SD-Karte.</string>
@@ -98,38 +144,25 @@
     <string name="pref_clean_sdcard_toast_success">Lokale Spieldaten wurden erfolgreich von der SD-Karte gelöscht.</string>
     <string name="pref_clean_sdcard_toast_error">Lokale Spieldateien konnten nicht gelöscht werden.</string>
 
-    <!-- Context menus -->
+    <!-- Context MENUS -->
     <string name="context_auto_start_game">Beim Anwendungsstart laden</string>
     <string name="context_auto_start_game_toast">Automatischer Queststart aktiviert</string>
 
-    <!-- Security preferences -->
+    <!-- Security PREFERENCES -->
     <string name="pref_cat_security">Sicherheit</string>
     <string name="pref_password_title">Passwort</string>
     <string name="pref_password_summary">Ändere das Anwendungs-Passwort.</string>
     <string name="pref_password_dialog_title">Neues Passwort</string>
     <string name="pref_password_dialog_message">Gib das neue Passwort zweimal ein.\nDieses Passwort wird dazu genutzt, wichtige Einstellungen zu schützen. Merke es dir gut, da du die App neu installieren musst, falls du es vergessen hast!</string>
     <string name="pref_password_dialog_error_empty_pw">Das Passwort darf nicht leer sein!</string>
-
-    <!-- Start Activity -->
-    <string name="start_text_game_list_progress_download_text">Lade Repository-Daten vom Server...</string>
-    <string name="start_text_game_list_progress_process_text">Verarbeite Repository-Daten...</string>
-    <string name="start_button_game_list_text">Wähle ein neues Quest...</string>
-    <string name="start_button_last_game_text">Wiederhole letztes Quest...</string>
-    <string name="start_text_welcome_text">Willkommen zu GeoQuest!</string>
-    <string name="start_text_last_game_text">Zuletzt gespieltes Quest:</string>
-    <string name="start_text_last_game_text_no_game">Du hast zuletzt kein Quest gespielt...</string>
-    <string name="start_toast_download_failed">Herunterladen der Repository-Daten fehlgeschlagen - überprüfe Deine Internetverbindung und versuche es erneut, indem du "Repository-Daten neu laden" aus dem Menü auswählst oder die App neu startest!</string>
+    <string name="pref_password_dialog_error_pws_not_equal">Die Eingaben simmten nicht überein!</string>
 
     <!-- Error messages -->
     <string name="error_fetching_remote_repo_list">Fehler beim Laden oder Verarbeiten der Repository-Daten vom Server</string>
+    <string name="error_fetching_remote_repo_list_url">Fehler: URL nicht korrekt!</string>
+    <string name="error_fetching_remote_repo_list_io">Fehler: GeoQuest server nicht erreicht.</string>
+    <string name="error_fetching_remote_repo_list_document">Fehlerhafte Spieldaten vom Server erhalten!</string>
     <string name="error_fetching_local_repo_list">Fehler beim Laden oder Verarbeiten der lokalen Repository-Daten!</string>
     <string name="error_dialog_title">Entschuldigung, aber es gibt ein Problem.</string>
-
-    <!-- Menu Entries -->
-    <string name="quitMenu">App beenden</string>
-    <string name="endGameMenu">Quest beenden</string>
-    <string name="prefsMenu">Einstellungen</string>
-    <string name="historyMenu">Verlauf</string>
-    <string name="reloadGamesMenu">Spiele neu laden</string>
 
 </resources>

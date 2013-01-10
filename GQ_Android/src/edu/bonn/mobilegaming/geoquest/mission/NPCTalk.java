@@ -155,20 +155,20 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
      */
     @SuppressWarnings("unchecked")
     private void readXML() {
-    	
+
 	// try to load the image:
-    String imgsrc = null;
-    try{
-    		imgsrc = getMissionAttribute("image",
-				    XMLUtilities.NECESSARY_ATTRIBUTE)
-			.toString();
-    } catch(IllegalArgumentException iae){
+	String imgsrc = null;
+	try {
+	    imgsrc = getMissionAttribute("image",
+					 XMLUtilities.NECESSARY_ATTRIBUTE)
+		    .toString();
+	} catch (IllegalArgumentException iae) {
 	}
 
 	// Prepare endButtonText:
 	String ebt = mission.xmlMissionNode.attributeValue("endbuttontext");
 	if (ebt == null) {
-	    this.endButtonText = getText(R.string.default_endButtonText)
+	    this.endButtonText = getText(R.string.button_text_proceed)
 		    .toString();
 	} else {
 	    this.endButtonText = ebt;
@@ -184,30 +184,27 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	String ndbt = mission.xmlMissionNode
 		.attributeValue("nextdialogbuttontext");
 	if (ndbt == null) {
-	    this.nextDialogButtonText = getText(R.string.npctalk_nextDialogButtonText)
+	    this.nextDialogButtonText = getText(R.string.button_text_proceed)
 		    .toString();
 	} else {
 	    this.nextDialogButtonText = ndbt;
 	}
 
-	//try to load image, make image element invisible, if failed
+	// try to load image, make image element invisible, if failed
 	Bitmap bitmap = null;
-	try{
-		if(imgsrc != null){
-			bitmap = GeoQuestApp.loadBitmap(imgsrc,
-				       true);
-		}	
+	try {
+	    if (imgsrc != null) {
+		bitmap = GeoQuestApp.loadBitmap(imgsrc,
+						true);
+	    }
+	} catch (IllegalArgumentException iae) {
 	}
-	catch(IllegalArgumentException iae){
+
+	if (bitmap != null) {
+	    charImage.setImageBitmap(bitmap);
+	} else {
+	    charImage.setVisibility(ZoomImageView.INVISIBLE);
 	}
-	
-	if(bitmap!= null){
-		charImage.setImageBitmap(bitmap);
-	}
-	else{
-		charImage.setVisibility(ZoomImageView.INVISIBLE);
-	}
-	
 
 	// Load Dialog Items:
 	List<Element> dialogItemList = mission.xmlMissionNode

@@ -325,7 +325,7 @@ public class Preferences extends PreferenceActivity implements
 
 			downloadRepoDataDialog.setProgress(0);
 			downloadRepoDataDialog.setMessage(GeoQuestApp.getContext().getText(
-					R.string.webupdate_FetchingRepoDataFromServer));
+					R.string.start_fetchingDataFromServer));
 			downloadRepoDataHandler = new GeoQuestProgressHandler(
 					downloadRepoDataDialog,
 					GeoQuestProgressHandler.LAST_IN_CHAIN, this);
@@ -336,7 +336,7 @@ public class Preferences extends PreferenceActivity implements
 		final String[] repos = new String[repoList.size()];
 		repoList.toArray(repos);
 		AlertDialog immediateAlert = new AlertDialog.Builder(this)
-				.setTitle(R.string.repolistHeaderStart)
+				.setTitle(R.string.start_repoList_header)
 				.setItems(repos, new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {

@@ -189,11 +189,10 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
     }
 
     public static String getRecentRepo() {
-	return theApp
-		.getSharedPreferences(GeoQuestApp.MAIN_PREF_FILE_NAME,
-				      Context.MODE_PRIVATE)
+	return theApp.getSharedPreferences(GeoQuestApp.MAIN_PREF_FILE_NAME,
+					   Context.MODE_PRIVATE)
 		.getString(Preferences.PREF_KEY_LAST_USED_REPOSITORY,
-			   theApp.getText(R.string.webupdate_local_default_repository)
+			   theApp.getText(R.string.local_default_repository)
 				   .toString());
     }
 

@@ -43,11 +43,7 @@ public class MultipleChoiceQuestion extends InteractiveMission {
     private String questionText;
     private OnClickListener proceed, restart;
 
-    /**
-     * The attribute shuffle can be omitted. If it's set to the value "answers",
-     * answers will be shuffled.
-     */
-    public final static String SHUFFLE_ANSWERS = "answers";
+    private final static String SHUFFLE_ANSWERS = "true";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -200,7 +196,7 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 
     private void shuffleAnswers() {
 	CharSequence shuffleString = getMissionAttribute("shuffle",
-							 R.string.default_question_shuffle_mode)
+							 R.string.multipleChoiceQuestion_default_shuffle_mode)
 		.toString();
 
 	if (shuffleString.equals(SHUFFLE_ANSWERS)) {

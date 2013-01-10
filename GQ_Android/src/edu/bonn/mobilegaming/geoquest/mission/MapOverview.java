@@ -169,7 +169,7 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 
 		try {
 			long timeStepMockMode = Long.parseLong(getText(
-					R.string.timestep_realmode).toString());
+					R.string.map_mockGPSTimeInterval).toString());
 			locationSource = new LocationSource(getApplicationContext(),
 					locationListener, handler, timeStepMockMode);
 			locationSource.setMode(LocationSource.REAL_MODE);
@@ -234,11 +234,10 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 		super.onCreateOptionsMenu(menu);
 
 		menu.add(0, LOCATION_MOCKUP_SWITCH_ID, 0,
-				R.string.locationMockupFalseMenu);
+				R.string.map_menu_mockGPS);
 		menu.add(0, START_AR_VIEW_ID, 0, R.string.startARViewMenu);
 		menu.add(0, CENTER_MAP_ON_CURRENT_LOCATION_ID, 0,
-				R.string.centerMapMenu);
-
+				R.string.map_menu_centerMap);
 		return true;
 	}
 
@@ -264,11 +263,11 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 			if (locationSource.getMode() == LocationSource.REAL_MODE) {
 				// From REAL mode to MOCK mode:
 				locationSource.setMode(LocationSource.MOCK_MODE);
-				item.setTitle(R.string.locationMockupTrueMenu);
+				item.setTitle(R.string.map_menu_realGPS);
 			} else {
 				// From MOCK mode to REAL mode:
 				locationSource.setMode(LocationSource.REAL_MODE);
-				item.setTitle(R.string.locationMockupFalseMenu);
+				item.setTitle(R.string.map_menu_mockGPS);
 			}
 			break;
 		case START_AR_VIEW_ID:
@@ -425,7 +424,7 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 		case READXML_DIALOG:
 			readxmlDialog = new ProgressDialog(this);
 			readxmlDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			readxmlDialog.setMessage(getString(R.string.webupdate_loadingMap));
+			readxmlDialog.setMessage(getString(R.string.map_loading));
 			readxmlThread = new ReadxmlThread(readxmlHandler);
 			readxmlThread.start();
 			return readxmlDialog;
