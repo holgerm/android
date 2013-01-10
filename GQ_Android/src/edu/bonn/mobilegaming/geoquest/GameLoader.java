@@ -272,7 +272,7 @@ public class GameLoader {
 	    if (handler != null) {
 		Message msg = handler.obtainMessage();
 		msg.what = GeoQuestProgressHandler.MSG_ABORT_BY_ERROR;
-		msg.arg1 = R.string.error_expandingGame_DocumentException;
+		msg.arg1 = R.string.start_gameFileCouldNotBeParsed;
 		e.printStackTrace();
 		handler.sendMessage(msg);
 	    }

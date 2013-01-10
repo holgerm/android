@@ -336,7 +336,7 @@ public class Preferences extends PreferenceActivity implements
 		final String[] repos = new String[repoList.size()];
 		repoList.toArray(repos);
 		AlertDialog immediateAlert = new AlertDialog.Builder(this)
-				.setTitle(R.string.repolistHeaderStart)
+				.setTitle(R.string.start_repoList_header)
 				.setItems(repos, new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {

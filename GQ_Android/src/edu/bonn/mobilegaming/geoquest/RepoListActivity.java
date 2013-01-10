@@ -24,7 +24,7 @@ public class RepoListActivity extends GeoQuestListActivity {
 	setContentView(R.layout.repolist);
 
 	((TextView) findViewById(R.id.repolistHeader))
-		.setText(getText(R.string.repolistHeaderStart));
+		.setText(getText(R.string.start_repoList_header));
 
 	ListAdapter repoListAdapter = new ArrayAdapter<String>(
 		RepoListActivity.this, R.layout.game_item, GeoQuestApp

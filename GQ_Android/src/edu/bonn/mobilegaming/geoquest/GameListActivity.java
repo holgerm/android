@@ -40,7 +40,7 @@ public class GameListActivity extends GeoQuestListActivity {
 	this.repoName = getIntent()
 		.getCharSequenceExtra("edu.bonn.mobilegaming.geoquest.REPO");
 
-	String headerText = getText(R.string.gamelistHeaderStart).toString()
+	String headerText = getText(R.string.start_gameList_headerPart).toString()
 		+ " \"" + this.repoName + "\":";
 	((TextView) findViewById(R.id.gamelistHeader)).setText(headerText);
 

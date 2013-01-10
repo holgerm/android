@@ -89,7 +89,7 @@ public class TestStartActivity extends ActivityInstrumentationTestCase2 {
 	// Check that a hint on the repositories is visible:
 	assertTrue("RepoList should show heading",
 		   solo.waitForText(Util
-			   .getRessourceString(edu.bonn.mobilegaming.geoquest.R.string.repolistHeaderStart)));
+			   .getRessourceString(edu.bonn.mobilegaming.geoquest.R.string.start_repoList_header)));
 	assertEquals("Start and RepositoryList Activities should be open",
 		     2,
 		     solo.getAllOpenedActivities().size());
@@ -100,7 +100,7 @@ public class TestStartActivity extends ActivityInstrumentationTestCase2 {
 	// Check that a hint on the repositories is visible:
 	assertTrue("GameList should show heading",
 		   solo.waitForText(Util
-			   .getRessourceString(edu.bonn.mobilegaming.geoquest.R.string.gamelistHeaderStart)));
+			   .getRessourceString(edu.bonn.mobilegaming.geoquest.R.string.start_gameList_headerPart)));
 	assertEquals("Start RepositoryList and GameList Activities should be open",
 		     3,
 		     solo.getAllOpenedActivities().size());
