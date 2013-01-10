@@ -45,6 +45,10 @@ public abstract class HistoryItem {
 	this.id = id;
     }
 
+    Class<? extends GeoQuestActivity> getActivityType() {
+	return activityType;
+    }
+
     public abstract View getView(View convertView);
 
     /**

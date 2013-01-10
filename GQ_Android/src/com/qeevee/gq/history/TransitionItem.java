@@ -32,4 +32,22 @@ public class TransitionItem extends HistoryItem {
 	return view;
     }
 
+    protected Class<? extends GeoQuestActivity> getPredecessorClass() {
+	History history = History.getInstance();
+	int index = history.getIndex(this);
+	if (index == 0)
+	    return null;
+	else
+	    return history.getItem(index - 1).getActivityType();
+    }
+
+    protected Class<? extends GeoQuestActivity> getSuccessorClass() {
+	History history = History.getInstance();
+	int index = history.getIndex(this);
+	if (index + 1 == history.numberOfItems())
+	    return null;
+	else
+	    return history.getItem(index + 1).getActivityType();
+
+    }
 }
