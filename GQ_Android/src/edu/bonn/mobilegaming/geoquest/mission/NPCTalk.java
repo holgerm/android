@@ -168,7 +168,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	// Prepare endButtonText:
 	String ebt = mission.xmlMissionNode.attributeValue("endbuttontext");
 	if (ebt == null) {
-	    this.endButtonText = getText(R.string.default_endButtonText)
+	    this.endButtonText = getText(R.string.button_text_proceed)
 		    .toString();
 	} else {
 	    this.endButtonText = ebt;

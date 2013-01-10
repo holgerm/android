@@ -112,7 +112,7 @@ public class QRTagReading extends InteractiveMission implements OnClickListener 
 	okButton.setOnClickListener(this);
 	// init endbuttontext:
 	this.endButtonText = getMissionAttribute("endbuttontext",
-						 R.string.default_endButtonText);
+						 R.string.button_text_proceed);
 	buttonMode = START_SCAN;
 
 	// init task description text:
