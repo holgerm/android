@@ -1,56 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- VERSION -->
+    <!-- Generic Values -->
     <string name="xmlformat">5</string>
-    <string name="default_endButtonText">Continue with next mission ...</string>
-    <string name="error_qrtagreader_noresult">Sorry, tag reading did not have a result. \nMaybe
-		you should try again.</string>
-    <string name="geoquest_server_url">http://geoquest.qeevee.org</string>
-    <string name="webupdate_local_default_repository">default</string>
-    <string name="locationMockupFalseMenu">Switch to mocked location</string>
-    <string name="locationMockupTrueMenu">Switch to real location</string>
-    <string name="timestep_realmode">2000</string>
-    <string name="preferencesTitle">Preferences</string>
-    <string name="webupdate_downloadingGameFromServer">Downloading game from GeoQuest server ...</string>
-    <string name="webupdate_startingGameFromExternalStorage">Starting locally stored game ...</string>
-    <string name="webupdate_FetchingRepoDataFromServer">Fetching game information from server ...</string>
-    <string name="webupdate_expandingGame">Loading Missions</string>
-    <string name="webpageButtonTextDefault">OK</string>
-    <string name="startARViewMenu">Show AR View</string>
-    <string name="startingARView">Starting AR View ...</string>
+    <string name="app_name">GeoQuest</string>
+    <string name="local_default_repository">default</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="missing_hotspot_description">No description for this hotspot availbale. Sorry.</string>
-    <string name="npctalk_nextDialogButtonText">Proceed ...</string>
-    <string name="qrtagreading_startscanbutton_default">Start Scanning ...</string>
-    <string name="qrtagreading_taskdescription_default">Search for the QR code and scan it ...</string>
-    <string name="qrtagreader_product_ifwrong">Sorry, but this is not what you are looking
-		for.\nGo on to find it!</string>
-    <string name="qrtagreader_product_ifright">You found it.\nCongratulations!</string>
-    <string name="geoquest_repolist_relpath">/repositories/repolist.php</string>
-    <string name="qrtagreader_treasure_feedback">"@result@"</string>
-    <string name="error_expandingGame_DocumentException">Sorry, this game file could not be parsed.</string>
-    <string name="imageCapture_UploadOK">OK, your photo has been uploaded.</string>
-    <string name="imageCapture_UploadERROR">Error while uploading your picture.</string>
-    <string name="gamelistHeaderStart">Games in</string>
-    <string name="repolistHeaderStart">Accessible Repositories</string>
-    <string name="centerMapMenu">Center Map</string>
-    <string name="audioRecordUploadURLDefault">http://geoquest.qeevee.org/upload-audio/upload.php</string>
-    <string name="imageCaptureUploadURLDefault">http://geoquest.qeevee.org/upload-images/upload.php</string>
 
-    <!-- MANIFEST -->
-    <string name="app_name">GeoQuest</string>
-
-    <!-- Start Activity -->
-    <string name="start_text_game_list_progress_download_text">Downloading repositories...</string>
-    <string name="start_text_game_list_progress_process_text">Processing repository data...</string>
-    <string name="start_button_game_list_text">Select a new Quest...</string>
-    <string name="start_text_welcome_text">Welcome to GeoQuest!</string>
+    <!-- Start Activities -->
+    <string name="start_text_game_list_progress_download_text">Downloading repositories</string>
+    <string name="start_text_game_list_progress_process_text">Processing repository data</string>
+    <string name="start_button_game_list_text">Select a new Quest</string>
+    <string name="start_welcome">Welcome to GeoQuest!</string>
     <string name="start_text_last_game_text">Last played Quest:</string>
-    <string name="start_text_last_game_text_no_game">You haven\'t played a Quest recently...</string>
-    <string name="start_text_last_game_text_game_not_found">Game not found ...</string>
+    <string name="start_text_last_game_text_no_game">You haven\'t played a Quest recently</string>
+    <string name="start_gameNotFound">Game not found</string>
     <string name="start_toast_download_failed">Repo list download failed - check your internet connection and try again by choosing "Reload repo data" from menu or restarting the app!</string>
+    <string name="start_downloadGame">Downloading game from GeoQuest server</string>
+    <string name="start_startGame">Starting locally stored game</string>
+    <string name="start_fetchingDataFromServer">Fetching game information from server</string>
+    <string name="start_initializeGame">Loading Missions</string>
+    <string name="start_gameFileCouldNotBeParsed">Sorry, this game file could not be parsed.</string>
+    <string name="start_gameList_headerPart">Games in</string>
+    <string name="start_repoList_header">Accessible Repositories</string>
 
     <!-- Generic BUTTON Labels -->
     <string name="button_text_accept">Accept</string>
@@ -60,6 +33,8 @@
     <string name="button_text_repeat">Repeat</string>
     <string name="button_text_stop">Stop</string>
     <string name="button_text_use">Use</string>
+    <!-- TODO: get rid -->
+    <string name="default_endButtonText">Continue with next mission</string>
 
     <!-- Generic MENU Entries -->
     <string name="quitMenu">Quit</string>
@@ -76,8 +51,28 @@
     <string name="audiorecord_activityIndicator_playing">Playing your recorded audio ...</string>
     <string name="audiorecord_file_default">audiorecord.3gp</string>
 
+    <!-- AugmentedRealityView TOOL -->
+    <string name="startARViewMenu">AR View</string>
+    <string name="startingARView">Starting AR View ...</string>
+
+    <!-- External MISSION -->
+    <string name="external_mission_description_default">Starting external mission</string>
+    <string name="external_mission_result_default">Back from external mission</string>
+
+    <!-- ImageCapture MISSION -->
+    <string name="imageCapture_UploadOK">OK, your photo has been uploaded.</string>
+    <string name="imageCapture_UploadERROR">Error while uploading your picture.</string>
+    <string name="imageCaptureUploadURLDefault">http://geoquest.qeevee.org/upload-images/upload.php</string>
+
     <!-- Map MISSION and TOOL -->
     <string name="map_loading">Loading Map</string>
+    <string name="map_menu_centerMap">Center Map</string>
+    <string name="map_menu_mockGPS">Switch to mocked location</string>
+    <string name="map_menu_realGPS">Switch to real location</string>
+    <string name="map_mockGPSTimeInterval">2000</string>
+
+    <!-- MultipleChoiceQuestion MISSION -->
+    <string name="multipleChoiceQuestion_default_shuffle_mode">false</string>
 
     <!-- NPCTalk MISSION -->
     <string name="npctalk_endButtonText">Proceed</string>
@@ -93,7 +88,13 @@
     <string name="questionandanswer_notEnoughCorrectAnswers">You have not enough correct answers.</string>
     <string name="questionandanswer_rightAnswer">Right Answer :)</string>
     <string name="questionandanswer_wrongAnswer">Wrong Answer :(</string>
-    <string name="default_question_shuffle_mode">no</string>
+
+    <!-- QRTagReading MISSION -->
+    <string name="qrtagreading_startscanbutton_default">Start Scanning ...</string>
+    <string name="qrtagreading_taskdescription_default">Search for the QR code and scan it ...</string>
+    <string name="qrtagreader_product_ifright">You found it.\nCongratulations!</string>
+    <string name="qrtagreader_product_ifwrong">Sorry, but this is not what you are looking for.\nGo on to find it!</string>
+    <string name="qrtagreader_treasure_feedback">"@result@"</string>
 
     <!-- TextQuestion MISSION -->
     <string name="textquestion_answerET_hint_default">Enter your answer here ...</string>
@@ -106,10 +107,11 @@
     <string name="videoplay_finishdialog_leave">Leave it!</string>
     <string name="videoplay_errordialog_message">I can not play that video.</string>
 
-    <!-- External Mission -->
-    <string name="external_mission_description_default">Starting external mission</string>
-    <string name="external_mission_result_default">Back from external mission</string>
+    <!-- HOTSPOTS -->
+    <string name="missing_hotspot_description">No description for this hotspot availbale. Sorry.</string>
 
+    <!-- PREFERENCES -->
+    <string name="preferencesTitle">Preferences</string>
     <!-- Password protected prefs -->
     <string name="pw_dialog_title">Password</string>
     <string name="pw_dialog_descr">This action is password protected. Please submit your password.\nIf you have forgotten your password you have to reinstall the app!</string>
@@ -121,6 +123,8 @@
     <string name="pref_server_url_summary">Defines the game server URL. Don\'t change this unless you want to use your own server.</string>
     <string name="pref_server_url_dialog_title">Server URL</string>
     <string name="pref_server_url_dialog_message">Set the URL of the game server. By default, this is the Qeevee server. Only change this, if you want to use your own server.</string>
+    <string name="geoquest_server_url">http://geoquest.qeevee.org</string>
+    <string name="geoquest_repolist_relpath">/repositories/repolist.php</string>
 
     <!-- Game startup preferences -->
     <string name="pref_cat_game_start">Game start</string>
