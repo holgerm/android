@@ -56,4 +56,8 @@ public class History {
 	init();
     }
 
+    public int getIndex(HistoryItem historyItem) {
+	return list.indexOf(historyItem);
+    }
+
 }
