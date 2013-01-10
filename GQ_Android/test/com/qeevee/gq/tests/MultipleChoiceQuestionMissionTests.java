@@ -169,7 +169,10 @@ public class MultipleChoiceQuestionMissionTests {
 				       "onEnd");
 	shouldShowText(DEFAULT_RESPONSE_ON_WRONG_ANSWER);
 	shouldShowProceedButton();
-    }
+	historyListShouldHaveLength(2);
+	lastItemInHistoryShouldBe(TextItem.class,
+				  TextType.REACTION_ON_WRONG);
+   }
 
     @Test
     public void proceedAfterWrongAnswer_No_Loop__No_onChoose() {
@@ -201,9 +204,9 @@ public class MultipleChoiceQuestionMissionTests {
 	numberOfAnswersShouldBe(4);
 	shouldStoreQuestionText();
 	shouldShowText("Text of the question.");
+	historyListShouldHaveLength(1);
 	lastItemInHistoryShouldBe(TextItem.class,
 				  TextType.QUESTION);
-	historyListShouldHaveLength(1);
     }
 
     @Test
