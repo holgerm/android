@@ -91,6 +91,27 @@ public class TestUtils {
 							String missionID) {
 	Start start = startGameForTest(gameFileName);
 
+	return setUpMission(missionType,
+			    missionID,
+			    start);
+    }
+
+    /**
+     * Prepares a mission activity which can then be started by calling its
+     * onCreate() method.
+     * 
+     * @param missionType
+     *            must be a valid mission type for which a class exists in the
+     *            mission implementation package.
+     * @param missionID
+     * @return a new Activity object of the according type for the given mission
+     *         type name. You can for example directly call onCreate() upon it
+     *         to emulate the android framework behavior.
+     * @throws ClassNotFoundException
+     */
+    public static GeoQuestActivity setUpMission(String missionType,
+						String missionID,
+						Start start) {
 	Class<?> missionClass = null;
 	GeoQuestActivity missionActivity = null;
 
