@@ -1,6 +1,5 @@
 package edu.bonn.mobilegaming.geoquest.pwprefs;
 
-import edu.bonn.mobilegaming.geoquest.R;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import edu.bonn.mobilegaming.geoquest.R;
 
 public class PasswordProtectedEditTextPreference extends EditTextPreference {
 	

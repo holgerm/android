@@ -1,12 +1,12 @@
 package edu.bonn.mobilegaming.geoquest.views;
 
-import edu.bonn.mobilegaming.geoquest.R;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.Button;
+import edu.bonn.mobilegaming.geoquest.R;
 
 public class GeoquestButton extends Button {
 

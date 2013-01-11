@@ -2,11 +2,11 @@ package com.qeevee.gq.rules.expr;
 
 import org.dom4j.Element;
 
+import android.util.Log;
+
 import com.qeevee.gq.rules.cond.Condition;
 
 import edu.bonn.mobilegaming.geoquest.Variables;
-
-import android.util.Log;
 
 public class Expressions {
 	public static final String PACKAGE_NAME = getPackageName();

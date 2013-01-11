@@ -2,9 +2,9 @@ package com.qeevee.gq.rules.cond;
 
 import org.dom4j.Element;
 
-import com.qeevee.util.StringTools;
-
 import android.util.Log;
+
+import com.qeevee.util.StringTools;
 
 public class ConditionFactory {
 

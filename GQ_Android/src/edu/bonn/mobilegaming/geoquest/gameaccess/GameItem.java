@@ -3,7 +3,6 @@ package edu.bonn.mobilegaming.geoquest.gameaccess;
 import org.dom4j.Element;
 
 import android.util.Log;
-
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.R;
 

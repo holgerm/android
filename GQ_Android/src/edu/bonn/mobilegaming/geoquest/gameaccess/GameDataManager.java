@@ -5,9 +5,8 @@ package edu.bonn.mobilegaming.geoquest.gameaccess;
 
 import java.io.File;
 
-import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
-
 import android.os.Environment;
+import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 
 /**
  * This class is responsible for loading, updating and persisting the

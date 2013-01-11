@@ -12,10 +12,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import edu.bonn.mobilegaming.geoquest.jsinterface.*;
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.R;
+import edu.bonn.mobilegaming.geoquest.jsinterface.NPCTalkJSInterface;
+import edu.bonn.mobilegaming.geoquest.jsinterface.QuestionAndAnswerJSInterface;
 
 public class WebTech extends MissionActivity {
 
