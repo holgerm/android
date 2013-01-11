@@ -17,37 +17,32 @@ import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
  */
 public class TransitionItem extends HistoryItem {
 
-    private Class<? extends GeoQuestActivity> to;
-
     public TransitionItem(GeoQuestActivity predeccessorActivity) {
 	super(predeccessorActivity);
-	to = MissionActivity.class;
     }
 
     @Override
     public View getView(View convertView) {
 	TextView view = new TextView(GeoQuestApp.getContext());
-	view.setText("Transition between: " + activityType.getSimpleName()
-		+ " and " + to.getSimpleName() + ".");
+	view.setText("Transition between: "
+		+ getNeighborClass(-1).getSimpleName() + " and "
+		+ getNeighborClass(1).getSimpleName() + ".");
 	return view;
     }
 
-    protected Class<? extends GeoQuestActivity> getPredecessorClass() {
+    /**
+     * @param dist
+     *            use +1 for successor or -1 for predecessor.
+     * @return
+     */
+    protected Class<? extends GeoQuestActivity> getNeighborClass(int dist) {
 	History history = History.getInstance();
-	int index = history.getIndex(this);
-	if (index == 0)
+	int myIndex = history.getIndex(this);
+	int neighborIndex = myIndex + dist;
+	if (neighborIndex < 0 || neighborIndex >= history.numberOfItems())
 	    return null;
 	else
-	    return history.getItem(index - 1).getActivityType();
+	    return history.getItem(neighborIndex).getActivityType();
     }
 
-    protected Class<? extends GeoQuestActivity> getSuccessorClass() {
-	History history = History.getInstance();
-	int index = history.getIndex(this);
-	if (index + 1 == history.numberOfItems())
-	    return null;
-	else
-	    return history.getItem(index + 1).getActivityType();
-
-    }
 }
