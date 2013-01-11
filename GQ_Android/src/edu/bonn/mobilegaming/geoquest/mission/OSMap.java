@@ -113,8 +113,6 @@ public class OSMap extends GeoQuestMapActivity implements HotspotListener {
 	myMapView.setBuiltInZoomControls(false);
 	// myMapView.displayZoomControls(false);
 
-	String mapKind = mission.xmlMissionNode.attributeValue("mapkind");
-
 	myMapCtrl = myMapView.getController();
 
 	myMapCtrl.setZoom(18);
