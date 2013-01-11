@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="TransitionTest_Linear"
+	xmlformat="5"
+>
+	<mission
+		id="NPC_1"
+		image="drawable/ploppschutz.png"
+		type="NPCTalk"
+	>
+		<onEnd>
+			<rule>
+				<action
+					id="NPC_2"
+					type="StartMission" />
+			</rule>
+		</onEnd>
+		<dialogitem>Text 1. Teil A.
+		</dialogitem>
+		<dialogitem>Text 1. Teil B.
+		</dialogitem>
+		<dialogitem>Text 1. Teil C.
+		</dialogitem>
+	</mission>
+	<mission
+		id="NPC_2"
+		image="drawable/ploppschutz.png"
+		type="NPCTalk"
+	>
+		<onEnd>
+			<rule>
+				<action type="EndGame" />
+			</rule>
+		</onEnd>
+		<dialogitem>Text 2. Teil A.
+		</dialogitem>
+		<dialogitem>Text 2. Teil B.
+		</dialogitem>
+		<dialogitem>Text 2. Teil C.
+		</dialogitem>
+	</mission>
+</game>
