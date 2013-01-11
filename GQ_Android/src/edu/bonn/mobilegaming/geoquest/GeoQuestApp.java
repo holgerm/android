@@ -52,15 +52,15 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
     private static boolean adaptionEngineLibAvailable = false;
     public static AdaptionEngineInterface adaptionEngine;
 
-    private MapView map;
+    private MapView googleMap;
     private boolean isInGame = false;
 
-    public void setMap(MapView value) {
-	this.map = value;
+    public void setGoogleMap(com.google.android.maps.MapView value) {
+	this.googleMap = value;
     }
 
-    public MapView getMap() {
-	return this.map;
+    public MapView getGoogleMap() {
+	return this.googleMap;
     }
 
     public static final int DIALOG_ID_START_GAME = 0;
@@ -270,6 +270,15 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
     private static Map<String, RepositoryItem> repositoryItems = new HashMap<String, RepositoryItem>();
     private static File runningGameDir;
     private boolean repoDataAvailable = false;
+    private org.osmdroid.views.MapView osmap;
+
+    public org.osmdroid.views.MapView getOsmap() {
+	return osmap;
+    }
+
+    public void setOSMap(org.osmdroid.views.MapView osmap) {
+	this.osmap = osmap;
+    }
 
     public static boolean loadRepoData(GeoQuestProgressHandler handler) {
 	boolean result = loadRepoDataFromServer(handler);
@@ -797,6 +806,14 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
     static String repoBaseDirPath() {
 	return "/Android/data/" + getInstance().getPackageName()
 		+ "/repositories/";
+    }
+
+    public void refreshMapDisplay() {
+	if (googleMap != null)
+	    googleMap.postInvalidate();
+
+	if (osmap != null)
+	    osmap.postInvalidate();
     }
 
     // TODO -- Sabine -- location-Methoden löschen

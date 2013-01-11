@@ -7,9 +7,6 @@ import java.util.List;
 import org.dom4j.Attribute;
 import org.dom4j.Element;
 
-import com.qeevee.gq.history.TextItem;
-import com.qeevee.gq.history.TextType;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +14,10 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.qeevee.gq.history.TextItem;
+import com.qeevee.gq.history.TextType;
+
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;

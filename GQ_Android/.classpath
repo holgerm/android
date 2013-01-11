@@ -21,5 +21,8 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/GeoQuest/libs/jaxen/jaxen-1.1.4/docs/apidocs/index.html!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="libs/osmdroid/osmdroid-third-party-3.0.8.jar" sourcepath="/Users/muegge/.m2/repository/org/osmdroid/osmdroid-third-party/3.0.8/osmdroid-third-party-3.0.8-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/osmdroid/slf4j-android-1.6.1-RC1.jar" sourcepath="libs/osmdroid/slf4j-1.7.2.zip"/>
+	<classpathentry exported="true" kind="lib" path="libs/osmdroid/osmdroid-android-3.0.8.jar" sourcepath="/Users/muegge/.m2/repository/org/osmdroid/osmdroid-android/3.0.8/osmdroid-android-3.0.8-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

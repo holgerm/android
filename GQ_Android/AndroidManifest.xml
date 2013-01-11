@@ -62,6 +62,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mission.OSMap"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".mission.NPCTalk"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
