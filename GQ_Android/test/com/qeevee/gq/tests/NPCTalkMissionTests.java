@@ -120,7 +120,7 @@ public class NPCTalkMissionTests {
      * very specialized according to the implementation, e.g. the delta between
      * word appearance is set to 100ms as in the code.
      */
-    private void letCurrentDialogItemAppearCompletely() {
+    public void letCurrentDialogItemAppearCompletely() {
 	timer = (CountDownTimer) getFieldValue(npcTalkM,
 					       "myCountDownTimer");
 	timer.onFinish();
