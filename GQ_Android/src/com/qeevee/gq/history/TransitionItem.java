@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
-import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 
 /**
  * A TransitionItem is inserted into the history list between missions. It
