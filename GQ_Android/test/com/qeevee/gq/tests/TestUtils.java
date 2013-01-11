@@ -28,6 +28,11 @@ import edu.bonn.mobilegaming.geoquest.mission.Mission;
 
 public class TestUtils {
 
+    /**
+     * @param gameName
+     *            the name of the directory containing the game specification.
+     * @return the game spec as xml document
+     */
     public static Document loadTestGame(String gameName) {
 	Document document = null;
 	SAXReader reader = new SAXReader();
@@ -42,6 +47,11 @@ public class TestUtils {
 	return document;
     }
 
+    /**
+     * @param gameName
+     *            the name of the directory containing the game specification.
+     * @return the File object representing the game spec xml file.
+     */
     public static File getGameFile(String gameName) {
 	URL xmlFileURL = TestUtils.class.getResource("/testgames/" + gameName
 		+ "/game.xml");
@@ -66,32 +76,9 @@ public class TestUtils {
      */
     public static GeoQuestActivity setUpMissionTest(String missionType,
 						    String missionID) {
-	return setUpMissionTypeTest(missionType + "Test",
-				    missionType,
-				    missionID);
-    }
+	Start start = startGameForTest(missionType + "Test");
 
-    /**
-     * Sets up the test for a single mission type using a prepared game file
-     * (game.xml) which must be stored in "testgames" directory.
-     * 
-     * @param gameFileName
-     *            the filename of the xml game specification used for this test.
-     * @param missionType
-     *            must be a valid mission type for which a class exists in the
-     *            mission implementation package.
-     * @param missionID
-     * @return a new Activity object of the according type for the given mission
-     *         type name. You can for example directly call onCreate() upon it
-     *         to emulate the android framework behavior.
-     * @throws ClassNotFoundException
-     */
-    public static GeoQuestActivity setUpMissionTypeTest(String gameFileName,
-							String missionType,
-							String missionID) {
-	Start start = startGameForTest(gameFileName);
-
-	return setUpMission(missionType,
+	return prepareMission(missionType,
 			    missionID,
 			    start);
     }
@@ -109,7 +96,7 @@ public class TestUtils {
      *         to emulate the android framework behavior.
      * @throws ClassNotFoundException
      */
-    public static GeoQuestActivity setUpMission(String missionType,
+    public static GeoQuestActivity prepareMission(String missionType,
 						String missionID,
 						Start start) {
 	Class<?> missionClass = null;
