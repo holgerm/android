@@ -10,9 +10,14 @@ import edu.bonn.mobilegaming.geoquest.R;
 
 /**
  * @author muegge
- *
+ * 
  */
 public class TextItem extends HistoryItem {
+
+    static {
+	defaultModifiers.put(TextType.class,
+			     TextType.DEFAULT);
+    }
 
     private CharSequence text;
 
@@ -22,14 +27,16 @@ public class TextItem extends HistoryItem {
      * 
      * This constructor should be the only one who calls the super constructor.
      * 
-     * @param textType
-     *            if you do not know what to do, use {@link TextType#DEFAULT}
-     *            which is {@link TextType#PLAIN}.
+     * @param modifier
+     *            as many modifiers as you like, but be aware that only one of
+     *            each type will be used. If you do not know what to do just
+     *            leave empty: then defaults of each type of modifiers will be
+     *            used.
      */
     public TextItem(CharSequence text,
 		    GeoQuestActivity activity,
-		    TextType textType) {
-	super(activity, textType);
+		    HistoryItemModifier... modifier) {
+	super(activity, modifier);
 	this.text = text;
     }
 

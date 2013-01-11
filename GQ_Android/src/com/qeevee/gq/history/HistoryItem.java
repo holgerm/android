@@ -12,6 +12,13 @@ import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
  */
 public abstract class HistoryItem {
 
+    static public Map<Class<? extends HistoryItemModifier>, HistoryItemModifier> defaultModifiers = new HashMap<Class<? extends HistoryItemModifier>, HistoryItemModifier>();
+
+    static {
+	defaultModifiers.put(Actor.class,
+			     Actor.DEFAULT);
+    }
+
     private long id;
 
     protected Map<Class<? extends HistoryItemModifier>, HistoryItemModifier> modifiers;
@@ -25,16 +32,15 @@ public abstract class HistoryItem {
      * Each HistoryItem adds itself to the history list.
      */
     public HistoryItem(GeoQuestActivity activity,
-		       HistoryItemModifier modifier) {
+		       HistoryItemModifier... modifier) {
 	activityType = activity.getClass();
 	modifiers = new HashMap<Class<? extends HistoryItemModifier>, HistoryItemModifier>();
-	modifiers.put(modifier.getClass(),
-		      modifier);
+	for (int i = 0; i < modifier.length; i++) {
+	    if (!modifiers.containsKey(modifier[i].getClass()))
+		modifiers.put(modifier[i].getClass(),
+			      modifier[i]);
+	}
 	History.getInstance().add(this);
-    }
-
-    public HistoryItem(GeoQuestActivity activity) {
-	this(activity, Actor.DEFAULT);
     }
 
     public long getId() {
@@ -66,7 +72,9 @@ public abstract class HistoryItem {
      */
     public HistoryItemModifier
 	    getModifier(Class<? extends HistoryItemModifier> modifierClass) {
-	return modifiers.get(modifierClass);
+	if (modifiers.containsKey(modifierClass))
+	    return modifiers.get(modifierClass);
+	else
+	    return defaultModifiers.get(modifierClass);
     }
-
 }

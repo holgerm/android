@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
 import com.qeevee.gq.history.TransitionItem;
@@ -260,7 +261,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	     * Store history item. TODO: add more argument for image, audio and
 	     * thumbnail.
 	     */
-	    new TextItem(currItem.getText(), NPCTalk.this, TextType.DEFAULT);
+	    new TextItem(currItem.getText(), NPCTalk.this, Actor.NPC);
 	    // release blocked interaction on the NPCTalk using this Timer as
 	    // Blocker monitor:
 	    NPCTalk.this.releaseInteraction(this);
