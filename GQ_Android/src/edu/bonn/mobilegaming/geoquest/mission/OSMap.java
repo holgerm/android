@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
+import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
@@ -51,6 +52,10 @@ import edu.bonn.mobilegaming.geoquest.R;
 public class OSMap extends GeoQuestMapActivity implements HotspotListener {
 
     private static String TAG = "MapOverview";
+    
+    //set theese two parameters to use Cloudmade Style
+    private static String APIKey = null;				//eg "6f218baf0ee44fdc9a9563c37e55851e"
+    private static String CmStyleId = null;				//eg "63694"
 
     // Menu IDs:
     static final private int FIRST_LOCAL_MENU_ID = GeoQuestMapActivity.MENU_ID_OFFSET;
@@ -108,9 +113,13 @@ public class OSMap extends GeoQuestMapActivity implements HotspotListener {
 
 	setContentView(R.layout.osmap);
 
-	// Setup Google MapView
+	// Setup Google Map0View
 	myMapView = (MapView) findViewById(R.id.osmapview);
 	myMapView.setBuiltInZoomControls(false);
+	if(APIKey != null && CmStyleId != null){
+		myMapView.setTileSource(new XYTileSource("cmMap", null, 0, 15, 256, ".png", "http://tile.cloudmade.com/" + APIKey + "/" + CmStyleId + "/256/"));
+	}
+	
 	// myMapView.displayZoomControls(false);
 
 	myMapCtrl = myMapView.getController();
