@@ -44,6 +44,12 @@ public class History {
 	return list.get(position);
     }
 
+    /**
+     * @param n
+     *            the reverse index starts counting with 1 from the end of the
+     *            list.
+     * @return
+     */
     public HistoryItem getNthLastItem(int n) {
 	int index = numberOfItems() - n;
 	if (index < 0 || index >= numberOfItems())
