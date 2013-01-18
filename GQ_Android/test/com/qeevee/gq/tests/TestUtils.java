@@ -79,8 +79,8 @@ public class TestUtils {
 	Start start = startGameForTest(missionType + "Test");
 
 	return prepareMission(missionType,
-			    missionID,
-			    start);
+			      missionID,
+			      start);
     }
 
     /**
@@ -97,8 +97,8 @@ public class TestUtils {
      * @throws ClassNotFoundException
      */
     public static GeoQuestActivity prepareMission(String missionType,
-						String missionID,
-						Start start) {
+						  String missionID,
+						  Start start) {
 	Class<?> missionClass = null;
 	GeoQuestActivity missionActivity = null;
 
@@ -167,10 +167,10 @@ public class TestUtils {
 				    Object[] arguments) {
 	Object returnValue = null;
 	try {
-	    Method m = obj.getClass().getMethod(methodName,
-						parameterTypes);
+	    Method m = obj.getClass().getDeclaredMethod(methodName,
+							parameterTypes);
 	    m.setAccessible(true);
-	    m.invoke(obj,
+	    returnValue = m.invoke(obj,
 		     arguments);
 	} catch (SecurityException e) {
 	    e.printStackTrace();
