@@ -73,8 +73,7 @@ public class NPCTalkMissionTests {
 	assertEquals("History should be empty directly after mission is loaded",
 		     0,
 		     h.numberOfItems());
-	letCurrentDialogItemAppearCompletely(npcTalkM,
-					     timer);
+	letCurrentDialogItemAppearCompletely(npcTalkM);
 	assertEquals("Talk view should contain last dialog item text",
 		     "This NPCTalk mission offers just three only text dialog items.\n",
 		     talkView.getText().toString());
@@ -85,8 +84,7 @@ public class NPCTalkMissionTests {
 		     h.getItem(h.numberOfItems() - 1).getClass(),
 		     TextItem.class);
 	proceedBT.performClick();
-	letCurrentDialogItemAppearCompletely(npcTalkM,
-					     timer);
+	letCurrentDialogItemAppearCompletely(npcTalkM);
 	assertTrue("Talk view should end with second dialog item text",
 		   talkView.getText().toString()
 			   .endsWith("This is the second dialog item.\n"));
@@ -97,8 +95,7 @@ public class NPCTalkMissionTests {
 		     h.getItem(h.numberOfItems() - 1).getClass(),
 		     TextItem.class);
 	proceedBT.performClick();
-	letCurrentDialogItemAppearCompletely(npcTalkM,
-					     timer);
+	letCurrentDialogItemAppearCompletely(npcTalkM);
 	assertTrue("Talk view should end with third and last dialog item text",
 		   talkView.getText()
 			   .toString()
