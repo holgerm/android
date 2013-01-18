@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.TextItem;
-import com.qeevee.gq.history.TextType;
 import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.gq.xml.XMLUtilities;
 import com.qeevee.ui.ZoomImageView;
@@ -50,7 +49,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
     private TextView dialogText;
     /** all dialogItems. Is filled in the onCreate method */
     private LinkedList<DialogItem> dialogItems = new LinkedList<DialogItem>();
-    private Iterator<DialogItem> currDialogItem;
+    private Iterator<DialogItem> dialogItemIterator;
     /** currentDialogItem */
     private DialogItem currItem;
     private CountDownTimer myCountDownTimer;
@@ -75,7 +74,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	proceedButton.setOnClickListener(this);
 
 	readXML();
-	currDialogItem = dialogItems.iterator();
+	dialogItemIterator = dialogItems.iterator();
 	Log.d(TAG,
 	      "RuntimeMeasure " + (System.currentTimeMillis() - start) + " ms");
 	gotoNextDialogItem();
@@ -106,12 +105,12 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
     private void gotoNextDialogItem() {
 	// we always show the next dialogItem starting with the first.
 
-	if (!currDialogItem.hasNext()) {
+	if (!dialogItemIterator.hasNext()) {
 	    new TransitionItem(this);
 	    finish(Globals.STATUS_SUCCESS);
 	    return;
 	}
-	currItem = currDialogItem.next();
+	currItem = dialogItemIterator.next();
 
 	myCountDownTimer = new CountDownTimer(500, 500) {
 
@@ -136,7 +135,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
     }
 
     private void setProceedButtonText(DialogItem curItem) {
-	if (!currDialogItem.hasNext()) {
+	if (!dialogItemIterator.hasNext()) {
 	    // this is the last dialogitem to show:
 	    proceedButton.setText(endButtonText);
 	} else {
