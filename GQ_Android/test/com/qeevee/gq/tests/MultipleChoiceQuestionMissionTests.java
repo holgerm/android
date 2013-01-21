@@ -23,13 +23,12 @@ import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
 import com.xtremelabs.robolectric.Robolectric;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.MultipleChoiceQuestion;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class MultipleChoiceQuestionMissionTests {
 
     private static final int MODE_QUESTION = (Integer) getStaticFieldValue(MultipleChoiceQuestion.class,

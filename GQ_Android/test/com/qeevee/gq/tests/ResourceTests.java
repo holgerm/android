@@ -9,13 +9,10 @@ import org.junit.runner.RunWith;
 
 import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
-
-import com.xtremelabs.robolectric.RobolectricTestRunner;
-
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Start;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class ResourceTests {
 
     Activity start;

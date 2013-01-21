@@ -14,13 +14,12 @@ import org.junit.runner.RunWith;
 
 import com.qeevee.gq.rules.Rule;
 import com.qeevee.gq.xml.GQML_DEFAULTS;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 import edu.bonn.mobilegaming.geoquest.Hotspot;
 import edu.bonn.mobilegaming.geoquest.HotspotManager;
 import edu.bonn.mobilegaming.geoquest.Start;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class HotspotTests {
     Document doc;
     HotspotManager hm;

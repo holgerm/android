@@ -17,11 +17,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.qeevee.gq.rules.Rule;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 import edu.bonn.mobilegaming.geoquest.Variables;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class RuleTests {
 
     Element root;

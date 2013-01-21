@@ -1,6 +1,8 @@
 package com.qeevee.gq.tests;
 
+import static com.qeevee.gq.tests.TestNPCTalkUtils.forwardUntilLastDialogItemIsShown;
 import static com.qeevee.gq.tests.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
+import static com.qeevee.gq.tests.TestUtils.callMethod;
 import static com.qeevee.gq.tests.TestUtils.getFieldValue;
 import static com.qeevee.gq.tests.TestUtils.historyListShouldHaveLength;
 import static com.qeevee.gq.tests.TestUtils.nthLastItemInHistoryShouldBe;
@@ -10,32 +12,41 @@ import static com.qeevee.gq.tests.TestUtils.startGameForTest;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 
 import android.os.CountDownTimer;
+import android.widget.Button;
 
 import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import com.qeevee.gq.history.TransitionItem;
 
+import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class HistoryTransitionItemTests {
 
     CountDownTimer timer;
-    NPCTalk npcTalk;
+    NPCTalk npctalk_1, npctalk_2;
     Start start;
+    Button button;
 
-    public void initGameWithFirstMission() {
+    protected void initGameWithFirstMission() {
 	start = startGameForTest("HistoryTests/TransitionLinearList");
-	npcTalk = (NPCTalk) prepareMission("NPCTalk",
-					   "NPC_1",
-					   start);
-	timer = (CountDownTimer) getFieldValue(npcTalk,
+	npctalk_1 = (NPCTalk) prepareMission("NPCTalk",
+					     "NPC_1",
+					     start);
+    }
+
+    protected void readPrivateVariables() {
+	timer = (CountDownTimer) getFieldValue(npctalk_1,
 					       "myCountDownTimer");
+	button = (Button) getFieldValue(npctalk_1,
+					"proceedButton");
     }
 
     @After
@@ -62,9 +73,8 @@ public class HistoryTransitionItemTests {
 	initGameWithFirstMission();
 
 	// WHEN:
-	npcTalk.onCreate(null);
-	letCurrentDialogItemAppearCompletely(npcTalk,
-					     timer);
+	npctalk_1.onCreate(null);
+	letCurrentDialogItemAppearCompletely(npctalk_1);
 
 	// THEN:
 	historyListShouldHaveLength(1);
@@ -72,5 +82,87 @@ public class HistoryTransitionItemTests {
 				     TextItem.class,
 				     TextType.PLAIN,
 				     Actor.NPC);
+    }
+
+    @Test
+    public void to_end_of_NPC_1() {
+	// GIVEN:
+	initGameWithFirstMission();
+	npctalk_1.onCreate(null);
+
+	// WHEN:
+	forwardUntilLastDialogItemIsShown(npctalk_1);
+
+	// THEN:
+	historyListShouldHaveLength(3);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.PLAIN,
+				     Actor.NPC);
+    }
+
+    @Test
+    public void finish_NPC_1() {
+	// GIVEN:
+	initGameWithFirstMission();
+	npctalk_1.onCreate(null);
+	readPrivateVariables();
+	forwardUntilLastDialogItemIsShown(npctalk_1);
+
+	// WHEN:
+	button.performClick();
+
+	// THEN:
+	historyListShouldHaveLength(4);
+	nthLastItemInHistoryShouldBe(1,
+				     TransitionItem.class);
+	TransitionItem transitionItem = (TransitionItem) History.getInstance()
+		.getNthLastItem(1);
+	shouldHavePredeccessorOfType(transitionItem,
+				     NPCTalk.class);
+    }
+
+    @Test
+    public void from_NPC_1_to_NPC_2() {
+	// GIVEN:
+	initGameWithFirstMission();
+	npctalk_1.onCreate(null);
+	readPrivateVariables();
+	forwardUntilLastDialogItemIsShown(npctalk_1);
+
+	// WHEN:
+	initSecondMission();
+	button.performClick();
+	letCurrentDialogItemAppearCompletely(npctalk_2);
+
+	// THEN:
+	historyListShouldHaveLength(5);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.PLAIN,
+				     Actor.NPC);
+	TransitionItem transitionItem = (TransitionItem) History.getInstance()
+		.getNthLastItem(2);
+	shouldHavePredeccessorOfType(transitionItem,
+				     NPCTalk.class);
+    }
+
+    // === HELPER METHODS FOLLOW =============================================
+
+    private void initSecondMission() {
+	npctalk_2 = (NPCTalk) prepareMission("NPCTalk",
+					     "NPC_2",
+					     start);
+	npctalk_2.onCreate(null);
+    }
+
+    private void shouldHavePredeccessorOfType(TransitionItem transitionItem,
+					      Class<?> expectedType) {
+	Class<?> realType = (Class<?>) callMethod(transitionItem,
+						  "getNeighborClass",
+						  new Class[] { int.class },
+						  new Object[] { -1 });
+	assertEquals(expectedType,
+		     realType);
     }
 }

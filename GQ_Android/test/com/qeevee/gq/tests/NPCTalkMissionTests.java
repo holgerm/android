@@ -1,7 +1,7 @@
 package com.qeevee.gq.tests;
 
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
 import static com.qeevee.gq.tests.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
+import static com.qeevee.gq.tests.TestUtils.getFieldValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -18,12 +18,11 @@ import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.ui.ZoomImageView;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class NPCTalkMissionTests {
     NPCTalk npcTalkM;
     ZoomImageView imageView;
