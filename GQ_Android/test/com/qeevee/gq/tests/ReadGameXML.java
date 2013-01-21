@@ -12,9 +12,7 @@ import org.dom4j.io.SAXReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
-
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class ReadGameXML {
 
     Element root;

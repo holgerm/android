@@ -15,9 +15,6 @@ import org.junit.runner.RunWith;
 
 import android.content.Context;
 import android.location.Location;
-
-import com.xtremelabs.robolectric.RobolectricTestRunner;
-
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.contextmanager.ContextListener;
 import edu.bonn.mobilegaming.geoquest.contextmanager.ContextListenerType;
@@ -26,7 +23,7 @@ import edu.bonn.mobilegaming.geoquest.contextmanager.ContextManagerException;
 import edu.bonn.mobilegaming.geoquest.contextmanager.GameContext;
 import edu.bonn.mobilegaming.geoquest.contextmanager.PlayerContext;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class ContextListenerTests {
     PlayerContext staticContext;
     ContextManager cManager;

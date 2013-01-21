@@ -14,14 +14,11 @@ import org.junit.runner.RunWith;
 import android.media.MediaRecorder;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.xtremelabs.robolectric.RobolectricTestRunner;
-
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.AudioRecord;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class AudioRecordMissionTests {
     AudioRecord audioRecM;
     TextView taskView;
@@ -105,7 +102,7 @@ public class AudioRecordMissionTests {
 
     public void assertInitialMode() {
 	assertEquals("Mode variable should be set to initial mode.",
-	             (Integer) AudioRecord.MODE_INITIAL,
+		     (Integer) AudioRecord.MODE_INITIAL,
 		     (Integer) getFieldValue(audioRecM,
 					     "mode"));
 	assertEquals("Task text as given in game spec should be displayed in initial mode.",
@@ -130,7 +127,7 @@ public class AudioRecordMissionTests {
 
     private void assertRecordingMode() {
 	assertEquals("Mode variable should be set to recording mode.",
-	             (Integer) AudioRecord.MODE_RECORDING,
+		     (Integer) AudioRecord.MODE_RECORDING,
 		     (Integer) getFieldValue(audioRecM,
 					     "mode"));
 	assertEquals("Task text as given in game spec should be displayed in recording mode.",
@@ -158,7 +155,7 @@ public class AudioRecordMissionTests {
 
     private void assertReadyMode() {
 	assertEquals("Mode variable should be set to ready mode.",
-	             (Integer) AudioRecord.MODE_READY,
+		     (Integer) AudioRecord.MODE_READY,
 		     (Integer) getFieldValue(audioRecM,
 					     "mode"));
 	assertEquals("Task text as given in game spec should be displayed in ready mode.",
@@ -183,7 +180,7 @@ public class AudioRecordMissionTests {
 
     private void assertPlayingMode() {
 	assertEquals("Mode variable should be set to playing mode.",
-	             (Integer) AudioRecord.MODE_PLAYING,
+		     (Integer) AudioRecord.MODE_PLAYING,
 		     (Integer) getFieldValue(audioRecM,
 					     "mode"));
 	assertEquals("Task text as given in game spec should be displayed in playing mode.",

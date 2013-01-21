@@ -20,7 +20,6 @@ import android.content.Context;
 import android.os.SystemClock;
 
 import com.xtremelabs.robolectric.Robolectric;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.contextmanager.ContextManager;
@@ -30,7 +29,7 @@ import edu.bonn.mobilegaming.geoquest.contextmanager.LoggingContext;
 import edu.bonn.mobilegaming.geoquest.contextmanager.MissionContext;
 import edu.bonn.mobilegaming.geoquest.contextmanager.PlayerContext;
 
-@RunWith(RobolectricTestRunner.class)
+@RunWith(GQTestRunner.class)
 public class ContextManagerTests {
     PlayerContext staticContext;
     Context applicationContext;
