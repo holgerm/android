@@ -8,11 +8,11 @@ import static com.qeevee.gq.tests.TestUtils.historyListShouldHaveLength;
 import static com.qeevee.gq.tests.TestUtils.nthLastItemInHistoryShouldBe;
 import static com.qeevee.gq.tests.TestUtils.prepareMission;
 import static com.qeevee.gq.tests.TestUtils.startGameForTest;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
 
 import android.os.CountDownTimer;
 import android.widget.Button;
@@ -23,7 +23,6 @@ import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
 import com.qeevee.gq.history.TransitionItem;
 
-import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 
@@ -120,6 +119,8 @@ public class HistoryTransitionItemTests {
 		.getNthLastItem(1);
 	shouldHavePredeccessorOfType(transitionItem,
 				     NPCTalk.class);
+	shouldHaveSucceccessorOfType(transitionItem,
+	                             null);
     }
 
     @Test
@@ -145,6 +146,8 @@ public class HistoryTransitionItemTests {
 		.getNthLastItem(2);
 	shouldHavePredeccessorOfType(transitionItem,
 				     NPCTalk.class);
+	shouldHaveSucceccessorOfType(transitionItem,
+				     NPCTalk.class);
     }
 
     // === HELPER METHODS FOLLOW =============================================
@@ -158,10 +161,25 @@ public class HistoryTransitionItemTests {
 
     private void shouldHavePredeccessorOfType(TransitionItem transitionItem,
 					      Class<?> expectedType) {
+	shouldHaveNeighborOfType(transitionItem,
+				 expectedType,
+				 -1);
+    }
+
+    private void shouldHaveSucceccessorOfType(TransitionItem transitionItem,
+					      Class<NPCTalk> expectedType) {
+	shouldHaveNeighborOfType(transitionItem,
+				 expectedType,
+				 1);
+    }
+
+    private void shouldHaveNeighborOfType(TransitionItem transitionItem,
+					  Class<?> expectedType,
+					  int n) {
 	Class<?> realType = (Class<?>) callMethod(transitionItem,
 						  "getNeighborClass",
 						  new Class[] { int.class },
-						  new Object[] { -1 });
+						  new Object[] { n });
 	assertEquals(expectedType,
 		     realType);
     }
