@@ -6,7 +6,7 @@ public class PlayAudio extends Action {
 
     @Override
     protected boolean checkInitialization() {
-	return (params.containsKey("file") || params.containsKey("runtimefile"));
+	return (params.containsKey("file"));
     }
 
     @Override
