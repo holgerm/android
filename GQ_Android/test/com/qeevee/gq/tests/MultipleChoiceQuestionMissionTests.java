@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
@@ -109,7 +110,8 @@ public class MultipleChoiceQuestionMissionTests {
 	shouldShowText("Text of the question.");
 	nthLastItemInHistoryShouldBe(1,
 				     TextItem.class,
-				     TextType.QUESTION);
+				     TextType.QUESTION,
+				     Actor.GAME);
 	TestUtils.historyListShouldHaveLength(1);
     }
 
