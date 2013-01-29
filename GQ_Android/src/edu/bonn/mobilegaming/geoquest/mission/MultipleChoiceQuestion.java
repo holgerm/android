@@ -93,7 +93,7 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 	    bottomButton.setText(selectedAnswer.nextbuttontext);
 	} else {
 	    // generic if not specified:
-	    if (loop) {
+	    if (!selectedAnswer.correct && loop) {
 		bottomButton
 			.setText(getString(R.string.question_repeat_button));
 		bottomButton.setOnClickListener(restart);
