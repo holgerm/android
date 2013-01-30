@@ -78,9 +78,21 @@ public class QRTagReadingTreasureTests {
 
 	// THEN:
 	shouldBeInMode(START_SCAN);
+	shouldShowTaskText("This is a demo task description.");
+	shouldShowButtonText("Start demo scan ...");
     }
 
     // === HELPER METHODS FOLLOW =============================================
+
+    private void shouldShowTaskText(String expectedText) {
+	assertEquals(expectedText,
+		     taskTextView.getText().toString());
+    }
+
+    private void shouldShowButtonText(String expectedText) {
+	assertEquals(expectedText,
+		     button.getText().toString());
+    }
 
     private void shouldBeInMode(int expectedMode) {
 	assertEquals(expectedMode,

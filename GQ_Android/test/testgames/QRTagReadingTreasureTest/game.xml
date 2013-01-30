@@ -6,8 +6,8 @@
 	<mission
 		type="QRTagReading"
 		id="With_Explicit_Attribute_Values"
-		buttontext="Demobuttontext"
-		taskdescription="Demotaskdescription"
+		buttontext="Start demo scan ..."
+		taskdescription="This is a demo task description."
 		mode="treasure"
 		initial_image="drawable/chest_closed.jpg"
 	>
