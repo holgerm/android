@@ -92,6 +92,8 @@ public class QRTagReadingTreasure extends InteractiveMission implements
     private CharSequence endButtonText;
     private CharSequence scanButtonText;
 
+    private String scannedResult;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
@@ -220,10 +222,11 @@ public class QRTagReadingTreasure extends InteractiveMission implements
 				     resultCode,
 				     intent);
 	if (intent != null && scanResult != null) {
-	    String scannedResult = scanResult.getContents();
+	    scannedResult = scanResult.getContents();
 	    // set scanned result in mission specific variable:
 	    Variables.registerMissionResult(mission.id,
 					    scannedResult);
+	    invokeOnSuccessEvents();
 
 	    // handle scan result:
 	    taskTextView.setText(this.feedbackText.toString()
@@ -232,7 +235,6 @@ public class QRTagReadingTreasure extends InteractiveMission implements
 	    setImage("if_right_image");
 	    buttonMode = END_MISSION;
 	    okButton.setText(endButtonText);
-	    performFinish(scannedResult);
 	} else {
 	    buttonMode = START_SCAN;
 	    okButton.setText(scanButtonText);
@@ -240,22 +242,12 @@ public class QRTagReadingTreasure extends InteractiveMission implements
 	    taskTextView
 		    .setText(getMissionAttribute("taskdescription",
 						 R.string.qrtagreading_taskdescription_default));
-
-	    // taskTextView.setText(R.string.error_qrtagreader_noresult);
-	    // Log.e(TAG, "scanning rsulted in null");
 	}
     }
 
     public void onBlockingStateUpdated(boolean blocking) {
 	// TODO Auto-generated method stub
 
-    }
-
-    private void performFinish(String result) {
-	Variables.registerMissionResult(mission.id,
-					result);
-	invokeOnSuccessEvents();
-	finish(Globals.STATUS_SUCCESS);
     }
 
 }
