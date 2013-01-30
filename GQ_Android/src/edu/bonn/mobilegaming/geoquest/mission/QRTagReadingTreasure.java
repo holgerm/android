@@ -73,7 +73,8 @@ import edu.bonn.mobilegaming.geoquest.Variables;
  * @author Holger Muegge
  */
 
-public class QRTagReadingTreasure extends InteractiveMission implements OnClickListener {
+public class QRTagReadingTreasure extends InteractiveMission implements
+	OnClickListener {
     private static final String TAG = "QRTagReading";
 
     /** button to start the QRTag Reader */
@@ -87,13 +88,6 @@ public class QRTagReadingTreasure extends InteractiveMission implements OnClickL
 
     private int buttonMode;
 
-    private static final int TREASURE = 1;
-    private static final int PRODUCT = 2;
-    private int missionMode = TREASURE;
-
-    private CharSequence expectedContent;
-    private CharSequence ifWrongText;
-    private CharSequence ifRightText;
     private CharSequence feedbackText;
     private CharSequence endButtonText;
     private CharSequence scanButtonText;
@@ -125,21 +119,8 @@ public class QRTagReadingTreasure extends InteractiveMission implements OnClickL
 	imageView = (ImageView) findViewById(R.id.qrImageView);
 	setImage("initial_image");
 
-	// init mode and dependent attributes:
-	String modeAsString = mission.xmlMissionNode.attributeValue("mode");
-	if (modeAsString == null || modeAsString.equals("treasure")) {
-	    this.missionMode = TREASURE;
-	    this.feedbackText = getMissionAttribute("feedbacktext",
-						    R.string.qrtagreader_treasure_feedback);
-	} else if (modeAsString.equals("product")) {
-	    this.missionMode = PRODUCT;
-	    this.expectedContent = getMissionAttribute("expected_content",
-						       XMLUtilities.NECESSARY_ATTRIBUTE);
-	    this.ifRightText = getMissionAttribute("if_right",
-						   R.string.qrtagreader_product_ifright);
-	    this.ifWrongText = getMissionAttribute("if_wrong",
-						   R.string.qrtagreader_product_ifwrong);
-	}
+	this.feedbackText = getMissionAttribute("feedbacktext",
+						R.string.qrtagreader_treasure_feedback);
     }
 
     private void setImage(String attributeName) {
@@ -244,37 +225,14 @@ public class QRTagReadingTreasure extends InteractiveMission implements OnClickL
 	    Variables.registerMissionResult(mission.id,
 					    scannedResult);
 
-	    // handle scan result depending on mode:
-	    switch (missionMode) {
-	    case TREASURE:
-		taskTextView.setText(this.feedbackText.toString()
-			.replaceAll(TOKEN_SCAN_RESULT,
-				    scannedResult));
-		setImage("if_right_image");
-		buttonMode = END_MISSION;
-		okButton.setText(endButtonText);
-		invokeOnSuccessEvents();
-		break;
-	    case PRODUCT:
-		// check content:
-		if (this.expectedContent.toString().equals(scannedResult)) {
-		    taskTextView.setText(this.ifRightText);
-		    setImage("if_right_image");
-		    buttonMode = END_MISSION;
-		    okButton.setText(endButtonText);
-		    invokeOnSuccessEvents();
-		} else {
-		    taskTextView.setText(this.ifWrongText);
-		    setImage("if_wrong_image");
-		    buttonMode = START_SCAN;
-		    okButton.setText(scanButtonText);
-		    invokeOnFailEvents();
-		}
-		break;
-	    default:
-		Log.e(TAG,
-		      "undefined QRTagReading mission mode: " + missionMode);
-	    }
+	    // handle scan result:
+	    taskTextView.setText(this.feedbackText.toString()
+		    .replaceAll(TOKEN_SCAN_RESULT,
+				scannedResult));
+	    setImage("if_right_image");
+	    buttonMode = END_MISSION;
+	    okButton.setText(endButtonText);
+	    performFinish(scannedResult);
 	} else {
 	    buttonMode = START_SCAN;
 	    okButton.setText(scanButtonText);
@@ -292,4 +250,12 @@ public class QRTagReadingTreasure extends InteractiveMission implements OnClickL
 	// TODO Auto-generated method stub
 
     }
+
+    private void performFinish(String result) {
+	Variables.registerMissionResult(mission.id,
+					result);
+	invokeOnSuccessEvents();
+	finish(Globals.STATUS_SUCCESS);
+    }
+
 }
