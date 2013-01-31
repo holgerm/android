@@ -36,7 +36,7 @@ public class MissionStateCondition extends Condition {
 
 	@Override
 	public boolean isFulfilled() {
-		return (((Double)Variables.getValue(id + Variables.STATUS_SUFFIX))
+		return (((Double)Variables.getValue(Variables.SYSTEM_PREFIX + id + Variables.STATUS_SUFFIX))
 				.equals(state));
 	}
 
