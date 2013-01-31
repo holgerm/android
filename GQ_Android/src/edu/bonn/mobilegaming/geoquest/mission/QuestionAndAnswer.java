@@ -235,7 +235,7 @@ public class QuestionAndAnswer extends InteractiveMission {
 			if (exit) {
 				missionResultInPercent = (correctAnswers / questions.size()) * 100;
 				if (correctAnswers >= correctAnswersNeeded) {
-					finish(Globals.STATUS_SUCCESS);
+					finish(Globals.STATUS_SUCCEEDED);
 				} else {
 					finishAsFailedOrLoop();
 				}
@@ -253,7 +253,7 @@ public class QuestionAndAnswer extends InteractiveMission {
 					ll.removeAllViews();
 					if (correctAnswers >= correctAnswersNeeded) {
 						if (outroSuccessText == null) {
-							finish(Globals.STATUS_SUCCESS);
+							finish(Globals.STATUS_SUCCEEDED);
 						} else {
 							tv.setText(replaceTokens(outroSuccessText));
 						}

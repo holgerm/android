@@ -143,10 +143,10 @@ public class MultipleChoiceQuestion extends InteractiveMission {
 		    if (!selectedAnswer.correct) {
 			setMode(MODE_QUESTION);
 		    } else {
-			finish(Globals.STATUS_SUCCESS);
+			finish(Globals.STATUS_SUCCEEDED);
 		    }
 		} else {
-		    finish(selectedAnswer.correct ? Globals.STATUS_SUCCESS
+		    finish(selectedAnswer.correct ? Globals.STATUS_SUCCEEDED
 			    : Globals.STATUS_FAIL);
 		}
 	    }

@@ -235,7 +235,7 @@ public class Mission implements Serializable {
 	if (cancelstr == null || cancelstr.equals("no")) {
 	    cancelStatus = 0.0;
 	} else if (cancelstr.equals("success")) {
-	    cancelStatus = Globals.STATUS_SUCCESS;
+	    cancelStatus = Globals.STATUS_SUCCEEDED;
 	} else if (cancelstr.equals("fail")) {
 	    cancelStatus = Globals.STATUS_FAIL;
 	} else if (cancelstr.equals("new")) {

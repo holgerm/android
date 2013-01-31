@@ -89,7 +89,7 @@ public class Info extends MissionActivity {
 		proceedButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				finish(Globals.STATUS_SUCCESS);
+				finish(Globals.STATUS_SUCCEEDED);
 			}
 
 		});

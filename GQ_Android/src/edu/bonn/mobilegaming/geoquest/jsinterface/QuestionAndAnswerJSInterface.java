@@ -30,7 +30,7 @@ public class QuestionAndAnswerJSInterface {
 	 */
 	public void endMission(boolean success) {
 		if (success) {
-			webTechView.endWebMission(Globals.STATUS_SUCCESS);
+			webTechView.endWebMission(Globals.STATUS_SUCCEEDED);
 		} else {
 			webTechView.endWebMission(Globals.STATUS_FAIL);
 		}

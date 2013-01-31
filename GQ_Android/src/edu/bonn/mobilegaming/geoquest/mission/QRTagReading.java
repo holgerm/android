@@ -169,7 +169,7 @@ public class QRTagReading extends InteractiveMission implements OnClickListener 
     public void onClick(View v) {
 	switch (buttonMode) {
 	case END_MISSION:
-	    finish(Globals.STATUS_SUCCESS);
+	    finish(Globals.STATUS_SUCCEEDED);
 	    break;
 	case START_SCAN:
 	    Intent intentScan = new Intent(

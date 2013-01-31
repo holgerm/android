@@ -41,7 +41,7 @@ public class StartAndExitScreen extends MissionActivity {
 			imageView.setOnClickListener(new OnClickListener() {
 
 				public void onClick(View v) {
-					finish(Globals.STATUS_SUCCESS);
+					finish(Globals.STATUS_SUCCEEDED);
 				}
 			});
 		} else {
@@ -89,7 +89,7 @@ public class StartAndExitScreen extends MissionActivity {
 
 		@Override
 		public void onFinish() {
-			finish(Globals.STATUS_SUCCESS);
+			finish(Globals.STATUS_SUCCEEDED);
 		}
 
 		@Override

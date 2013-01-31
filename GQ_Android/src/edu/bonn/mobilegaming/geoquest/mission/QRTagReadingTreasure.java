@@ -152,7 +152,7 @@ public class QRTagReadingTreasure extends InteractiveMission implements
     public void onClick(View v) {
 	switch (buttonMode) {
 	case END_MISSION:
-	    finish(Globals.STATUS_SUCCESS);
+	    finish(Globals.STATUS_SUCCEEDED);
 	    break;
 	case START_SCAN:
 	    Intent intentScan = new Intent(

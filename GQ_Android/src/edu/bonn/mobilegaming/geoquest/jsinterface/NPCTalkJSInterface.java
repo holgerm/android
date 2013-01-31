@@ -46,7 +46,7 @@ public class NPCTalkJSInterface {
      * Function that is called by the JS-File, when the mission is finished.
      */
     public void endMission() {
-	webTechView.endWebMission(Globals.STATUS_SUCCESS);
+	webTechView.endWebMission(Globals.STATUS_SUCCEEDED);
     }
 
     /**

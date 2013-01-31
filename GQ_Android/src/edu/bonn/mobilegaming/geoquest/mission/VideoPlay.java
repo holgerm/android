@@ -95,7 +95,7 @@ public class VideoPlay extends InteractiveMission {
 				       public void
 					       onClick(DialogInterface dialog,
 						       int which) {
-					   finish(Globals.STATUS_SUCCESS);
+					   finish(Globals.STATUS_SUCCEEDED);
 				       }
 				   }).show();
 	exitDialog
@@ -118,7 +118,7 @@ public class VideoPlay extends InteractiveMission {
 				       public void
 					       onClick(DialogInterface dialog,
 						       int which) {
-					   finish(Globals.STATUS_SUCCESS);
+					   finish(Globals.STATUS_SUCCEEDED);
 				       }
 				   }).show();
 	exitDialog

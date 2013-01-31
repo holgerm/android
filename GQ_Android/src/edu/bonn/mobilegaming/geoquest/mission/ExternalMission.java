@@ -120,7 +120,7 @@ public class ExternalMission extends MissionActivity {
 
 		textView.setText(getMissionAttribute("result",
 				R.string.external_mission_result_default));
-		finish(Globals.STATUS_SUCCESS);
+		finish(Globals.STATUS_SUCCEEDED);
 	}
 
 	/**

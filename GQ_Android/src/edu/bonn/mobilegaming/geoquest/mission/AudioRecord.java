@@ -409,7 +409,7 @@ public class AudioRecord extends InteractiveMission {
 	Variables.registerMissionResult(mission.id,
 					mFileName.toString());
 	invokeOnSuccessEvents();
-	finish(Globals.STATUS_SUCCESS);
+	finish(Globals.STATUS_SUCCEEDED);
     }
 
     public void onBlockingStateUpdated(boolean blocking) {

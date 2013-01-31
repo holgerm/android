@@ -37,7 +37,7 @@
 
 	<rule>
 		<if>
-			<missionState id="m_success" state="success" />
+			<missionState id="m_success" state="succeeded" />
 		</if>
 		<action type="SetVariable" var="v_success">
 			<value>

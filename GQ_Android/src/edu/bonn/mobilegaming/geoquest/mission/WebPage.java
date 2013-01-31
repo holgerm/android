@@ -95,7 +95,7 @@ public class WebPage extends MissionActivity implements OnClickListener {
      * else the next dialogItem is shown.
      */
     public void onClick(View v) {
-	finish(Globals.STATUS_SUCCESS);
+	finish(Globals.STATUS_SUCCEEDED);
 	return;
     }
 

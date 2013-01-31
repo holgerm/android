@@ -107,7 +107,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 
 	if (!dialogItemIterator.hasNext()) {
 	    new TransitionItem(this);
-	    finish(Globals.STATUS_SUCCESS);
+	    finish(Globals.STATUS_SUCCEEDED);
 	    return;
 	}
 	currItem = dialogItemIterator.next();
@@ -220,7 +220,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
      */
     public void onClick(View v) {
 	if (currItem == null) { // Am Ende
-	    finish(Globals.STATUS_SUCCESS);
+	    finish(Globals.STATUS_SUCCEEDED);
 	    return;
 	} else {
 	    gotoNextDialogItem();

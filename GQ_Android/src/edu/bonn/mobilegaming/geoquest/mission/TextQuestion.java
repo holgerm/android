@@ -175,7 +175,7 @@ public class TextQuestion extends InteractiveMission {
 		    else
 			finish(Globals.STATUS_FAIL);
 		else
-		    finish(Globals.STATUS_SUCCESS);
+		    finish(Globals.STATUS_SUCCEEDED);
 	    }
 	};
     }

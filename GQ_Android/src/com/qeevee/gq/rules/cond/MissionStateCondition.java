@@ -13,7 +13,7 @@ public class MissionStateCondition extends Condition {
 	private static Map<String, Double> stateMap = new HashMap<String, Double>();
 	static {
 		stateMap.put("new", Double.valueOf(Globals.STATUS_NEW));
-		stateMap.put("success", Double.valueOf(Globals.STATUS_SUCCESS));
+		stateMap.put("succeeded", Double.valueOf(Globals.STATUS_SUCCEEDED));
 		stateMap.put("failed", Double.valueOf(Globals.STATUS_FAIL));
 		stateMap.put("running", Double.valueOf(Globals.STATUS_RUNNING));
 	}

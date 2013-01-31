@@ -124,7 +124,7 @@ public class ImageCapture extends MissionActivity implements OnClickListener {
 				   TAKE_PICTURE);
 	    break;
 	case AFTER_UPLOAD:
-	    finish(Globals.STATUS_SUCCESS);
+	    finish(Globals.STATUS_SUCCEEDED);
 	    break;
 	}
 	return;
