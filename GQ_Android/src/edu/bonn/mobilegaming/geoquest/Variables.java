@@ -66,13 +66,14 @@ public class Variables {
 	 * Returns the value for a given key, i.e. variable name.
 	 * 
 	 * All variable names are trimmed strings, i.e. leading and trailing
-	 * whitespaces are removed inside the get and set methods here. inner white
+	 * whitespaces are removed inside the get and set methods here. Inner white
 	 * space is not removed and is allowed, although not very readable in the
 	 * specification.
 	 * 
+	 * 
 	 * @param varName
 	 *            [HOTSPOT_PREFIX]{id}{SUFFIX}
-	 * @return
+	 * @return the stored value or if no variable among that name is stored "0.0"
 	 */
 	public static Object getValue(String var) {
 		String varName = var.trim();
@@ -114,8 +115,6 @@ public class Variables {
 						+ varName + " undefined");
 			}
 		} else if (!variables.containsKey(varName)) {
-			// throw new IllegalArgumentException("Variable " + varName +
-			// " undefined");
 			setValue(varName, 0.0d);
 		}
 		return variables.get(varName);
