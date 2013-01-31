@@ -2,22 +2,22 @@
 
 <test>
 	<rule>
-		<action type="SetVariable" var="m_new.state">
+		<action type="SetVariable" var="$_m_new.state">
 			<value>
 				<num>1</num>
 			</value>
 		</action>
-		<action type="SetVariable" var="m_success.state">
+		<action type="SetVariable" var="$_m_success.state">
 			<value>
 				<num>2</num>
 			</value>
 		</action>
-		<action type="SetVariable" var="m_failed.state">
+		<action type="SetVariable" var="$_m_failed.state">
 			<value>
 				<num>4</num>
 			</value>
 		</action>
-		<action type="SetVariable" var="m_running.state">
+		<action type="SetVariable" var="$_m_running.state">
 			<value>
 				<num>8</num>
 			</value>
