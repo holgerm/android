@@ -158,12 +158,22 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
     private void readXML() {
 
 	// try to load the image:
-	String imgsrc = null;
+	String relPathToImageFile = null;
 	try {
-	    imgsrc = getMissionAttribute("image",
-					 XMLUtilities.NECESSARY_ATTRIBUTE)
+	    relPathToImageFile = getMissionAttribute("image",
+						     XMLUtilities.OPTIONAL_ATTRIBUTE)
 		    .toString();
 	} catch (IllegalArgumentException iae) {
+	    Log.e(TAG,
+		  "The image attribute is optional. This exception SHOULD NOT occur!");
+	}
+	Bitmap bitmap = BitmapUtil.loadBitmap(relPathToImageFile,
+					      true);
+	if (bitmap != null) {
+	    charImage.setImageBitmap(bitmap);
+	    charImage.setRelativePathToImageBitmap(relPathToImageFile);
+	} else {
+	    charImage.setVisibility(View.GONE);
 	}
 
 	// Prepare endButtonText:
@@ -189,22 +199,6 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 		    .toString();
 	} else {
 	    this.nextDialogButtonText = ndbt;
-	}
-
-	// try to load image, make image element invisible, if failed
-	Bitmap bitmap = null;
-	try {
-	    if (imgsrc != null) {
-		bitmap = BitmapUtil.loadBitmap(imgsrc,
-						true);
-	    }
-	} catch (IllegalArgumentException iae) {
-	}
-
-	if (bitmap != null) {
-	    charImage.setImageBitmap(bitmap);
-	} else {
-	    charImage.setVisibility(ZoomImageView.INVISIBLE);
 	}
 
 	// Load Dialog Items:

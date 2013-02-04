@@ -23,9 +23,8 @@ import edu.bonn.mobilegaming.geoquest.R;
 
 public class BitmapUtil {
 
-    public static Bitmap scaleBitmapToScreenWidth(Bitmap origBitmap,
-						  Context context) {
-	WindowManager wm = (WindowManager) context
+    public static Bitmap scaleBitmapToScreenWidth(Bitmap origBitmap) {
+	WindowManager wm = (WindowManager) GeoQuestApp.getContext()
 		.getSystemService(Context.WINDOW_SERVICE);
 	int newWidth = wm.getDefaultDisplay().getWidth();
 	float scaleBy = ((float) newWidth) / origBitmap.getWidth();
@@ -123,8 +122,7 @@ public class BitmapUtil {
 	Bitmap bitmap = readBitmapFromFile(bitmapFilePath,
 					   GeoQuestApp.getContext());
 	if (scale)
-	    bitmap = scaleBitmapToScreenWidth(bitmap,
-					      GeoQuestApp.getContext());
+	    bitmap = scaleBitmapToScreenWidth(bitmap);
 	return bitmap;
     }
 

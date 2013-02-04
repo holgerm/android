@@ -89,6 +89,7 @@ public class ImageCapture extends MissionActivity implements OnClickListener {
 	    this.imageView.setImageBitmap(BitmapUtil
 		    .loadBitmap(imagePath.toString(),
 				true));
+	    this.imageView.setRelativePathToImageBitmap(imagePath.toString());
 	} else {
 	    // unset imageview:
 	    this.imageView.setVisibility(View.GONE);
