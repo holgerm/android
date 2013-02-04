@@ -20,6 +20,7 @@ import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.gq.xml.XMLUtilities;
+import com.qeevee.ui.BitmapUtil;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
@@ -194,7 +195,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	Bitmap bitmap = null;
 	try {
 	    if (imgsrc != null) {
-		bitmap = GeoQuestApp.loadBitmap(imgsrc,
+		bitmap = BitmapUtil.loadBitmap(imgsrc,
 						true);
 	    }
 	} catch (IllegalArgumentException iae) {

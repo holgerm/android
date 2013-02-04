@@ -20,7 +20,6 @@ import com.qeevee.gq.items.ItemFactory;
 import com.qeevee.gq.items.ItemFlipperManager;
 import com.qeevee.ui.BitmapUtil;
 
-import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 
@@ -71,7 +70,7 @@ public class Info extends MissionActivity {
 		ImageView imageView = (ImageView) findViewById(R.id.item_image_view_id);
 		String imagePath = mission.xmlMissionNode.attributeValue("image");
 		Bitmap imageBitmap = BitmapUtil.getRoundedCornerBitmap(
-				GeoQuestApp.loadBitmap(imagePath, false), 7);
+				BitmapUtil.loadBitmap(imagePath, false), 7);
 		imageView.setImageBitmap(imageBitmap);
 	}
 
@@ -79,7 +78,7 @@ public class Info extends MissionActivity {
 		ViewGroup layout = (ViewGroup) findViewById(R.id.infoLayout);
 		String backgroundImagePath = mission.xmlMissionNode
 				.attributeValue("background");
-		Bitmap backgoundBitmap = GeoQuestApp.loadBitmap(backgroundImagePath,
+		Bitmap backgoundBitmap = BitmapUtil.loadBitmap(backgroundImagePath,
 				false);
 		layout.setBackgroundDrawable(new BitmapDrawable(backgoundBitmap));
 	}

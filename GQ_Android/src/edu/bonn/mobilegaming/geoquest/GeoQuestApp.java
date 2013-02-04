@@ -25,7 +25,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.Environment;
@@ -36,7 +35,6 @@ import android.widget.Toast;
 
 import com.google.android.maps.MapView;
 import com.qeevee.gq.res.ResourceManager;
-import com.qeevee.ui.BitmapUtil;
 
 import edu.bonn.mobilegaming.geoquest.adaptioninterfaces.AdaptionEngineInterface;
 import edu.bonn.mobilegaming.geoquest.gameaccess.GameDataManager;
@@ -712,27 +710,6 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
      */
     public boolean isRepoDataLoaded() {
 	return repoDataAvailable;
-    }
-
-    /**
-     * Loads a Bitmap and optionally scales it to the actual screen width.
-     * 
-     * @param scale
-     *            if true the bitmap is scaled to the current screen width, else
-     *            it is loaded as it is.
-     * @param ressourcePath
-     *            as given in the game.xml to specify e.g. images
-     * @return
-     */
-    public static Bitmap loadBitmap(String relativeResourcePath,
-				    boolean scale) {
-	File bitmapFile = getGameRessourceFile(relativeResourcePath);
-	Bitmap bitmap = BitmapUtil.readBitmapFromFile(bitmapFile,
-						      getContext());
-	if (scale)
-	    bitmap = BitmapUtil.scaleBitmapToScreenWidth(bitmap,
-							 getContext());
-	return (bitmap);
     }
 
     public static void resetAdaptionEngine() {

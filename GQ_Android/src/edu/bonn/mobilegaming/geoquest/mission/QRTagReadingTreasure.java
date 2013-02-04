@@ -17,8 +17,8 @@ import android.widget.TextView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.qeevee.gq.xml.XMLUtilities;
+import com.qeevee.ui.BitmapUtil;
 
-import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
@@ -130,7 +130,7 @@ public class QRTagReadingTreasure extends InteractiveMission implements
 						     XMLUtilities.OPTIONAL_ATTRIBUTE);
 	if (imagePath != null) {
 	    this.imageView.setVisibility(View.VISIBLE);
-	    this.imageView.setImageBitmap(GeoQuestApp
+	    this.imageView.setImageBitmap(BitmapUtil
 		    .loadBitmap(imagePath.toString(),
 				true));
 	} else {

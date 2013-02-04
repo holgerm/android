@@ -1,6 +1,9 @@
 package com.qeevee.ui;
 
 import java.io.File;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +18,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
 import android.view.WindowManager;
+import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.R;
 
 public class BitmapUtil {
@@ -37,8 +41,14 @@ public class BitmapUtil {
 				   true);
     }
 
-    public static Bitmap readBitmapFromFile(File file,
-					    Context context) {
+    /**
+     * @param filePath
+     * @param context
+     * @return the bitmap decoded from the given file or null, if no bitmap
+     *         could be decoded.
+     */
+    private static Bitmap readBitmapFromFile(String filePath,
+					     Context context) {
 	// WindowManager wm = (WindowManager)
 	// context.getSystemService(Context.WINDOW_SERVICE);
 	// DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -51,16 +61,17 @@ public class BitmapUtil {
 	// options.inTargetDensity = displayMetrics.densityDpi;
 	// options.inScaled = true;
 
-	String filePath = file.getAbsolutePath();
-	Bitmap bitmap = BitmapFactory.decodeFile(filePath,
+	String completedFilePath = completeImageFileSuffix(filePath);
+
+	Bitmap bitmap = BitmapFactory.decodeFile(completedFilePath,
 						 options);
 	if (bitmap == null) {
 	    Log.d(BitmapUtil.class.getCanonicalName(),
-		  "Could not decode bitmap from file " + file.getAbsolutePath());
+		  "Could not decode bitmap from file " + filePath);
 	    bitmap = BitmapFactory.decodeResource(context.getResources(),
 						  R.drawable.missingbitmap);
 	}
-	return (bitmap);
+	return bitmap;
     }
 
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap,
@@ -96,4 +107,65 @@ public class BitmapUtil {
 	return output;
     }
 
+    /**
+     * Loads a Bitmap and optionally scales it to the actual screen width.
+     * 
+     * @param scale
+     *            if true the bitmap is scaled to the current screen width, else
+     *            it is loaded as it is.
+     * @param ressourcePath
+     *            as given in the game.xml to specify e.g. images
+     * @return
+     */
+    public static Bitmap loadBitmap(String relativeResourcePath,
+				    boolean scale) {
+	String bitmapFilePath = getGameBitmapFile(relativeResourcePath);
+	Bitmap bitmap = readBitmapFromFile(bitmapFilePath,
+					   GeoQuestApp.getContext());
+	if (scale)
+	    bitmap = scaleBitmapToScreenWidth(bitmap,
+					      GeoQuestApp.getContext());
+	return bitmap;
+    }
+
+    private static String getGameBitmapFile(String ressourceFilePath) {
+	String resourcePath = GeoQuestApp.getRunningGameDir().getAbsolutePath()
+		+ "/" + ressourceFilePath;
+	resourcePath = completeImageFileSuffix(resourcePath);
+	File file = new File(resourcePath);
+	if (file.exists() && file.canRead())
+	    return resourcePath;
+	else
+	    throw new IllegalArgumentException(
+		    "No ressource file found at path \"" + resourcePath + "\".");
+    }
+
+    private static Set<String> KNOWN_BITMAP_SUFFIXES = new HashSet<String>();
+    static {
+	KNOWN_BITMAP_SUFFIXES.add("png");
+	KNOWN_BITMAP_SUFFIXES.add("jpg");
+    };
+
+    private static String completeImageFileSuffix(String absolutePath) {
+	if (hasKnownImageSuffix(absolutePath))
+	    return absolutePath;
+	else if (new File(absolutePath + ".png").canRead())
+	    return absolutePath + ".png";
+	else if (new File(absolutePath + ".jpg").canRead())
+	    return absolutePath + ".jpg";
+	else
+	    throw new IllegalArgumentException(
+		    "Invalid image path (not found): " + absolutePath);
+    }
+
+    private static boolean hasKnownImageSuffix(String path) {
+	int suffixStartingIndex = path.lastIndexOf('.');
+	if (suffixStartingIndex <= 0)
+	    return false;
+	else {
+	    String suffix = path.substring(suffixStartingIndex + 1)
+		    .toLowerCase(Locale.US);
+	    return KNOWN_BITMAP_SUFFIXES.contains(suffix);
+	}
+    }
 }

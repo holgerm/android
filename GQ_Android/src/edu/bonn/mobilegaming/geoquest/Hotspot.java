@@ -10,6 +10,7 @@ import android.location.Location;
 
 import com.qeevee.gq.rules.Rule;
 import com.qeevee.gq.xml.GQML_DEFAULTS;
+import com.qeevee.ui.BitmapUtil;
 
 import edu.bonn.mobilegaming.geoquest.HotspotOld.IllegalHotspotNodeException;
 
@@ -143,7 +144,7 @@ public class Hotspot {
 
 	public Bitmap getIconBitmap() {
 		// TODO retrieve from BitmapPool
-		return GeoQuestApp.loadBitmap(iconFilePath, false);
+		return BitmapUtil.loadBitmap(iconFilePath, false);
 	}
 
 }

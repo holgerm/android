@@ -24,6 +24,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.Projection;
 import com.qeevee.gq.rules.Rule;
+import com.qeevee.ui.BitmapUtil;
 
 import edu.bonn.mobilegaming.geoquest.mission.Mission;
 
@@ -333,7 +334,7 @@ public class HotspotOld /* extends Overlay */{
 	// image
 	String imgsrc = _hotspotNode.attributeValue("img");
 	if (imgsrc != null) {
-	    setBitmap(GeoQuestApp.loadBitmap(imgsrc,
+	    setBitmap(BitmapUtil.loadBitmap(imgsrc,
 					     false));
 	} else {
 	    setBitmap(((BitmapDrawable) GeoQuestApp.getInstance()
