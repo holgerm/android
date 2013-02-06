@@ -9,9 +9,9 @@ import org.dom4j.Element;
 
 import android.util.Log;
 import edu.bonn.mobilegaming.geoquest.Globals;
+import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.mission.DialogItem;
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
 import edu.bonn.mobilegaming.geoquest.mission.WebTech;
 
 /**

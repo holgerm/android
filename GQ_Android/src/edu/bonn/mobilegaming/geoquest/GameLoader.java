@@ -31,8 +31,6 @@ import android.util.Log;
 import edu.bonn.mobilegaming.geoquest.adaptioninterfaces.AdaptionEngineInterface;
 import edu.bonn.mobilegaming.geoquest.contextmanager.xmlTagsContext;
 import edu.bonn.mobilegaming.geoquest.gameaccess.GameDataManager;
-import edu.bonn.mobilegaming.geoquest.mission.AlternativeMission;
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
 
 public class GameLoader {
 

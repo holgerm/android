@@ -6,7 +6,7 @@ import org.dom4j.Element;
 
 import com.qeevee.gq.xml.XMLUtilities;
 
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
+import edu.bonn.mobilegaming.geoquest.Mission;
 
 public class StartExternalMission extends StartMission {
 

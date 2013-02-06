@@ -41,7 +41,6 @@ import edu.bonn.mobilegaming.geoquest.gameaccess.GameDataManager;
 import edu.bonn.mobilegaming.geoquest.gameaccess.GameItem;
 import edu.bonn.mobilegaming.geoquest.gameaccess.GeoQuestServerProxy;
 import edu.bonn.mobilegaming.geoquest.gameaccess.RepositoryItem;
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
 import edu.bonn.mobilegaming.geoquest.ui.InteractionBlocker;
 
 public class GeoQuestApp extends Application implements InteractionBlocker {

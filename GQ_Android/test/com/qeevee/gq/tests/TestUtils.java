@@ -23,8 +23,9 @@ import com.xtremelabs.robolectric.Robolectric;
 import edu.bonn.mobilegaming.geoquest.GameLoader;
 import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
+import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.Start;
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
+import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 
 public class TestUtils {
 
@@ -103,7 +104,7 @@ public class TestUtils {
 	GeoQuestActivity missionActivity = null;
 
 	try {
-	    missionClass = Class.forName(Mission.getPackageBaseName()
+	    missionClass = Class.forName(MissionActivity.getPackageBaseName()
 		    + missionType);
 	    missionActivity = (GeoQuestActivity) missionClass.newInstance();
 	} catch (InstantiationException e) {
@@ -121,7 +122,7 @@ public class TestUtils {
     }
 
     public static Start startGameForTest(String gameFileName) {
-	Start start = new Start();
+	Start start = new Start(); 
 	GeoQuestApp app = (GeoQuestApp) start.getApplication();
 	app.onCreate();
 	Mission.setMainActivity(start);

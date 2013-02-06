@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import edu.bonn.mobilegaming.geoquest.Globals;
+import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.ubonn.gq.extmissionhelper.ExternalMissionHelper;
