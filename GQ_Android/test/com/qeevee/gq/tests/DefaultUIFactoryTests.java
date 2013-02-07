@@ -1,5 +1,6 @@
 package com.qeevee.gq.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.lang.reflect.Method;
@@ -34,6 +35,12 @@ public class DefaultUIFactoryTests {
 	    shouldExistCreatorMethodInDefaultUIFactoryFor(missionTypeUnderTest);
 	    shouldExistAbstractCreatorMethodInUIFactoryFor(missionTypeUnderTest);
 	}
+    }
+
+    @Test
+    public void generateDefaultUIFactory() {
+	assertEquals(DefaultUIFactory.class,
+		     UIFactory.getInstance().getClass());
     }
 
     // === HELPER METHODS FOLLOW =============================================
@@ -81,6 +88,7 @@ public class DefaultUIFactoryTests {
 				 boolean concrete) {
 	String missionTypeName = missionTypeUnderTest.getSimpleName();
 	Class<?> expectedReturnType;
+	Class<?> missionActivityArgumentType;
 	try {
 	    expectedReturnType = Class.forName(MISSION_UI_PACKAGE
 		    + "."
@@ -95,12 +103,24 @@ public class DefaultUIFactoryTests {
 		    + " missing!");
 	    return false;
 	}
+	try {
+	    missionActivityArgumentType = Class.forName(MissionActivity
+		    .getPackageBaseName()
+		    + missionTypeName);
+	} catch (ClassNotFoundException e) {
+	    fail("Mission Activity type "
+		    + MissionActivity.getPackageBaseName()
+		    + "."
+		    + missionTypeName
+		    + " missing!");
+	    return false;
+	}
 	return nameFits(currentMethod,
 			missionTypeName)
 		&& returnTypeFits(currentMethod,
 				  expectedReturnType)
 		&& argumentsFit(currentMethod,
-				expectedReturnType)
+				missionActivityArgumentType)
 		&& concretenessFits(concrete,
 				    currentMethod);
     }
@@ -111,10 +131,11 @@ public class DefaultUIFactoryTests {
     }
 
     private boolean argumentsFit(Method currentMethod,
-				 Class<?> expectedReturnType) {
+				 Class<?> missionActivityArgumentType) {
 	Class<?>[] argumentTypes = currentMethod.getParameterTypes();
-	return argumentTypes.length == 1
-		&& argumentTypes[0].equals(Element.class);
+	return argumentTypes.length == 2
+		&& argumentTypes[0].equals(Element.class)
+		&& argumentTypes[1].equals(missionActivityArgumentType);
     }
 
     private boolean returnTypeFits(Method currentMethod,

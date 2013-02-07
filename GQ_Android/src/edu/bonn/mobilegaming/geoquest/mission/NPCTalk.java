@@ -27,6 +27,8 @@ import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.ui.InteractionBlocker;
+import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
+import edu.bonn.mobilegaming.geoquest.ui.UIFactory;
 
 /**
  * Just a talking NPC. The NPC has a Image and text is based on dialogItems. The
@@ -64,9 +66,15 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
 	Long start = System.currentTimeMillis();
 	super.onCreate(savedInstanceState);
-	setContentView(R.layout.npctalk);
+
+	// Create and initialize UI for this mission:
+	NPCTalkUI ui = UIFactory.getInstance()
+		.createNPCTalkUI(mission.xmlMissionNode, this);
+
+	setContentView(ui.getView());
 
 	charImage = (ZoomImageView) findViewById(R.id.npcimage);
 	proceedButton = (Button) findViewById(R.id.npctalkbutton);
