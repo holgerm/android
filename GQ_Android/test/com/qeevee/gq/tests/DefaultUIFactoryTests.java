@@ -2,7 +2,6 @@ package com.qeevee.gq.tests;
 
 import static org.junit.Assert.fail;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashSet;
@@ -16,6 +15,7 @@ import org.reflections.Reflections;
 
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 import edu.bonn.mobilegaming.geoquest.ui.DefaultUIFactory;
+import edu.bonn.mobilegaming.geoquest.ui.UIFactory;
 
 @RunWith(GQTestRunner.class)
 public class DefaultUIFactoryTests {
@@ -31,46 +31,83 @@ public class DefaultUIFactoryTests {
 
 	// THEN:
 	for (Class<? extends MissionActivity> missionTypeUnderTest : missionTypes) {
-	    shouldHaveCreatorMethod(missionTypeUnderTest);
+	    shouldExistCreatorMethodInDefaultUIFactoryFor(missionTypeUnderTest);
+	    shouldExistAbstractCreatorMethodInUIFactoryFor(missionTypeUnderTest);
 	}
     }
 
     // === HELPER METHODS FOLLOW =============================================
 
+    final static boolean CONCRETE = true;
+    final static boolean ABSTRACT = false;
+
+    private
+	    void
+	    shouldExistAbstractCreatorMethodInUIFactoryFor(Class<? extends MissionActivity> missionTypeUnderTest) {
+	Method[] methods = UIFactory.class.getDeclaredMethods();
+	boolean found = false;
+	for (int i = 0; i < methods.length
+		&& !found; i++) {
+	    Method currentMethod = methods[i];
+	    found |= creatorMethodFitsFor(missionTypeUnderTest,
+					  currentMethod,
+					  ABSTRACT);
+	}
+	if (!found)
+	    fail("Abstract method in UIFactory missing for mission type: "
+		    + missionTypeUnderTest.getName());
+    }
+
     private static final String MISSION_UI_PACKAGE = "edu.bonn.mobilegaming.geoquest.ui";
 
     private
 	    void
-	    shouldHaveCreatorMethod(Class<? extends MissionActivity> missionTypeUnderTest) {
-	// TODO Auto-generated method stub
+	    shouldExistCreatorMethodInDefaultUIFactoryFor(Class<? extends MissionActivity> missionTypeUnderTest) {
 	Method[] methods = DefaultUIFactory.class.getDeclaredMethods();
 	boolean found = false;
-	for (int i = 0; i < methods.length && !found; i++) {
+	for (int i = 0; i < methods.length
+		&& !found; i++) {
 	    Method currentMethod = methods[i];
 	    found |= creatorMethodFitsFor(missionTypeUnderTest,
-					  currentMethod);
+					  currentMethod,
+					  CONCRETE);
 	}
     }
 
     private
 	    boolean
 	    creatorMethodFitsFor(Class<? extends MissionActivity> missionTypeUnderTest,
-				 Method currentMethod) {
+				 Method currentMethod,
+				 boolean concrete) {
 	String missionTypeName = missionTypeUnderTest.getSimpleName();
 	Class<?> expectedReturnType;
 	try {
-	    expectedReturnType = Class.forName(MISSION_UI_PACKAGE + "."
-		    + missionTypeName + "UI");
+	    expectedReturnType = Class.forName(MISSION_UI_PACKAGE
+		    + "."
+		    + missionTypeName
+		    + "UI");
 	} catch (ClassNotFoundException e) {
-	    fail("UI type " + MISSION_UI_PACKAGE + "." + missionTypeName + "UI"
+	    fail("UI type "
+		    + MISSION_UI_PACKAGE
+		    + "."
+		    + missionTypeName
+		    + "UI"
 		    + " missing!");
 	    return false;
 	}
 	return nameFits(currentMethod,
-			missionTypeName) && returnTypeFits(currentMethod,
-							   expectedReturnType)
+			missionTypeName)
+		&& returnTypeFits(currentMethod,
+				  expectedReturnType)
 		&& argumentsFit(currentMethod,
-				expectedReturnType);
+				expectedReturnType)
+		&& concretenessFits(concrete,
+				    currentMethod);
+    }
+
+    private boolean concretenessFits(boolean concrete,
+				     Method currentMethod) {
+	return concrete != Modifier.isAbstract(currentMethod.getModifiers());
     }
 
     private boolean argumentsFit(Method currentMethod,
@@ -87,8 +124,9 @@ public class DefaultUIFactoryTests {
 
     private boolean nameFits(Method currentMethod,
 			     String missionTypeName) {
-	return currentMethod.getName()
-		.equals("create" + missionTypeName + "UI");
+	return currentMethod.getName().equals("create"
+		+ missionTypeName
+		+ "UI");
     }
 
     /**
@@ -116,7 +154,6 @@ public class DefaultUIFactoryTests {
     private
 	    boolean
 	    isNonDeprecated(Class<? extends MissionActivity> currentMissionTypeCandidate) {
-	Annotation[] annotations = currentMissionTypeCandidate.getAnnotations();
 	return !currentMissionTypeCandidate
 		.isAnnotationPresent(Deprecated.class);
     }

@@ -2,19 +2,10 @@ package edu.bonn.mobilegaming.geoquest.ui;
 
 import org.dom4j.Element;
 
-public class DefaultUIFactory {
+public class DefaultUIFactory extends UIFactory {
 
-    private static DefaultUIFactory instance;
-
-    private DefaultUIFactory() {
-
-    }
-
-    public static DefaultUIFactory getInstance() {
-	if (instance == null) {
-	    instance = new DefaultUIFactory();
-	}
-	return instance;
+    DefaultUIFactory() {
+	super();
     }
 
     public NPCTalkUI createNPCTalkUI(Element xmlMissionElement) {
