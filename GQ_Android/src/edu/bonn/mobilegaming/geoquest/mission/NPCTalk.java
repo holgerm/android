@@ -74,8 +74,6 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	NPCTalkUI ui = UIFactory.getInstance()
 		.createNPCTalkUI(mission.xmlMissionNode, this);
 
-	setContentView(ui.getView());
-
 	charImage = (ZoomImageView) findViewById(R.id.npcimage);
 	proceedButton = (Button) findViewById(R.id.npctalkbutton);
 	dialogText = (TextView) findViewById(R.id.npctext);

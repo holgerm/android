@@ -18,6 +18,7 @@ public class NPCTalkUIDefault extends NPCTalkUI {
 
 	view = inflater.inflate(R.layout.npctalk,
 			 null);
+	activity.setContentView(view);
     }
 
 }
