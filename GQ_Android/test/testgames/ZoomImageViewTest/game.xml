@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="ZoomImageViewTest"
+	xmlformat="5"
+>
+	<mission
+		type="NPCTalk"
+		id="WithCorrectPathToBitmap"
+		image="drawable/ploppschutz.png"
+	>
+		<dialogitem>This NPCTalk mission is here only to test the image which
+			should zoom when clicked.
+		</dialogitem>
+	</mission>
+	<mission
+		type="NPCTalk"
+		id="WithWrongPathToBitmap"
+		image="drawable/nonExistingFile.png"
+	>
+		<dialogitem>This NPCTalk mission is here only to test that the image
+			should not be shown at all since its file is missing.
+		</dialogitem>
+	</mission>
+	<mission
+		type="NPCTalk"
+		id="WithPathToNonBitmapFile"
+		image="drawable/thisIsNoBitmap.mp3"
+	>
+		<dialogitem>This NPCTalk mission is here only to test that the image
+			should not be shown at all since its file is missing.
+		</dialogitem>
+	</mission>
+</game>
