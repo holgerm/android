@@ -71,8 +71,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	super.onCreate(savedInstanceState);
 
 	// Create and initialize UI for this mission:
-	NPCTalkUI ui = UIFactory.getInstance()
-		.createNPCTalkUI(mission.xmlMissionNode, this);
+	NPCTalkUI ui = UIFactory.getInstance().createUI(this);
 
 	charImage = (ZoomImageView) findViewById(R.id.npcimage);
 	proceedButton = (Button) findViewById(R.id.npctalkbutton);
@@ -83,7 +82,9 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	readXML();
 	dialogItemIterator = dialogItems.iterator();
 	Log.d(TAG,
-	      "RuntimeMeasure " + (System.currentTimeMillis() - start) + " ms");
+	      "RuntimeMeasure "
+		      + (System.currentTimeMillis() - start)
+		      + " ms");
 	gotoNextDialogItem();
     }
 
@@ -98,7 +99,8 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	scrollView.fullScroll(View.FOCUS_DOWN);
 	int numParts = i.getNumParts();
 	final long milliseconds_per_part = 100;
-	long millisecondsInFuture = milliseconds_per_part * (numParts + 1); // +1
+	long millisecondsInFuture = milliseconds_per_part
+		* (numParts + 1); // +1
 	myCountDownTimer = new NPCTalk.TalkCountDownTimer(millisecondsInFuture,
 		milliseconds_per_part, i);
 	myCountDownTimer.start();
@@ -173,12 +175,9 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	    Log.e(TAG,
 		  "The image attribute is optional. This exception SHOULD NOT occur!");
 	}
-	Bitmap bitmap = BitmapUtil.loadBitmap(relPathToImageFile,
-					      true);
-	if (bitmap != null) {
-	    charImage.setImageBitmap(bitmap);
+	try {
 	    charImage.setRelativePathToImageBitmap(relPathToImageFile);
-	} else {
+	} catch (IllegalArgumentException iae) {
 	    charImage.setVisibility(View.GONE);
 	}
 
