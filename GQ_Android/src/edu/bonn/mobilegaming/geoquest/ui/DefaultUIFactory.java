@@ -21,68 +21,56 @@ public class DefaultUIFactory extends UIFactory {
 	super();
     }
 
-    public NPCTalkUI createNPCTalkUI(Element xmlMissionElement,
-				     NPCTalk activity) {
-	return new NPCTalkUIDefault(xmlMissionElement, activity);
+    public NPCTalkUI createUI(NPCTalk activity) {
+	return new NPCTalkUIDefault(activity);
     }
 
-    public ImageCaptureUI createImageCaptureUI(Element xmlMissionElement,
-					       ImageCapture activity) {
-	return new ImageCaptureUIDefault(xmlMissionElement);
+    public ImageCaptureUI createUI(ImageCapture activity) {
+	return new ImageCaptureUIDefault(activity);
     }
 
-    public ExternalMissionUI createExternalMissionUI(Element xmlMissionElement,
-						     ExternalMission activity) {
-	return new ExternalMissionUIDefault(xmlMissionElement);
+    public ExternalMissionUI createUI(ExternalMission activity) {
+	return new ExternalMissionUIDefault(activity);
     }
 
     public MultipleChoiceQuestionUI
-	    createMultipleChoiceQuestionUI(Element xmlMissionElement,
-					   MultipleChoiceQuestion activity) {
-	return new MultipleChoiceQuestionDefault(xmlMissionElement);
+	    createUI(MultipleChoiceQuestion activity) {
+	return new MultipleChoiceQuestionDefault(activity);
     }
 
-    public TextQuestionUI createTextQuestionUI(Element xmlMissionElement,
-					       TextQuestion activity) {
-	return new TextQuestionDefault(xmlMissionElement);
+    public TextQuestionUI createUI(TextQuestion activity) {
+	return new TextQuestionDefault(activity);
     }
 
-    public WebTechUI createWebTechUI(Element xmlMissionElement,
-				     WebTech activity) {
-	return new WebTechUIDefault(xmlMissionElement);
+    public WebTechUI createUI(WebTech activity) {
+	return new WebTechUIDefault(activity);
     }
 
-    public AudioRecordUI createAudioRecordUI(Element xmlMissionElement,
-					     AudioRecord activity) {
-	return new AudioRecordUIDefault(xmlMissionElement);
+    public AudioRecordUI createUI(AudioRecord activity) {
+	return new AudioRecordUIDefault(activity);
     }
 
-    public VideoPlayUI createVideoPlayUI(Element xmlMissionElement,
-					 VideoPlay activity) {
-	return new VideoPlayUIDefault(xmlMissionElement);
+    public VideoPlayUI createUI(VideoPlay activity) {
+	return new VideoPlayUIDefault(activity);
     }
 
-    public WebPageUI createWebPageUI(Element xmlMissionElement,
-				     WebPage activity) {
-	return new WebPageUIDefault(xmlMissionElement);
+    public WebPageUI createUI(WebPage activity) {
+	return new WebPageUIDefault(activity);
     }
 
     public StartAndExitScreenUI
-	    createStartAndExitScreenUI(Element xmlMissionElement,
-				       StartAndExitScreen activity) {
-	return new StartAndExitScreenUIDefault(xmlMissionElement);
+	    createUI(StartAndExitScreen activity) {
+	return new StartAndExitScreenUIDefault(activity);
     }
 
     public QRTagReadingTreasureUI
-	    createQRTagReadingTreasureUI(Element xmlMissionElement,
-					 QRTagReadingTreasure activity) {
-	return new QRTagReadingTreasureUIDefault(xmlMissionElement);
+	    createUI(QRTagReadingTreasure activity) {
+	return new QRTagReadingTreasureUIDefault(activity);
     }
 
     public QRTagReadingProductUI
-	    createQRTagReadingProductUI(Element xmlMissionElement,
-					QRTagReadingProduct activity) {
-	return new QRTagReadingProductUIDefault(xmlMissionElement);
+	    createUI(QRTagReadingProduct activity) {
+	return new QRTagReadingProductUIDefault(activity);
     }
 
 }

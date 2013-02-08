@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.dom4j.Element;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.reflections.Reflections;
@@ -133,9 +132,8 @@ public class DefaultUIFactoryTests {
     private boolean argumentsFit(Method currentMethod,
 				 Class<?> missionActivityArgumentType) {
 	Class<?>[] argumentTypes = currentMethod.getParameterTypes();
-	return argumentTypes.length == 2
-		&& argumentTypes[0].equals(Element.class)
-		&& argumentTypes[1].equals(missionActivityArgumentType);
+	return argumentTypes.length == 1
+		&& argumentTypes[0].equals(missionActivityArgumentType);
     }
 
     private boolean returnTypeFits(Method currentMethod,
@@ -143,10 +141,9 @@ public class DefaultUIFactoryTests {
 	return currentMethod.getReturnType().equals(expectedReturnType);
     }
 
-    private boolean nameFits(Method currentMethod,
+    private boolean nameFits(Method currentMethod, // TODO signature reduction
 			     String missionTypeName) {
 	return currentMethod.getName().equals("create"
-		+ missionTypeName
 		+ "UI");
     }
 

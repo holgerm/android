@@ -1,11 +1,11 @@
 package edu.bonn.mobilegaming.geoquest.ui;
 
-import org.dom4j.Element;
+import edu.bonn.mobilegaming.geoquest.mission.TextQuestion;
 
 public class TextQuestionDefault extends TextQuestionUI {
 
-    public TextQuestionDefault(Element xmlMissionElement) {
-	// TODO Auto-generated constructor stub
+    public TextQuestionDefault(TextQuestion activity) {
+	super(activity);
     }
 
 }

@@ -1,11 +1,11 @@
 package edu.bonn.mobilegaming.geoquest.ui;
 
-import org.dom4j.Element;
+import edu.bonn.mobilegaming.geoquest.mission.VideoPlay;
 
 public class VideoPlayUIDefault extends VideoPlayUI {
 
-    public VideoPlayUIDefault(Element xmlMissionElement) {
-	// TODO Auto-generated constructor stub
+    public VideoPlayUIDefault(VideoPlay activity) {
+	super(activity);
     }
 
 }

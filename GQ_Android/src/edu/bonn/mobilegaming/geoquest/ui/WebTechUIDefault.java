@@ -1,11 +1,11 @@
 package edu.bonn.mobilegaming.geoquest.ui;
 
-import org.dom4j.Element;
+import edu.bonn.mobilegaming.geoquest.mission.WebTech;
 
 public class WebTechUIDefault extends WebTechUI {
 
-    public WebTechUIDefault(Element xmlMissionElement) {
-	// TODO Auto-generated constructor stub
+    public WebTechUIDefault(WebTech activity) {
+	super(activity);
     }
 
 }

@@ -29,48 +29,33 @@ public abstract class UIFactory {
 	return instance;
     }
 
-    public abstract NPCTalkUI createNPCTalkUI(Element xmlMissionElement,
-					      NPCTalk activity);
+    public abstract NPCTalkUI createUI(NPCTalk activity);
 
-    public abstract ImageCaptureUI
-	    createImageCaptureUI(Element xmlMissionElement,
-				 ImageCapture activity);
+    public abstract ImageCaptureUI createUI(ImageCapture activity);
 
     public abstract ExternalMissionUI
-	    createExternalMissionUI(Element xmlMissionElement,
-				    ExternalMission activity);
+	    createUI(ExternalMission activity);
 
     public abstract MultipleChoiceQuestionUI
-	    createMultipleChoiceQuestionUI(Element xmlMissionElement,
-					   MultipleChoiceQuestion activity);
+	    createUI(MultipleChoiceQuestion activity);
 
-    public abstract TextQuestionUI
-	    createTextQuestionUI(Element xmlMissionElement,
-				 TextQuestion activity);
+    public abstract TextQuestionUI createUI(TextQuestion activity);
 
-    public abstract WebTechUI createWebTechUI(Element xmlMissionElement,
-					      WebTech activity);
+    public abstract WebTechUI createUI(WebTech activity);
 
-    public abstract AudioRecordUI
-	    createAudioRecordUI(Element xmlMissionElement,
-				AudioRecord activity);
+    public abstract AudioRecordUI createUI(AudioRecord activity);
 
-    public abstract VideoPlayUI createVideoPlayUI(Element xmlMissionElement,
-						  VideoPlay activity);
+    public abstract VideoPlayUI createUI(VideoPlay activity);
 
-    public abstract WebPageUI createWebPageUI(Element xmlMissionElement,
-					      WebPage activity);
+    public abstract WebPageUI createUI(WebPage activity);
 
     public abstract StartAndExitScreenUI
-	    createStartAndExitScreenUI(Element xmlMissionElement,
-				       StartAndExitScreen activity);
+	    createUI(StartAndExitScreen activity);
 
     public abstract QRTagReadingTreasureUI
-	    createQRTagReadingTreasureUI(Element xmlMissionElement,
-					 QRTagReadingTreasure activity);
+	    createUI(QRTagReadingTreasure activity);
 
     public abstract QRTagReadingProductUI
-	    createQRTagReadingProductUI(Element xmlMissionElement,
-					QRTagReadingProduct activity);
+	    createUI(QRTagReadingProduct activity);
 
 }

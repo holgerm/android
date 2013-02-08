@@ -1,11 +1,11 @@
 package edu.bonn.mobilegaming.geoquest.ui;
 
-import org.dom4j.Element;
+import edu.bonn.mobilegaming.geoquest.mission.ImageCapture;
 
 public class ImageCaptureUIDefault extends ImageCaptureUI {
 
-    public ImageCaptureUIDefault(Element xmlMissionElement) {
-	super(xmlMissionElement);
+    public ImageCaptureUIDefault(ImageCapture activity) {
+	super(activity);
 	// TODO Auto-generated constructor stub
     }
 

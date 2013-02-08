@@ -1,11 +1,11 @@
 package edu.bonn.mobilegaming.geoquest.ui;
 
-import org.dom4j.Element;
+import edu.bonn.mobilegaming.geoquest.mission.WebPage;
 
 public class WebPageUIDefault extends WebPageUI {
 
-    public WebPageUIDefault(Element xmlMissionElement) {
-	// TODO Auto-generated constructor stub
+    public WebPageUIDefault(WebPage activity) {
+	super(activity);
     }
 
 }
