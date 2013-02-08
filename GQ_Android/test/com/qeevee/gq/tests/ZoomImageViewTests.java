@@ -11,11 +11,13 @@ import android.view.View;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
+import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUIDefault;
 
 @RunWith(GQTestRunner.class)
 public class ZoomImageViewTests {
 
     NPCTalk npcTalkM;
+    NPCTalkUIDefault ui;
     ZoomImageView imageView;
 
     // === TESTS FOLLOW =============================================
@@ -69,7 +71,9 @@ public class ZoomImageViewTests {
 		.startMissionInGame("ZoomImageViewTest",
 				    "NPCTalk",
 				    "WithCorrectPathToBitmap");
-	imageView = (ZoomImageView) getFieldValue(npcTalkM,
+	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
+					      "ui");
+	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
     }
 
@@ -78,7 +82,9 @@ public class ZoomImageViewTests {
 		.startMissionInGame("ZoomImageViewTest",
 				    "NPCTalk",
 				    "WithWrongPathToBitmap");
-	imageView = (ZoomImageView) getFieldValue(npcTalkM,
+	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
+					      "ui");
+	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
     }
 
@@ -87,7 +93,9 @@ public class ZoomImageViewTests {
 		.startMissionInGame("ZoomImageViewTest",
 				    "NPCTalk",
 				    "WithPathToNonBitmapFile");
-	imageView = (ZoomImageView) getFieldValue(npcTalkM,
+	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
+					      "ui");
+	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
     }
 

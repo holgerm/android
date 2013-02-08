@@ -4,7 +4,7 @@ import android.view.View;
 import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 
 public abstract class GeoQuestUI {
-    
+
     GeoQuestActivity activity = null;
     View view = null;
 
@@ -14,6 +14,11 @@ public abstract class GeoQuestUI {
 	activity.setContentView(view);
     }
 
+    /**
+     * Creates a view and its components if needed.
+     * 
+     * @return
+     */
     abstract View createView();
 
 }

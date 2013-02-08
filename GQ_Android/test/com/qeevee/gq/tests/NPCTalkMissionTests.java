@@ -21,10 +21,12 @@ import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
+import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUIDefault;
 
 @RunWith(GQTestRunner.class)
 public class NPCTalkMissionTests {
     NPCTalk npcTalkM;
+    NPCTalkUIDefault ui;
     ZoomImageView imageView;
     TextView talkView;
     Button proceedBT;
@@ -34,7 +36,9 @@ public class NPCTalkMissionTests {
 	npcTalkM = (NPCTalk) TestUtils.setUpMissionTest("NPCTalk",
 							missionID);
 	npcTalkM.onCreate(null);
-	imageView = (ZoomImageView) getFieldValue(npcTalkM,
+	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
+					      "ui");
+	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
 	talkView = (TextView) getFieldValue(npcTalkM,
 					    "dialogText");
