@@ -70,7 +70,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	// Create and initialize UI for this mission:
 	ui = UIFactory.getInstance().createUI(this);
 
-	proceedButton = (Button) findViewById(R.id.npctalkbutton);
+	proceedButton = (Button) findViewById(R.id.proceedButton);
 	dialogText = (TextView) findViewById(R.id.npctext);
 	scrollView = (ScrollView) findViewById(R.id.npc_scroll_view);
 	proceedButton.setOnClickListener(this);
