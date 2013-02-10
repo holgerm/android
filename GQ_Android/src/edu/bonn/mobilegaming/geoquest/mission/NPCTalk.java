@@ -162,6 +162,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
     private void readXML() {
 
 	initImage();
+	initEndButtonText();
 
 	// Prepare endButtonText:
 	String ebt = mission.xmlMissionNode.attributeValue("endbuttontext");
@@ -194,6 +195,11 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	for (Iterator<Element> e = dialogItemList.iterator(); e.hasNext();) {
 	    dialogItems.addLast(new DialogItem(e.next()));
 	}
+    }
+
+    private void initEndButtonText() {
+	// TODO Auto-generated method stub
+	
     }
 
     private void initImage() {

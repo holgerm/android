@@ -10,4 +10,6 @@ public abstract class NPCTalkUI extends MissionUI {
 
     public abstract boolean setImage(String pathToImageFile);
 
+    public abstract void setEndButtonText(String endbuttontext);
+
 }

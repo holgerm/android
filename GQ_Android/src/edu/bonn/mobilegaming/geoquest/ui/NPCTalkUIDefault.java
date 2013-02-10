@@ -56,4 +56,10 @@ public class NPCTalkUIDefault extends NPCTalkUI {
 	}
     }
 
+    @Override
+    public void setEndButtonText(String endbuttontext) {
+	// TODO Auto-generated method stub
+	
+    }
+
 }
