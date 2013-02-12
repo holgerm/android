@@ -279,8 +279,9 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
     }
 
     public static boolean loadRepoData(GeoQuestProgressHandler handler) {
-	boolean result = loadRepoDataFromServer(handler);
-	result |= loadRepoDataFromClient(handler);
+//	boolean result = loadRepoDataFromServer(handler);
+//	result |= loadRepoDataFromClient(handler);
+	boolean result = loadRepoDataFromClient(handler);
 
 	handler.sendEmptyMessage(GeoQuestProgressHandler.MSG_FINISHED);
 
@@ -470,8 +471,7 @@ public class GeoQuestApp extends Application implements InteractionBlocker {
 		})[0];
 		Document doc = xmlReader.read(localGameFile);
 		XPath xpathSelector = DocumentHelper.createXPath("//game");
-		Element gameNode = (Element) xpathSelector.selectNodes(doc)
-			.get(0);
+		Element gameNode = (Element) xpathSelector.selectSingleNode(doc);
 		String localGameName = gameNode.attributeValue("name");
 
 		if (repoItem.gameNames().contains(localGameName)) {
