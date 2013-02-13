@@ -19,7 +19,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import edu.bonn.mobilegaming.geoquest.gameaccess.GameItem;
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
 import edu.bonn.mobilegaming.geoquest.ui.MenuMaker;
 import edu.bonn.mobilegaming.geoquest.views.GeoquestButton;
 

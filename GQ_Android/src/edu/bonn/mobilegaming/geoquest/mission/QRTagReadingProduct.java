@@ -73,7 +73,7 @@ import edu.bonn.mobilegaming.geoquest.Variables;
  * @author Holger Muegge
  */
 
-public class QRTagReading extends InteractiveMission implements OnClickListener {
+public class QRTagReadingProduct extends InteractiveMission implements OnClickListener {
     private static final String TAG = "QRTagReading";
 
     /** button to start the QRTag Reader */

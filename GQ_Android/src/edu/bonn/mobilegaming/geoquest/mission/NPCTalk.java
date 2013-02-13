@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.dom4j.Element;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -20,13 +19,13 @@ import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.gq.xml.XMLUtilities;
-import com.qeevee.ui.BitmapUtil;
-import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.ui.InteractionBlocker;
+import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
+import edu.bonn.mobilegaming.geoquest.ui.UIFactory;
 
 /**
  * Just a talking NPC. The NPC has a Image and text is based on dialogItems. The
@@ -40,8 +39,6 @@ import edu.bonn.mobilegaming.geoquest.ui.InteractionBlocker;
 public class NPCTalk extends MissionActivity implements OnClickListener {
     private static final String TAG = "NPCTalk";
 
-    /** image of the NPC */
-    private ZoomImageView charImage;
     /** button for the player to preceed / answer */
     private Button proceedButton;
     private String endButtonText;
@@ -57,6 +54,8 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
     /** Inside the scroolView is the textView so the text can scroll down/up */
     private ScrollView scrollView;
 
+    private NPCTalkUI ui;
+
     /**
      * Called by the android framework when the mission is created. Setups the
      * View and calls the readXML method to get the dialogItems. The dialog
@@ -64,12 +63,14 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
 	Long start = System.currentTimeMillis();
 	super.onCreate(savedInstanceState);
-	setContentView(R.layout.npctalk);
 
-	charImage = (ZoomImageView) findViewById(R.id.npcimage);
-	proceedButton = (Button) findViewById(R.id.npctalkbutton);
+	// Create and initialize UI for this mission:
+	ui = UIFactory.getInstance().createUI(this);
+
+	proceedButton = (Button) findViewById(R.id.proceedButton);
 	dialogText = (TextView) findViewById(R.id.npctext);
 	scrollView = (ScrollView) findViewById(R.id.npc_scroll_view);
 	proceedButton.setOnClickListener(this);
@@ -77,7 +78,9 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	readXML();
 	dialogItemIterator = dialogItems.iterator();
 	Log.d(TAG,
-	      "RuntimeMeasure " + (System.currentTimeMillis() - start) + " ms");
+	      "RuntimeMeasure "
+		      + (System.currentTimeMillis() - start)
+		      + " ms");
 	gotoNextDialogItem();
     }
 
@@ -92,7 +95,8 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	scrollView.fullScroll(View.FOCUS_DOWN);
 	int numParts = i.getNumParts();
 	final long milliseconds_per_part = 100;
-	long millisecondsInFuture = milliseconds_per_part * (numParts + 1); // +1
+	long millisecondsInFuture = milliseconds_per_part
+		* (numParts + 1); // +1
 	myCountDownTimer = new NPCTalk.TalkCountDownTimer(millisecondsInFuture,
 		milliseconds_per_part, i);
 	myCountDownTimer.start();
@@ -157,24 +161,8 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
     @SuppressWarnings("unchecked")
     private void readXML() {
 
-	// try to load the image:
-	String relPathToImageFile = null;
-	try {
-	    relPathToImageFile = getMissionAttribute("image",
-						     XMLUtilities.OPTIONAL_ATTRIBUTE)
-		    .toString();
-	} catch (IllegalArgumentException iae) {
-	    Log.e(TAG,
-		  "The image attribute is optional. This exception SHOULD NOT occur!");
-	}
-	Bitmap bitmap = BitmapUtil.loadBitmap(relPathToImageFile,
-					      true);
-	if (bitmap != null) {
-	    charImage.setImageBitmap(bitmap);
-	    charImage.setRelativePathToImageBitmap(relPathToImageFile);
-	} else {
-	    charImage.setVisibility(View.GONE);
-	}
+	initImage();
+	initEndButtonText();
 
 	// Prepare endButtonText:
 	String ebt = mission.xmlMissionNode.attributeValue("endbuttontext");
@@ -206,6 +194,24 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 		.selectNodes("./dialogitem");
 	for (Iterator<Element> e = dialogItemList.iterator(); e.hasNext();) {
 	    dialogItems.addLast(new DialogItem(e.next()));
+	}
+    }
+
+    private void initEndButtonText() {
+	// TODO Auto-generated method stub
+	
+    }
+
+    private void initImage() {
+	String relPathToImageFile = null;
+	try {
+	    relPathToImageFile = getMissionAttribute("image",
+						     XMLUtilities.OPTIONAL_ATTRIBUTE)
+		    .toString();
+	    ui.setImage(relPathToImageFile);
+	} catch (IllegalArgumentException iae) {
+	    Log.e(TAG,
+		  "The image attribute is optional. This exception SHOULD NOT occur!");
 	}
     }
 

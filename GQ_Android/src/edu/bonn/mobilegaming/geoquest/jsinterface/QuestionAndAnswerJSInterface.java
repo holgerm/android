@@ -5,7 +5,7 @@ package edu.bonn.mobilegaming.geoquest.jsinterface;
 
 import android.util.Log;
 import edu.bonn.mobilegaming.geoquest.Globals;
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
+import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.mission.WebTech;
 
 /**

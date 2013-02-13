@@ -4,6 +4,8 @@ import java.io.File;
 
 import org.junit.runners.model.InitializationError;
 
+import com.qeevee.gq.tests.robolectric.ShadowGQBitmap;
+import com.xtremelabs.robolectric.Robolectric;
 import com.xtremelabs.robolectric.RobolectricConfig;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 
@@ -14,6 +16,11 @@ public class GQTestRunner extends RobolectricTestRunner {
     public GQTestRunner(Class<?> testClass) throws InitializationError {
 	super(testClass, new RobolectricConfig(
 		new File(GQ_ANDROID_PROJECT_PATH)));
+    }
+
+    @Override
+    protected void bindShadowClasses() {
+	Robolectric.bindShadowClass(ShadowGQBitmap.class);
     }
 
 }

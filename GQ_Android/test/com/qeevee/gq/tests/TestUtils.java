@@ -14,6 +14,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.HistoryItem;
@@ -23,8 +24,9 @@ import com.xtremelabs.robolectric.Robolectric;
 import edu.bonn.mobilegaming.geoquest.GameLoader;
 import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
+import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.Start;
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
+import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 
 public class TestUtils {
 
@@ -53,10 +55,12 @@ public class TestUtils {
      * @return the File object representing the game spec xml file.
      */
     public static File getGameFile(String gameName) {
-	URL xmlFileURL = TestUtils.class.getResource("/testgames/" + gameName
+	URL xmlFileURL = TestUtils.class.getResource("/testgames/"
+		+ gameName
 		+ "/game.xml");
 	if (xmlFileURL == null)
-	    fail("Resource file not found for game: " + gameName);
+	    fail("Resource file not found for game: "
+		    + gameName);
 	return new File(xmlFileURL.getFile());
     }
 
@@ -76,7 +80,8 @@ public class TestUtils {
      */
     public static GeoQuestActivity setUpMissionTest(String missionType,
 						    String missionID) {
-	Start start = startGameForTest(missionType + "Test");
+	Start start = startGameForTest(missionType
+		+ "Test");
 
 	return prepareMission(missionType,
 			      missionID,
@@ -103,7 +108,7 @@ public class TestUtils {
 	GeoQuestActivity missionActivity = null;
 
 	try {
-	    missionClass = Class.forName(Mission.getPackageBaseName()
+	    missionClass = Class.forName(MissionActivity.getPackageBaseName()
 		    + missionType);
 	    missionActivity = (GeoQuestActivity) missionClass.newInstance();
 	} catch (InstantiationException e) {
@@ -155,12 +160,24 @@ public class TestUtils {
 	    e.printStackTrace();
 	    throw new RuntimeException(e);
 	} catch (NoSuchFieldException e) {
-	    fail("Implementation of type \"" + obj.getClass().getSimpleName()
-		    + "\" misses a field named \"" + fieldName + "\"");
+	    fail("Implementation of type \""
+		    + obj.getClass().getSimpleName()
+		    + "\" misses a field named \""
+		    + fieldName
+		    + "\"");
 	}
 	return value;
     }
 
+    /**
+     * @param obj
+     * @param methodName
+     * @param parameterTypes
+     *            can be null if no arguments given
+     * @param arguments
+     *            can be null if no arguments given
+     * @return
+     */
     public static Object callMethod(Object obj,
 				    String methodName,
 				    Class<?>[] parameterTypes,
@@ -171,21 +188,25 @@ public class TestUtils {
 							parameterTypes);
 	    m.setAccessible(true);
 	    returnValue = m.invoke(obj,
-		     arguments);
+				   arguments);
 	} catch (SecurityException e) {
 	    e.printStackTrace();
 	    throw new RuntimeException(e);
 	} catch (NoSuchMethodException e) {
 	    StringBuffer signature = new StringBuffer();
-	    signature.append(methodName + "(");
+	    signature.append(methodName
+		    + "(");
 	    for (int i = 0; i < parameterTypes.length; i++) {
 		if (i > 0)
 		    signature.append(", ");
 		signature.append(parameterTypes[i].getName());
 	    }
 	    signature.append(")");
-	    fail("Implementation of type \"" + obj.getClass().getSimpleName()
-		    + "\" misses a method \"" + signature + "\"");
+	    fail("Implementation of type \""
+		    + obj.getClass().getSimpleName()
+		    + "\" misses a method \""
+		    + signature
+		    + "\"");
 	} catch (IllegalArgumentException e) {
 	    e.printStackTrace();
 	    throw new RuntimeException(e);
@@ -211,8 +232,11 @@ public class TestUtils {
 	    e.printStackTrace();
 	    throw new RuntimeException(e);
 	} catch (NoSuchFieldException e) {
-	    fail("Implementation of type \"" + clazz.getSimpleName()
-		    + "\" misses a field named \"" + fieldName + "\"");
+	    fail("Implementation of type \""
+		    + clazz.getSimpleName()
+		    + "\" misses a field named \""
+		    + fieldName
+		    + "\"");
 	} catch (IllegalArgumentException e) {
 	    e.printStackTrace();
 	    throw new RuntimeException(e);
@@ -253,6 +277,20 @@ public class TestUtils {
     public static void historyListShouldHaveLength(int i) {
 	assertEquals(i,
 		     History.getInstance().numberOfItems());
+    }
+
+    public static GeoQuestActivity startMissionInGame(String game,
+						      String missionType,
+						      String missionID) {
+	Start start = TestUtils.startGameForTest(game);
+	GeoQuestActivity mission = TestUtils.prepareMission(missionType,
+							    missionID,
+							    start);
+	TestUtils.callMethod(mission,
+			     "onCreate",
+			     new Class<?>[] { Bundle.class },
+			     new Object[] { null });
+	return mission;
     }
 
 }

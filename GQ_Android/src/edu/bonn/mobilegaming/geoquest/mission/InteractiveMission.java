@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.qeevee.gq.rules.Rule;
 import com.qeevee.gq.xml.XMLUtilities;
 
+import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.Variables;
 
 /**
@@ -20,7 +21,7 @@ import edu.bonn.mobilegaming.geoquest.Variables;
  * {@link Variables#RESULT_SUFFIX} and then call any specified rules for the
  * onInteractionPerformed event.
  * 
- * Examples are {@link QRTagReading} where the Scan is the event triggering
+ * Examples are {@link QRTagReadingProduct} where the Scan is the event triggering
  * interaction, and {@link QuestionAndAnswer} where it is the choice of one
  * answer.
  * 

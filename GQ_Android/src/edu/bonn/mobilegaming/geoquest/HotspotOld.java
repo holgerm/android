@@ -26,7 +26,6 @@ import com.google.android.maps.Projection;
 import com.qeevee.gq.rules.Rule;
 import com.qeevee.ui.BitmapUtil;
 
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
 
 /**
  * Hotspots are interaction points on a mapmission map. They have a image and a

@@ -1,6 +1,6 @@
 package com.qeevee.gq.rules.act;
 
-import edu.bonn.mobilegaming.geoquest.mission.Mission;
+import edu.bonn.mobilegaming.geoquest.Mission;
 
 public class StartMission extends Action {
 

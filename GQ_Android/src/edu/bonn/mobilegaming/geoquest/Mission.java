@@ -1,4 +1,4 @@
-package edu.bonn.mobilegaming.geoquest.mission;
+package edu.bonn.mobilegaming.geoquest;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,10 +19,8 @@ import android.util.Log;
 import com.qeevee.gq.rules.Rule;
 import com.qeevee.gq.xml.XMLUtilities;
 
-import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
-import edu.bonn.mobilegaming.geoquest.GeoQuestProgressHandler;
-import edu.bonn.mobilegaming.geoquest.Globals;
-import edu.bonn.mobilegaming.geoquest.Variables;
+import edu.bonn.mobilegaming.geoquest.mission.InteractiveMission;
+import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 
 /**
  * The class Mission contains a missionStore, that stores all missions defined
@@ -32,7 +30,7 @@ import edu.bonn.mobilegaming.geoquest.Variables;
 public class Mission implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private static final String PACKAGE_BASE_NAME = getPackageBaseName();
+    private static final String PACKAGE_BASE_NAME = MissionActivity.getPackageBaseName();
     private static final String LOG_TAG = Mission.class.getName();
 
     private static boolean useWebLayoutGlobally = false;
@@ -416,12 +414,5 @@ public class Mission implements Serializable {
 	for (Element xmlRule : xmlRuleNodes) {
 	    ruleList.add(Rule.createFromXMLElement(xmlRule));
 	}
-    }
-
-    public static String getPackageBaseName() {
-	String className = Mission.class.getName();
-	int indexOfLastDot = className.lastIndexOf('.');
-	return className.substring(0,
-				   indexOfLastDot + 1);
     }
 }
