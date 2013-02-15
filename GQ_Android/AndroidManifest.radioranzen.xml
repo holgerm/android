@@ -22,14 +22,14 @@
 
     <application
         android:name="GeoQuestApp"
-        android:icon="@drawable/icon"
-        android:label="GeoQuest"
+        android:icon="@drawable/radioranzen"
+        android:label="RadioRanzen"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         <uses-library android:name="com.google.android.maps" />
 
         <activity
             android:name=".Start"
-            android:label="@string/app_name"
+            android:label="RadioRanzen"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +46,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.qeevee.gq.history.HistoryActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.qeevee.ui.FullScreenImage"
             android:label="@string/app_name"
             android:screenOrientation="sensor" />
@@ -55,6 +59,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".mission.MapOverview"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mission.OSMap"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
@@ -74,6 +82,14 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".mission.QRTagReadingProduct"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mission.QRTagReadingTreasure"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".mission.ImageCapture"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
@@ -81,6 +97,10 @@
             android:name=".mission.AudioRecord"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".mission.VideoPlay"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".mission.QuestionAndAnswer"
             android:label="@string/app_name"
