@@ -24,8 +24,12 @@ public class TransitionItem extends HistoryItem {
     public View getView(View convertView) {
 	TextView view = new TextView(GeoQuestApp.getContext());
 	view.setText("Transition between: "
-		+ getNeighborClass(-1).getSimpleName() + " and "
-		+ getNeighborClass(1).getSimpleName() + ".");
+		+ getNeighborClass(-1) == null ? "undetermined"
+		: getNeighborClass(-1).getSimpleName()
+			+ " and "
+			+ getNeighborClass(1) == null ? "undetermined"
+			: getNeighborClass(1).getSimpleName()
+				+ ".");
 	return view;
     }
 
@@ -37,8 +41,10 @@ public class TransitionItem extends HistoryItem {
     protected Class<? extends GeoQuestActivity> getNeighborClass(int dist) {
 	History history = History.getInstance();
 	int myIndex = history.getIndex(this);
-	int neighborIndex = myIndex + dist;
-	if (neighborIndex < 0 || neighborIndex >= history.numberOfItems())
+	int neighborIndex = myIndex
+		+ dist;
+	if (neighborIndex < 0
+		|| neighborIndex >= history.numberOfItems())
 	    return null;
 	else
 	    return history.getItem(neighborIndex).getActivityType();

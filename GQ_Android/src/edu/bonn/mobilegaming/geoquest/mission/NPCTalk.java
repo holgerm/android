@@ -170,7 +170,7 @@ public class NPCTalk extends MissionActivity implements OnClickListener {
 	    this.endButtonText = getText(R.string.button_text_proceed)
 		    .toString();
 	} else {
-	    this.endButtonText = ebt;
+	    this.endButtonText = ebt; 
 	}
 
 	// Adjust text size (default is 30sp):
