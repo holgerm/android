@@ -92,8 +92,8 @@ public class NPCTalkJSInterface {
 	    dialogs[i] = item.getText();
 
 	    if (it.hasNext()) { // Nextbutton
-		if (item.nextDialogButtonText != null) {
-		    buttons[i] = (item.nextDialogButtonText).toString();
+		if (item.getNextDialogButtonText() != null) {
+		    buttons[i] = (item.getNextDialogButtonText()).toString();
 		} else {
 		    buttons[i] = mission.xmlMissionNode
 			    .attributeValue("nextdialogbuttontext");
