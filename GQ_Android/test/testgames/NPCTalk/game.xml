@@ -43,7 +43,7 @@
 		initial_image="drawable/logo_05_funkturm.png"
 		mode="product"
 		taskdescription="Schön, dass ihr dem Schulradioranzen helfen wollt. Scannt bitte den QR Code vom Bildschirm. Dann geht's los!"
-		type="QRTagReading"
+		type="QRTagReadingProduct"
 	>
 		<onStart>
 			<rule>
@@ -140,7 +140,7 @@
 		initial_image="drawable/logo_02_roboter.png"
 		mode="product"
 		taskdescription="Scannt den QR-Code von dem Radio der Marke Phillips ein und hört gut zu."
-		type="QRTagReading"
+		type="QRTagReadingProduct"
 	>
 		<onStart>
 			<rule>
