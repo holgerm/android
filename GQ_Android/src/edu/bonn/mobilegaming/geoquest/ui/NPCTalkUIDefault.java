@@ -14,8 +14,8 @@ import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.R;
-import edu.bonn.mobilegaming.geoquest.mission.DialogItem;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
+import edu.bonn.mobilegaming.geoquest.mission.NPCTalk.DialogItem;
 
 public class NPCTalkUIDefault extends NPCTalkUI {
 

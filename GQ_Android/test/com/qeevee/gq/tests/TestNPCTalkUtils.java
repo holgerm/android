@@ -6,8 +6,8 @@ import java.util.Iterator;
 
 import android.os.CountDownTimer;
 import android.widget.Button;
-import edu.bonn.mobilegaming.geoquest.mission.DialogItem;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
+import edu.bonn.mobilegaming.geoquest.mission.NPCTalk.DialogItem;
 
 public class TestNPCTalkUtils {
 
@@ -35,7 +35,7 @@ public class TestNPCTalkUtils {
 	Iterator<DialogItem> dialogItemIterator = (Iterator<DialogItem>) getFieldValue(npcTalk,
 										       "dialogItemIterator");
 	Button button = (Button) getFieldValue(npcTalk,
-					       "proceedButton");
+					       "button");
 	while (dialogItemIterator.hasNext()) {
 	    letCurrentDialogItemAppearCompletely(npcTalk);
 	    button.performClick();
