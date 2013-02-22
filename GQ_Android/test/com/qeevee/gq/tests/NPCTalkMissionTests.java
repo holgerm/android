@@ -1,10 +1,12 @@
 package com.qeevee.gq.tests;
 
+import static com.qeevee.gq.tests.TestUtils.startGameForTest;
 import static com.qeevee.gq.tests.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
 import static com.qeevee.gq.tests.TestUtils.getFieldValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Test;
@@ -55,6 +57,8 @@ public class NPCTalkMissionTests {
 	Variables.clean();
 	History.getInstance().clear();
     }
+
+    // === TESTS FOLLOW =============================================
 
     @Test
     public void startEventTriggered() {
@@ -117,5 +121,17 @@ public class NPCTalkMissionTests {
 		     h.getItem(h.numberOfItems() - 1).getClass(),
 		     TransitionItem.class);
     }
+
+    @Test
+    public void historyTransitionToNPCTalk() {
+	// GIVEN:
+	startGameForTest("TransitionStartScreen2NPC");
+
+	// WHEN:
+
+	// THEN:
+	fail();
+    }
+    // === HELPER METHODS FOLLOW =============================================
 
 }

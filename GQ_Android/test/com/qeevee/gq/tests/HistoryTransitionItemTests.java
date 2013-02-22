@@ -14,9 +14,6 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import android.os.CountDownTimer;
-import android.widget.Button;
-
 import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
@@ -25,14 +22,14 @@ import com.qeevee.gq.history.TransitionItem;
 
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
+import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
 
 @RunWith(GQTestRunner.class)
 public class HistoryTransitionItemTests {
 
-    CountDownTimer timer;
     NPCTalk npctalk_1, npctalk_2;
     Start start;
-    Button button;
+    NPCTalkUI npcTalkUI;
 
     protected void initGameWithFirstMission() {
 	start = startGameForTest("HistoryTests/TransitionLinearList");
@@ -42,10 +39,8 @@ public class HistoryTransitionItemTests {
     }
 
     protected void readPrivateVariables() {
-	timer = (CountDownTimer) getFieldValue(npctalk_1,
-					       "myCountDownTimer");
-	button = (Button) getFieldValue(npctalk_1,
-					"proceedButton");
+	npcTalkUI = (NPCTalkUI) getFieldValue(npctalk_1,
+					      "ui");
     }
 
     @After
@@ -109,7 +104,7 @@ public class HistoryTransitionItemTests {
 	forwardUntilLastDialogItemIsShown(npctalk_1);
 
 	// WHEN:
-	button.performClick();
+	npcTalkUI.showNextDialogItem();
 
 	// THEN:
 	historyListShouldHaveLength(4);
@@ -120,7 +115,7 @@ public class HistoryTransitionItemTests {
 	shouldHavePredeccessorOfType(transitionItem,
 				     NPCTalk.class);
 	shouldHaveSucceccessorOfType(transitionItem,
-	                             null);
+				     null);
     }
 
     @Test
@@ -133,7 +128,7 @@ public class HistoryTransitionItemTests {
 
 	// WHEN:
 	initSecondMission();
-	button.performClick();
+	npcTalkUI.showNextDialogItem();
 	letCurrentDialogItemAppearCompletely(npctalk_2);
 
 	// THEN:
