@@ -397,9 +397,7 @@ public class GameLoader {
 
     private static void setGlobalMissionLayout() {
 	String uistyle = Mission.documentRoot.attributeValue("uistyle");
-	if (uistyle != null) {
-	    UIFactory.selectUIStyle(uistyle);
-	}
+	UIFactory.selectUIStyle(uistyle);
 
 	// TODO get rid of the rest, i.e. the old html layout mechanism:
 	String layoutAttr = Mission.documentRoot.attributeValue("layout");

@@ -22,7 +22,18 @@ public abstract class UIFactory {
     UIFactory() {
     }
 
+    /**
+     * Sets the UIFactory to the given style or uses {@link DefaultUIFactory} as
+     * default.
+     * 
+     * @param uistyle
+     *            either a valid name of a UIFactory or null
+     */
     public static void selectUIStyle(String uistyle) {
+	if (uistyle == null) {
+	    instance = null;
+	    return;
+	}
 	Class<?> factoryClass = null;
 	try {
 	    factoryClass = Class.forName(UIFactory.class.getPackage().getName()
