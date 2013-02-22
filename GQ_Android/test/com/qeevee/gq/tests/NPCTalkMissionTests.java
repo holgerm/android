@@ -42,10 +42,10 @@ public class NPCTalkMissionTests {
 					      "ui");
 	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
-	talkView = (TextView) getFieldValue(npcTalkM,
+	talkView = (TextView) getFieldValue(ui,
 					    "dialogText");
-	proceedBT = (Button) getFieldValue(npcTalkM,
-					   "proceedButton");
+	proceedBT = (Button) getFieldValue(ui,
+					   "button");
 	timer = (CountDownTimer) getFieldValue(npcTalkM,
 					       "myCountDownTimer");
     }
@@ -125,7 +125,7 @@ public class NPCTalkMissionTests {
     @Test
     public void historyTransitionToNPCTalk() {
 	// GIVEN:
-	startGameForTest("TransitionStartScreen2NPC");
+	startGameForTest("HistoryTests/TransitionStartScreen2NPC");
 
 	// WHEN:
 
