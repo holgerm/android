@@ -12,7 +12,7 @@ import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 public class TestNPCTalkUtils {
 
     /**
-     * This helper method emulates the Timer used in the real application. It
+     * This helper method emulates the Timer used in the real application. It is
      * very specialized according to the implementation, e.g. the delta between
      * word appearance is set to 100ms as in the code.
      */
