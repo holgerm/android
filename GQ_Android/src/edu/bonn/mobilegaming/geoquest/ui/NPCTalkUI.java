@@ -4,12 +4,22 @@ import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 
 public abstract class NPCTalkUI extends MissionUI {
 
+    /**
+     * Initializes the UI for an NPCTalk mission.
+     * 
+     * @param activity
+     */
     public NPCTalkUI(NPCTalk activity) {
 	super(activity);
     }
 
-    public abstract boolean setImage(String pathToImageFile);
+    protected NPCTalk getNPCTalk() {
+	return (NPCTalk) activity;
+    }
 
-    public abstract void setEndButtonText(String endbuttontext);
+    /**
+     * Shows the next dialog item of this mission, if there is yet another one.
+     */
+    public abstract void showNextDialogItem();
 
 }
