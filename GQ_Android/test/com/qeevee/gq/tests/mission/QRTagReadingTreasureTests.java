@@ -2,6 +2,8 @@ package com.qeevee.gq.tests.mission;
 
 import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
 import static com.qeevee.gq.tests.util.TestUtils.getResString;
+import static com.qeevee.gq.tests.util.TestUtils.prepareMission;
+import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -14,7 +16,6 @@ import android.widget.TextView;
 
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.tests.robolectric.GQTestRunner;
-import com.qeevee.gq.tests.util.TestUtils;
 
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
@@ -27,9 +28,10 @@ public class QRTagReadingTreasureTests {
     private int buttonMode;
     private TextView taskTextView;
     private Button button;
-    private String DEFAULT_NEXTBUTTONTEXT, DEFAULT_SCANBUTTONTEXT,
-	    DEFAULT_TASKDESCRIPTION;
-    private int START_SCAN, END_MISSION;
+    private int START_SCAN;
+    private int END_MISSION;
+    private String DEFAULT_SCANBUTTONTEXT;
+    private String DEFAULT_TASKDESCRIPTION;
 
     @Before
     public void cleanUp() {
@@ -40,14 +42,17 @@ public class QRTagReadingTreasureTests {
     }
 
     public void initTestMission(String missionID) {
-	mission = (QRTagReadingTreasure) TestUtils
-		.setUpMissionTest("QRTagReadingTreasure",
-				  missionID);
+	mission = (QRTagReadingTreasure) prepareMission("QRTagReadingTreasure",
+							missionID,
+							startGameForTest("QRTagReadingTreasureTest"));
 	try {
 	    mission.onCreate(null);
 	} catch (NullPointerException npe) {
-	    fail("Mission with id \"" + missionID + "\" missing. (NPE: "
-		    + npe.getMessage() + ")");
+	    fail("Mission with id \""
+		    + missionID
+		    + "\" missing. (NPE: "
+		    + npe.getMessage()
+		    + ")");
 	}
 	loadFieldsOfObjectUnderTest();
     }
@@ -55,7 +60,7 @@ public class QRTagReadingTreasureTests {
     private void loadFieldsOfObjectUnderTest() {
 	taskTextView = (TextView) getFieldValue(mission,
 						"taskTextView");
-	DEFAULT_NEXTBUTTONTEXT = getResString(R.string.button_text_proceed);
+	getResString(R.string.button_text_proceed);
 	DEFAULT_SCANBUTTONTEXT = getResString(R.string.qrtagreading_startscanbutton_default);
 	DEFAULT_TASKDESCRIPTION = getResString(R.string.qrtagreading_taskdescription_default);
 	buttonMode = (Integer) getFieldValue(mission,

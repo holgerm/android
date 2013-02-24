@@ -64,31 +64,7 @@ public class TestUtils {
 	return new File(xmlFileURL.getFile());
     }
 
-    /**
-     * Sets up the test for a single mission type using a prepared game file
-     * (game.xml) which must be stored in "testgames" directory and named
-     * "<missionName>Test".
-     * 
-     * @param missionType
-     *            must be a valid mission type for which a class exists in the
-     *            mission implementation package.
-     * @param missionID
-     * @return a new Activity object of the according type for the given mission
-     *         type name. You can for example directly call onCreate() upon it
-     *         to emulate the android framework behavior.
-     * @throws ClassNotFoundException
-     */
-    public static GeoQuestActivity setUpMissionTest(String missionType,
-						    String missionID) {
-	Start start = startGameForTest(missionType
-		+ "Test");
-
-	return prepareMission(missionType,
-			      missionID,
-			      start);
-    }
-
-    /**
+   /**
      * Prepares a mission activity which can then be started by calling its
      * onCreate() method.
      * 

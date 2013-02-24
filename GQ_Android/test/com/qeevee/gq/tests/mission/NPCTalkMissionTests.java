@@ -2,6 +2,7 @@ package com.qeevee.gq.tests.mission;
 
 import static com.qeevee.gq.tests.util.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
 import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.prepareMission;
 import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,9 +21,9 @@ import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.gq.tests.robolectric.GQTestRunner;
-import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.ui.ZoomImageView;
 
+import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUIDefault;
@@ -35,10 +36,13 @@ public class NPCTalkMissionTests {
     TextView talkView;
     Button proceedBT;
     CountDownTimer timer;
+    private Start start;
+    private NPCTalk npcTalk;
 
     public void initTestMission(String missionID) {
-	npcTalkM = (NPCTalk) TestUtils.setUpMissionTest("NPCTalk",
-							missionID);
+	npcTalkM = (NPCTalk) prepareMission("NPCTalk",
+					    missionID,
+					    startGameForTest("npctalk/NPCTalkTest"));
 	npcTalkM.onCreate(null);
 	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
 					      "ui");
@@ -61,16 +65,6 @@ public class NPCTalkMissionTests {
     }
 
     // === TESTS FOLLOW =============================================
-
-    @Test
-    public void startEventTriggered() {
-	assertFalse("onStart Variable should not be initialized at beginning of test",
-		    Variables.isDefined("onStart"));
-	initTestMission("With_Defaults");
-	assertEquals("onStart should have set variable to 1",
-		     1.0,
-		     Variables.getValue("onStart"));
-    }
 
     @Test
     public void goThrough() {
@@ -125,6 +119,35 @@ public class NPCTalkMissionTests {
     }
 
     @Test
+    public void testBeforeStartEvent() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkTest");
+
+	// WHEN:
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "With_Defaults",
+					   start);
+
+	// THEN:
+	shouldHave_NOT_TriggeredOnStartEvent();
+    }
+
+    @Test
+    public void testStartEvent() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkTest");
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "With_Defaults",
+					   start);
+
+	// WHEN:
+	npcTalk.onCreate(null);
+
+	// THEN:
+	shouldHaveTriggeredOnStartEvent();
+    }
+
+    @Test
     public void historyTransitionToNPCTalk() {
 	// GIVEN:
 	startGameForTest("HistoryTests/TransitionStartScreen2NPC");
@@ -134,6 +157,27 @@ public class NPCTalkMissionTests {
 	// THEN:
 	fail();
     }
+
+    @Test
+    public void historyInit() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkTest");
+
+	// WHEN:
+
+	// THEN:
+	fail();
+    }
+
     // === HELPER METHODS FOLLOW =============================================
+
+    private void shouldHaveTriggeredOnStartEvent() {
+	assertEquals(1.0,
+		     Variables.getValue("onStart"));
+    }
+
+    private void shouldHave_NOT_TriggeredOnStartEvent() {
+	assertFalse(Variables.isDefined("onStart"));
+    }
 
 }

@@ -4,6 +4,8 @@ import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
 import static com.qeevee.gq.tests.util.TestUtils.getResString;
 import static com.qeevee.gq.tests.util.TestUtils.getStaticFieldValue;
 import static com.qeevee.gq.tests.util.TestUtils.nthLastItemInHistoryShouldBe;
+import static com.qeevee.gq.tests.util.TestUtils.prepareMission;
+import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -62,14 +64,17 @@ public class MultipleChoiceQuestionMissionTests {
     }
 
     public void initTestMission(String missionID) {
-	mcqM = (MultipleChoiceQuestion) TestUtils
-		.setUpMissionTest("MultipleChoiceQuestion",
-				  missionID);
+	mcqM = (MultipleChoiceQuestion) prepareMission("MultipleChoiceQuestion",
+						       missionID,
+						       startGameForTest("MultipleChoiceQuestionTest"));
 	try {
 	    mcqM.onCreate(null);
 	} catch (NullPointerException npe) {
-	    fail("Mission with id \"" + missionID + "\" missing. (NPE: "
-		    + npe.getMessage() + ")");
+	    fail("Mission with id \""
+		    + missionID
+		    + "\" missing. (NPE: "
+		    + npe.getMessage()
+		    + ")");
 	}
 	loadFieldsOfObjectUnderTest();
     }

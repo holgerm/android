@@ -2,6 +2,7 @@ package com.qeevee.gq.tests.mission;
 
 import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
 import static com.qeevee.gq.tests.util.TestUtils.getResString;
+import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,13 +11,14 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.qeevee.gq.tests.robolectric.GQTestRunner;
-import com.qeevee.gq.tests.util.TestUtils;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
+
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.TextQuestion;
@@ -29,8 +31,10 @@ public class TextQuestionMissionTests {
     Button bt;
 
     public void initTestMission(String missionID) {
-	tq = (TextQuestion) TestUtils.setUpMissionTest("TextQuestion",
-						       missionID);
+	tq = (TextQuestion) TestUtils
+		.prepareMission("TextQuestion",
+				missionID,
+				startGameForTest("TextQuestionTest"));
 	tq.onCreate(null);
 	tv = (TextView) getFieldValue(tq,
 				      "textView");

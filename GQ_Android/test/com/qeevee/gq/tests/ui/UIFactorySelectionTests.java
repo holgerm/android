@@ -1,6 +1,7 @@
 package com.qeevee.gq.tests.ui;
 
 import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.prepareMission;
 import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -15,7 +16,6 @@ import android.widget.TextView;
 
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.tests.robolectric.GQTestRunner;
-import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.Variables;
@@ -33,8 +33,9 @@ public class UIFactorySelectionTests {
     CountDownTimer timer;
 
     public void initTestMission(String missionID) {
-	npcTalkM = (NPCTalk) TestUtils.setUpMissionTest("NPCTalk",
-							missionID);
+	npcTalkM = (NPCTalk) prepareMission("NPCTalk",
+					    missionID,
+					    startGameForTest("NPCTalkTest"));
 	npcTalkM.onCreate(null);
 	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
 					      "ui");
