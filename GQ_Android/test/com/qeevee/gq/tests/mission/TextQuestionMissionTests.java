@@ -1,7 +1,7 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.mission;
 
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
-import static com.qeevee.gq.tests.TestUtils.getResString;
+import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.getResString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +9,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
 
 import android.view.View;
 import android.widget.Button;

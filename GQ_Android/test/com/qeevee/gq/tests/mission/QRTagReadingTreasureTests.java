@@ -1,7 +1,7 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.mission;
 
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
-import static com.qeevee.gq.tests.TestUtils.getResString;
+import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.getResString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.qeevee.gq.history.History;
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
 
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;

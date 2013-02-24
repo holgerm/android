@@ -3,7 +3,7 @@
  * 
  * @author Sabine Polko
  */
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.adaptation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -19,6 +19,8 @@ import org.junit.runner.RunWith;
 import android.content.Context;
 import android.os.SystemClock;
 
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.robolectric.ShadowSystemClock;
 import com.xtremelabs.robolectric.Robolectric;
 
 import edu.bonn.mobilegaming.geoquest.GeoQuestApp;

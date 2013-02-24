@@ -4,7 +4,7 @@
  * @author Sabine Polko
  */
 
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.adaptation;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -12,6 +12,8 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
 
 import android.content.Context;
 import android.location.Location;

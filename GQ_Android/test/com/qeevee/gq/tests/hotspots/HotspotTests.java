@@ -1,4 +1,4 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.hotspots;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.qeevee.gq.rules.Rule;
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.gq.xml.GQML_DEFAULTS;
 
 import edu.bonn.mobilegaming.geoquest.Hotspot;

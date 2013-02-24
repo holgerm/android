@@ -1,13 +1,13 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.history;
 
-import static com.qeevee.gq.tests.TestNPCTalkUtils.forwardUntilLastDialogItemIsShown;
-import static com.qeevee.gq.tests.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
-import static com.qeevee.gq.tests.TestUtils.callMethod;
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
-import static com.qeevee.gq.tests.TestUtils.historyListShouldHaveLength;
-import static com.qeevee.gq.tests.TestUtils.nthLastItemInHistoryShouldBe;
-import static com.qeevee.gq.tests.TestUtils.prepareMission;
-import static com.qeevee.gq.tests.TestUtils.startGameForTest;
+import static com.qeevee.gq.tests.util.TestNPCTalkUtils.forwardUntilLastDialogItemIsShown;
+import static com.qeevee.gq.tests.util.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
+import static com.qeevee.gq.tests.util.TestUtils.callMethod;
+import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.historyListShouldHaveLength;
+import static com.qeevee.gq.tests.util.TestUtils.nthLastItemInHistoryShouldBe;
+import static com.qeevee.gq.tests.util.TestUtils.prepareMission;
+import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
@@ -19,6 +19,7 @@ import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
 import com.qeevee.gq.history.TransitionItem;
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
 
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;

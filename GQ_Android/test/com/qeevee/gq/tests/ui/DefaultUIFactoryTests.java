@@ -1,4 +1,4 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.ui;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -12,6 +12,8 @@ import java.util.Set;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.reflections.Reflections;
+
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
 
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 import edu.bonn.mobilegaming.geoquest.ui.DefaultUIFactory;

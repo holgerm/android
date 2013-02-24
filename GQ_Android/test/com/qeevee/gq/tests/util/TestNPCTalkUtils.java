@@ -1,6 +1,6 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.util;
 
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
 
 import java.util.Iterator;
 

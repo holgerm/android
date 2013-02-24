@@ -3,7 +3,7 @@
  * 
  * @author Sabine Polko
  */
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.robolectric;
 
 import android.os.SystemClock;
 import com.xtremelabs.robolectric.internal.Implementation;

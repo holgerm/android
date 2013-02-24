@@ -1,6 +1,6 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.ui;
 
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 
 import android.view.View;
 
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;

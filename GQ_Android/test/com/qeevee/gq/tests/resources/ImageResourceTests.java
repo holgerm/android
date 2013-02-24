@@ -1,6 +1,6 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.resources;
 
-import static com.qeevee.gq.tests.TestUtils.startGameForTest;
+import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 
 import android.graphics.Bitmap;
 
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
 import com.qeevee.ui.BitmapUtil;
 
 @RunWith(GQTestRunner.class)

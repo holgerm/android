@@ -1,4 +1,4 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.util;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,6 +11,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
 
 @RunWith(GQTestRunner.class)
 public class ReadGameXML {

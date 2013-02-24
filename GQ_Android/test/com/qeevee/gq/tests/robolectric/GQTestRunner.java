@@ -1,10 +1,9 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.robolectric;
 
 import java.io.File;
 
 import org.junit.runners.model.InitializationError;
 
-import com.qeevee.gq.tests.robolectric.ShadowGQBitmap;
 import com.xtremelabs.robolectric.Robolectric;
 import com.xtremelabs.robolectric.RobolectricConfig;
 import com.xtremelabs.robolectric.RobolectricTestRunner;

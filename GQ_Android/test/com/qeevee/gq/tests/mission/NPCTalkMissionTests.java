@@ -1,8 +1,8 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.mission;
 
-import static com.qeevee.gq.tests.TestUtils.startGameForTest;
-import static com.qeevee.gq.tests.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
+import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TransitionItem;
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.Variables;

@@ -1,9 +1,9 @@
-package com.qeevee.gq.tests;
+package com.qeevee.gq.tests.mission;
 
-import static com.qeevee.gq.tests.TestUtils.getFieldValue;
-import static com.qeevee.gq.tests.TestUtils.getResString;
-import static com.qeevee.gq.tests.TestUtils.getStaticFieldValue;
-import static com.qeevee.gq.tests.TestUtils.nthLastItemInHistoryShouldBe;
+import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.getResString;
+import static com.qeevee.gq.tests.util.TestUtils.getStaticFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.nthLastItemInHistoryShouldBe;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -23,6 +23,8 @@ import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
 import com.qeevee.gq.history.TextType;
+import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
 import com.xtremelabs.robolectric.Robolectric;
 
 import edu.bonn.mobilegaming.geoquest.R;
