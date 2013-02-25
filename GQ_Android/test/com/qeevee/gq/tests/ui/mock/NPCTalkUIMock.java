@@ -3,7 +3,7 @@ package com.qeevee.gq.tests.ui.mock;
 import android.view.View;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk.DialogItem;
-import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.NPCTalkUI;
 
 public class NPCTalkUIMock extends NPCTalkUI {
 

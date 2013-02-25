@@ -1,4 +1,4 @@
-package edu.bonn.mobilegaming.geoquest.ui;
+package edu.bonn.mobilegaming.geoquest.ui.abstrakt;
 
 import org.dom4j.Element;
 

@@ -1,7 +1,9 @@
-package edu.bonn.mobilegaming.geoquest.ui;
+package edu.bonn.mobilegaming.geoquest.ui.abstrakt;
 
 import edu.bonn.mobilegaming.geoquest.BlockableAndReleasable;
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
+import edu.bonn.mobilegaming.geoquest.ui.InteractionBlocker;
+import edu.bonn.mobilegaming.geoquest.ui.InteractionBlockingManager;
 
 public abstract class MissionUI extends GeoQuestUI implements MissionOrToolUI {
 

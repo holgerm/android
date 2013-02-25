@@ -28,7 +28,7 @@ import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
-import edu.bonn.mobilegaming.geoquest.ui.UIFactory;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.UIFactory;
 
 public class TestUtils {
 

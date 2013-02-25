@@ -30,7 +30,7 @@ import com.qeevee.ui.ZoomImageView;
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
-import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.NPCTalkUI;
 
 @RunWith(GQTestRunner.class)
 public class NPCTalkMissionTests {

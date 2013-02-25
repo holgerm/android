@@ -1,12 +1,12 @@
-package edu.bonn.mobilegaming.geoquest.ui;
+package edu.bonn.mobilegaming.geoquest.ui.abstrakt;
 
 import android.view.View;
 import edu.bonn.mobilegaming.geoquest.GeoQuestActivity;
 
 public abstract class GeoQuestUI {
 
-    GeoQuestActivity activity = null;
-    View view = null;
+    protected GeoQuestActivity activity = null;
+    protected View view = null;
 
     public GeoQuestUI(GeoQuestActivity activity) {
 	this.activity = activity;

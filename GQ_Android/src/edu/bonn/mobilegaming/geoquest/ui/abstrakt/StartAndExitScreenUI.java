@@ -1,4 +1,4 @@
-package edu.bonn.mobilegaming.geoquest.ui;
+package edu.bonn.mobilegaming.geoquest.ui.abstrakt;
 
 import edu.bonn.mobilegaming.geoquest.mission.StartAndExitScreen;
 

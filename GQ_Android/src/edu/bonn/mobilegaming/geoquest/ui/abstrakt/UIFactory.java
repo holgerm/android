@@ -1,4 +1,4 @@
-package edu.bonn.mobilegaming.geoquest.ui;
+package edu.bonn.mobilegaming.geoquest.ui.abstrakt;
 
 import android.util.Log;
 import edu.bonn.mobilegaming.geoquest.mission.AudioRecord;
@@ -13,13 +13,14 @@ import edu.bonn.mobilegaming.geoquest.mission.TextQuestion;
 import edu.bonn.mobilegaming.geoquest.mission.VideoPlay;
 import edu.bonn.mobilegaming.geoquest.mission.WebPage;
 import edu.bonn.mobilegaming.geoquest.mission.WebTech;
+import edu.bonn.mobilegaming.geoquest.ui.standard.DefaultUIFactory;
 
 public abstract class UIFactory {
 
     private static final String TAG = UIFactory.class.getName();
     private static UIFactory instance;
 
-    UIFactory() {
+    protected UIFactory() {
     }
 
     /**

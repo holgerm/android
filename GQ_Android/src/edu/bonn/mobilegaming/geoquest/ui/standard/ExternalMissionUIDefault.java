@@ -1,8 +1,7 @@
-package edu.bonn.mobilegaming.geoquest.ui;
-
-import org.dom4j.Element;
+package edu.bonn.mobilegaming.geoquest.ui.standard;
 
 import edu.bonn.mobilegaming.geoquest.mission.ExternalMission;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.ExternalMissionUI;
 
 public class ExternalMissionUIDefault extends ExternalMissionUI {
 

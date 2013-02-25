@@ -18,8 +18,8 @@ import com.qeevee.gq.tests.robolectric.GQTestRunner;
 import com.qeevee.gq.tests.ui.mock.MockUIFactory;
 
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
-import edu.bonn.mobilegaming.geoquest.ui.DefaultUIFactory;
-import edu.bonn.mobilegaming.geoquest.ui.UIFactory;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.UIFactory;
+import edu.bonn.mobilegaming.geoquest.ui.standard.DefaultUIFactory;
 
 @RunWith(GQTestRunner.class)
 public class DefaultUIFactoryTests {
@@ -27,7 +27,7 @@ public class DefaultUIFactoryTests {
     // === TESTS FOLLOW =============================================
 
     @Test
-    public void CheckThatCreatorMethodsForAllUIsAreImplemented() {
+    public void checkThatCreatorMethodsForAllUIsAreImplemented() {
 	// GIVEN:
 	Set<Class<? extends MissionActivity>> missionTypes = collectAllMissionTypes();
 
@@ -93,7 +93,9 @@ public class DefaultUIFactoryTests {
 		    + missionTypeUnderTest.getName());
     }
 
-    private static final String MISSION_UI_PACKAGE = "edu.bonn.mobilegaming.geoquest.ui";
+    private static final String MISSION_UI_PACKAGE_BASE_NAME = "edu.bonn.mobilegaming.geoquest.ui";
+    private static final String MISSION_UI_PACKAGE_ABSTRAKT = MISSION_UI_PACKAGE_BASE_NAME
+	    + ".abstrakt";
 
     private
 	    void
@@ -118,13 +120,13 @@ public class DefaultUIFactoryTests {
 	Class<?> expectedReturnType;
 	Class<?> missionActivityArgumentType;
 	try {
-	    expectedReturnType = Class.forName(MISSION_UI_PACKAGE
+	    expectedReturnType = Class.forName(MISSION_UI_PACKAGE_ABSTRAKT
 		    + "."
 		    + missionTypeName
 		    + "UI");
 	} catch (ClassNotFoundException e) {
 	    fail("UI type "
-		    + MISSION_UI_PACKAGE
+		    + MISSION_UI_PACKAGE_BASE_NAME
 		    + "."
 		    + missionTypeName
 		    + "UI"

@@ -13,8 +13,8 @@ import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
-import edu.bonn.mobilegaming.geoquest.ui.DefaultUIFactory;
-import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.NPCTalkUI;
+import edu.bonn.mobilegaming.geoquest.ui.standard.DefaultUIFactory;
 
 @RunWith(GQTestRunner.class)
 public class ZoomImageViewTests {

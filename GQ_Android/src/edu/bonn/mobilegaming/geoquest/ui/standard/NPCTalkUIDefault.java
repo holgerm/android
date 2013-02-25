@@ -1,4 +1,4 @@
-package edu.bonn.mobilegaming.geoquest.ui;
+package edu.bonn.mobilegaming.geoquest.ui.standard;
 
 import android.content.Context;
 import android.os.CountDownTimer;
@@ -16,6 +16,8 @@ import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk.DialogItem;
+import edu.bonn.mobilegaming.geoquest.ui.InteractionBlocker;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.NPCTalkUI;
 
 public class NPCTalkUIDefault extends NPCTalkUI {
 
