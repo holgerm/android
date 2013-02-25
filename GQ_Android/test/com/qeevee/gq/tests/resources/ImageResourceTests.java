@@ -27,6 +27,7 @@ public class ImageResourceTests {
 
     // === TESTS FOLLOW =============================================
 
+    @SuppressWarnings("unchecked")
     @Test
     public void explicitlyReferingJPG() {
 	// GIVEN:
@@ -39,6 +40,7 @@ public class ImageResourceTests {
 	shouldFindBitmap("drawable/jpgFile.jpg");
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void explicitlyReferingPNG() {
 	// GIVEN:
@@ -51,6 +53,7 @@ public class ImageResourceTests {
 	shouldFindBitmap("drawable/pngFile.png");
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void implicitlyReferingPNG() {
 	// GIVEN:
@@ -64,6 +67,7 @@ public class ImageResourceTests {
 			 "drawable/pngFile.png");
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void implicitlyReferingJPG() {
 	// GIVEN:
@@ -77,6 +81,7 @@ public class ImageResourceTests {
 			 "drawable/jpgFile.jpg");
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void ignoreTXTFile() {
 	// GIVEN:

@@ -29,9 +29,10 @@ public class QRTagReadingTreasureTests {
     private TextView taskTextView;
     private Button button;
     private int START_SCAN;
+    @SuppressWarnings("unused")
     private int END_MISSION;
-    private String DEFAULT_SCANBUTTONTEXT;
-    private String DEFAULT_TASKDESCRIPTION;
+    @SuppressWarnings("unused")
+    private String DEFAULT_SCANBUTTONTEXT, DEFAULT_TASKDESCRIPTION;
 
     @Before
     public void cleanUp() {
@@ -41,6 +42,7 @@ public class QRTagReadingTreasureTests {
 	History.getInstance().clear();
     }
 
+    @SuppressWarnings("unchecked")
     public void initTestMission(String missionID) {
 	mission = (QRTagReadingTreasure) prepareMission("QRTagReadingTreasure",
 							missionID,

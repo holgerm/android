@@ -31,6 +31,7 @@ public class AudioRecordMissionTests {
 				// text and progress bar
     Button recBT, useBT, playBT;
 
+    @SuppressWarnings("unchecked")
     public void initTestMission(String missionID) {
 	audioRecM = (AudioRecord) prepareMission("AudioRecord",
 						 missionID,

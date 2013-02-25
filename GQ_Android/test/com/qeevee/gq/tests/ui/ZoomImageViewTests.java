@@ -13,13 +13,14 @@ import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
-import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUIDefault;
+import edu.bonn.mobilegaming.geoquest.ui.DefaultUIFactory;
+import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
 
 @RunWith(GQTestRunner.class)
 public class ZoomImageViewTests {
 
     NPCTalk npcTalkM;
-    NPCTalkUIDefault ui;
+    NPCTalkUI ui;
     ZoomImageView imageView;
 
     // === TESTS FOLLOW =============================================
@@ -68,35 +69,41 @@ public class ZoomImageViewTests {
 			 imageView.getVisibility());
     }
 
+    @SuppressWarnings("unchecked")
     private void startMissionWithCorrectPathToBitmap() {
 	npcTalkM = (NPCTalk) TestUtils
 		.startMissionInGame("ZoomImageViewTest",
 				    "NPCTalk",
-				    "WithCorrectPathToBitmap");
-	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
-					      "ui");
+				    "WithCorrectPathToBitmap",
+				    DefaultUIFactory.class);
+	ui = (NPCTalkUI) getFieldValue(npcTalkM,
+				       "ui");
 	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
     }
 
+    @SuppressWarnings("unchecked")
     private void startMissionWithWrongPathToBitmap() {
 	npcTalkM = (NPCTalk) TestUtils
 		.startMissionInGame("ZoomImageViewTest",
 				    "NPCTalk",
-				    "WithWrongPathToBitmap");
-	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
-					      "ui");
+				    "WithWrongPathToBitmap",
+				    DefaultUIFactory.class);
+	ui = (NPCTalkUI) getFieldValue(npcTalkM,
+				       "ui");
 	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
     }
 
+    @SuppressWarnings("unchecked")
     private void startMissionWithPathToNonBitmapFile() {
 	npcTalkM = (NPCTalk) TestUtils
 		.startMissionInGame("ZoomImageViewTest",
 				    "NPCTalk",
-				    "WithPathToNonBitmapFile");
-	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
-					      "ui");
+				    "WithPathToNonBitmapFile",
+				    DefaultUIFactory.class);
+	ui = (NPCTalkUI) getFieldValue(npcTalkM,
+				       "ui");
 	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
     }

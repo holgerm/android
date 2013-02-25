@@ -63,6 +63,7 @@ public class MultipleChoiceQuestionMissionTests {
 	History.getInstance().clear();
     }
 
+    @SuppressWarnings("unchecked")
     public void initTestMission(String missionID) {
 	mcqM = (MultipleChoiceQuestion) prepareMission("MultipleChoiceQuestion",
 						       missionID,

@@ -30,6 +30,7 @@ public class TextQuestionMissionTests {
     EditText et;
     Button bt;
 
+    @SuppressWarnings("unchecked")
     public void initTestMission(String missionID) {
 	tq = (TextQuestion) TestUtils
 		.prepareMission("TextQuestion",
