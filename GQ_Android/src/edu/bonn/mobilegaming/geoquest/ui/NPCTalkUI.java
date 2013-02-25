@@ -22,4 +22,9 @@ public abstract class NPCTalkUI extends MissionUI {
      */
     public abstract void showNextDialogItem();
 
+    /**
+     * Ends this mission if the UI allows that at this moment.
+     */
+    public abstract void finishMission();
+
 }

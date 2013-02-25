@@ -19,6 +19,7 @@ import android.os.Bundle;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.HistoryItem;
 import com.qeevee.gq.history.HistoryItemModifier;
+import com.qeevee.gq.tests.ui.mock.MockUIFactory;
 import com.xtremelabs.robolectric.Robolectric;
 
 import edu.bonn.mobilegaming.geoquest.GameLoader;
@@ -27,6 +28,7 @@ import edu.bonn.mobilegaming.geoquest.GeoQuestApp;
 import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
+import edu.bonn.mobilegaming.geoquest.ui.UIFactory;
 
 public class TestUtils {
 
@@ -64,7 +66,7 @@ public class TestUtils {
 	return new File(xmlFileURL.getFile());
     }
 
-   /**
+    /**
      * Prepares a mission activity which can then be started by calling its
      * onCreate() method.
      * 
@@ -101,13 +103,29 @@ public class TestUtils {
 	return missionActivity;
     }
 
-    public static Start startGameForTest(String gameFileName) {
+    /**
+     * Uses {@link MockUIFactory} and overrides settings in game xml
+     * specification.
+     * 
+     * @param gameFileName
+     * @param uistyles
+     *            optional; if given this {@link UIFactory} is used instead of
+     *            the {@link MockUIFactory}.
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public static Start
+	    startGameForTest(String gameFileName,
+			     Class<? extends UIFactory>... uistyles) {
 	Start start = new Start();
 	GeoQuestApp app = (GeoQuestApp) start.getApplication();
 	app.onCreate();
 	Mission.setMainActivity(start);
+	Class<? extends UIFactory> uiFactory = (uistyles.length == 0) ? MockUIFactory.class
+		: uistyles[0];
 	GameLoader.startGame(null,
-			     TestUtils.getGameFile(gameFileName));
+			     TestUtils.getGameFile(gameFileName),
+			     uiFactory);
 	return start;
     }
 
@@ -255,10 +273,13 @@ public class TestUtils {
 		     History.getInstance().numberOfItems());
     }
 
-    public static GeoQuestActivity startMissionInGame(String game,
-						      String missionType,
-						      String missionID) {
-	Start start = TestUtils.startGameForTest(game);
+    public static GeoQuestActivity
+	    startMissionInGame(String game,
+			       String missionType,
+			       String missionID,
+			       Class<? extends UIFactory>... uiFactoryClass) {
+	Start start = TestUtils.startGameForTest(game,
+						 uiFactoryClass);
 	GeoQuestActivity mission = TestUtils.prepareMission(missionType,
 							    missionID,
 							    start);
@@ -267,6 +288,30 @@ public class TestUtils {
 			     new Class<?>[] { Bundle.class },
 			     new Object[] { null });
 	return mission;
+    }
+
+    public static void setTestUIFactory() {
+	try {
+	    Field field = UIFactory.class.getDeclaredField("instance");
+	    field.setAccessible(true);
+	    field.set(null,
+		      new MockUIFactory());
+	} catch (SecurityException e) {
+	    e.printStackTrace();
+	    throw new RuntimeException(e);
+	} catch (NoSuchFieldException e) {
+	    fail("Implementation of type \""
+		    + UIFactory.class.getSimpleName()
+		    + "\" misses a field named \""
+		    + "instance"
+		    + "\"");
+	} catch (IllegalArgumentException e) {
+	    e.printStackTrace();
+	    throw new RuntimeException(e);
+	} catch (IllegalAccessException e) {
+	    e.printStackTrace();
+	    throw new RuntimeException(e);
+	}
     }
 
 }

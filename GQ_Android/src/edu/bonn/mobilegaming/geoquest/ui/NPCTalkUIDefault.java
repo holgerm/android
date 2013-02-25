@@ -27,6 +27,8 @@ public class NPCTalkUIDefault extends NPCTalkUI {
     private DialogItem currentDialogItem = null;
 
     private static final long milliseconds_per_part = 100;
+    private static final int MODE_NEXT_DIALOG_ITEM = 0;
+    private static final int MODE_END = 1;
 
     private OnClickListener showNextDialogListener = new OnClickListener() {
 	public void onClick(View v) {
@@ -36,23 +38,40 @@ public class NPCTalkUIDefault extends NPCTalkUI {
 
     private OnClickListener endMissionListener = new OnClickListener() {
 	public void onClick(View v) {
-	    getNPCTalk().finish();
+	    getNPCTalk().finishMission();
 	}
     };
     private CharSequence nextDialogButtonTextDefault;
+    private int mode;
 
     public CharSequence getNextDialogButtonTextDefault() {
 	return nextDialogButtonTextDefault;
     }
 
     private void refreshButton() {
-	if (!getNPCTalk().hasMoreDialogItems()) {
+	if (getNPCTalk().hasMoreDialogItems()) {
+	    setButtonMode(MODE_NEXT_DIALOG_ITEM);
+	} else {
+	    setButtonMode(MODE_END);
+	}
+    }
+
+    private void setButtonMode(int newMode) {
+	if (mode == newMode)
+	    return;
+
+	mode = newMode;
+	switch (mode) {
+	case MODE_NEXT_DIALOG_ITEM:
 	    button.setOnClickListener(endMissionListener);
 	    setButtonTextEndMission();
-	} else {
+	    break;
+	case MODE_END:
 	    button.setOnClickListener(showNextDialogListener);
 	    setButtonTextNextDialogItem();
+	    break;
 	}
+
     }
 
     private void setButtonTextNextDialogItem() {
@@ -84,7 +103,7 @@ public class NPCTalkUIDefault extends NPCTalkUI {
     }
 
     @Override
-    View createView() {
+    public View createView() {
 	LayoutInflater inflater = (LayoutInflater) activity
 		.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -92,6 +111,8 @@ public class NPCTalkUIDefault extends NPCTalkUI {
 				null);
 	charImage = (ZoomImageView) view.findViewById(R.id.npcimage);
 	button = (Button) view.findViewById(R.id.proceedButton);
+	dialogText = (TextView) view.findViewById(R.id.npctext);
+	scrollView = (ScrollView) view.findViewById(R.id.npc_scroll_view);
 	return view;
     }
 
@@ -197,4 +218,9 @@ public class NPCTalkUIDefault extends NPCTalkUI {
 	button.setEnabled(!isBlocking);
     }
 
+    @Override
+    public void finishMission() {
+	if (mode == MODE_END)
+	    button.performClick();
+    }
 }

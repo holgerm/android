@@ -8,6 +8,7 @@ import org.dom4j.Element;
 
 import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.TextItem;
+import com.qeevee.gq.history.TransitionItem;
 
 import android.os.Bundle;
 import edu.bonn.mobilegaming.geoquest.Globals;
@@ -33,6 +34,10 @@ public class NPCTalk extends MissionActivity {
     @SuppressWarnings("unused")
     private NPCTalkUI ui;
 
+    private int nrOfDialogItems;
+
+    private int indexOfCurrentDialogItem;
+
     /**
      * Called by the android framework when the mission is created. Setups the
      * View and calls the readXML method to get the dialogItems. The dialog
@@ -45,11 +50,13 @@ public class NPCTalk extends MissionActivity {
 	List<Element> dialogItemList = mission.xmlMissionNode
 		.selectNodes("./dialogitem");
 	dialogItemIterator = dialogItemList.iterator();
+	nrOfDialogItems = dialogItemList.size();
+	indexOfCurrentDialogItem = 0;
 	ui = UIFactory.getInstance().createUI(this);
     }
 
-    @Override
-    public void finish() {
+    public void finishMission() {
+	new TransitionItem(this);
 	if (hasMoreDialogItems())
 	    super.finish(Globals.STATUS_FAIL);
 	else
@@ -64,8 +71,25 @@ public class NPCTalk extends MissionActivity {
 	return dialogItemIterator.hasNext();
     }
 
+    /**
+     * @return the index of the last dialog item returned on a call to
+     *         {@link #getNextDialogItem()}. Index starts with 1 and will not
+     *         exceed the number of items - even if you call
+     *         {@link #getNextDialogItem()} too often.
+     */
+    public int getIndexOfCurrentDialogItem() {
+	return indexOfCurrentDialogItem;
+    }
+
+    public int getNumberOfDialogItems() {
+	return nrOfDialogItems;
+    }
+
     public DialogItem getNextDialogItem() {
-	return new DialogItem(dialogItemIterator.next());
+	DialogItem result = new DialogItem(dialogItemIterator.next());
+	if (result != null)
+	    indexOfCurrentDialogItem++;
+	return result;
     }
 
     public void hasShownDialogItem(DialogItem shownDialogItem) {

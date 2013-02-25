@@ -15,7 +15,7 @@ import edu.bonn.mobilegaming.geoquest.mission.WebTech;
 
 public class DefaultUIFactory extends UIFactory {
 
-    DefaultUIFactory() {
+    public DefaultUIFactory() {
 	super();
     }
 
@@ -31,8 +31,7 @@ public class DefaultUIFactory extends UIFactory {
 	return new ExternalMissionUIDefault(activity);
     }
 
-    public MultipleChoiceQuestionUI
-	    createUI(MultipleChoiceQuestion activity) {
+    public MultipleChoiceQuestionUI createUI(MultipleChoiceQuestion activity) {
 	return new MultipleChoiceQuestionDefault(activity);
     }
 
@@ -56,18 +55,15 @@ public class DefaultUIFactory extends UIFactory {
 	return new WebPageUIDefault(activity);
     }
 
-    public StartAndExitScreenUI
-	    createUI(StartAndExitScreen activity) {
+    public StartAndExitScreenUI createUI(StartAndExitScreen activity) {
 	return new StartAndExitScreenUIDefault(activity);
     }
 
-    public QRTagReadingTreasureUI
-	    createUI(QRTagReadingTreasure activity) {
+    public QRTagReadingTreasureUI createUI(QRTagReadingTreasure activity) {
 	return new QRTagReadingTreasureUIDefault(activity);
     }
 
-    public QRTagReadingProductUI
-	    createUI(QRTagReadingProduct activity) {
+    public QRTagReadingProductUI createUI(QRTagReadingProduct activity) {
 	return new QRTagReadingProductUIDefault(activity);
     }
 

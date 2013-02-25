@@ -27,7 +27,8 @@ public abstract class UIFactory {
      * default.
      * 
      * @param uistyle
-     *            either a valid name of a UIFactory or null
+     *            either a valid name of a UIFactory or null to reset this
+     *            singleton.
      */
     public static void selectUIStyle(String uistyle) {
 	if (uistyle == null) {
@@ -48,18 +49,29 @@ public abstract class UIFactory {
 			  + e.getMessage());
 	    e.printStackTrace();
 	}
+	setFactory(factoryClass);
+    }
+
+    /**
+     * This method is only used by test cases which override the uistyle with a
+     * mocking test style.
+     * 
+     * @param factoryClass
+     */
+    public static void setFactory(Class<?> factoryClass) {
 	try {
 	    instance = (UIFactory) factoryClass.newInstance();
 	} catch (IllegalAccessException e1) {
 	    Log.e(TAG,
 		  e1.getMessage());
 	    e1.printStackTrace();
+	    instance = null;
 	} catch (InstantiationException e1) {
 	    Log.e(TAG,
 		  e1.getMessage());
 	    e1.printStackTrace();
+	    instance = null;
 	}
-
     }
 
     public static UIFactory getInstance() {

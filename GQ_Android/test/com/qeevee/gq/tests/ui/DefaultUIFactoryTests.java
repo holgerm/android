@@ -1,5 +1,6 @@
 package com.qeevee.gq.tests.ui;
 
+import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -14,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.reflections.Reflections;
 
 import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.ui.mock.MockUIFactory;
 
 import edu.bonn.mobilegaming.geoquest.mission.MissionActivity;
 import edu.bonn.mobilegaming.geoquest.ui.DefaultUIFactory;
@@ -38,13 +40,38 @@ public class DefaultUIFactoryTests {
 	}
     }
 
+    @SuppressWarnings("unchecked")
     @Test
-    public void generateDefaultUIFactory() {
-	assertEquals(DefaultUIFactory.class,
-		     UIFactory.getInstance().getClass());
+    public void implicitSelectingDefaultUI() {
+	// GIVEN:
+
+	// WHEN:
+	startGameForTest("npctalk/SimpleNPCGame",
+			 DefaultUIFactory.class);
+
+	// THEN:
+	shouldUseUI(DefaultUIFactory.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void explicitlySelectingTestUI() {
+	// GIVEN:
+
+	// WHEN:
+	startGameForTest("npctalk/SimpleNPCGame");
+
+	// THEN:
+	shouldUseUI(MockUIFactory.class);
     }
 
     // === HELPER METHODS FOLLOW =============================================
+
+    private void shouldUseUI(Class<? extends UIFactory> expectedFactoryClass) {
+	assertEquals(expectedFactoryClass,
+		     UIFactory.getInstance().getClass());
+
+    }
 
     final static boolean CONCRETE = true;
     final static boolean ABSTRACT = false;

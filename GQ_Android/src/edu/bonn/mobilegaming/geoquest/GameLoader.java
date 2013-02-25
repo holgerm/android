@@ -280,16 +280,24 @@ public class GameLoader {
 
     /**
      * Starts the game from the given local file.
+     * 
+     * @param handler
+     * @param gameXMLFile
+     * @param predefinedUIFactories
+     *            if not empty, the first string in array is taken as name of
+     *            UIFactory and overrides settings in game xml specification.
      */
-    public static void startGame(Handler handler,
-				 File gameXMLFile) {
+    public static void
+	    startGame(Handler handler,
+		      File gameXMLFile,
+		      Class<? extends UIFactory>... predefinedUIFactories) {
 	endLastGame();
 	GeoQuestApp.resetAdaptionEngine();
 	resetContextManager();
 	// expand missions
 	try {
 	    Mission.documentRoot = getDocument(gameXMLFile).getRootElement();
-	    setGlobalMissionLayout();
+	    setGlobalMissionLayout(predefinedUIFactories);
 	    setAdaptionType();
 	    setGameDuration();
 
@@ -395,9 +403,19 @@ public class GameLoader {
 	return num_missions;
     }
 
-    private static void setGlobalMissionLayout() {
-	String uistyle = Mission.documentRoot.attributeValue("uistyle");
-	UIFactory.selectUIStyle(uistyle);
+    /**
+     * @param predefinedUIFactoryArray
+     *            if not empty, the first string in array is taken as name of
+     *            UIFactory and overrides settings in game xml specification.
+     */
+    private static
+	    void
+	    setGlobalMissionLayout(Class<? extends UIFactory>... predefinedUIFactoryArray) {
+	if (predefinedUIFactoryArray.length == 0)
+	    UIFactory.selectUIStyle(Mission.documentRoot
+		    .attributeValue("uistyle"));
+	else
+	    UIFactory.setFactory(predefinedUIFactoryArray[0]);
 
 	// TODO get rid of the rest, i.e. the old html layout mechanism:
 	String layoutAttr = Mission.documentRoot.attributeValue("layout");

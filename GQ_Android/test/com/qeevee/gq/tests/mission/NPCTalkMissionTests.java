@@ -1,15 +1,16 @@
 package com.qeevee.gq.tests.mission;
 
-import static com.qeevee.gq.tests.util.TestNPCTalkUtils.letCurrentDialogItemAppearCompletely;
+import static com.qeevee.gq.tests.util.TestUtils.callMethod;
 import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
+import static com.qeevee.gq.tests.util.TestUtils.historyListShouldHaveLength;
+import static com.qeevee.gq.tests.util.TestUtils.nthLastItemInHistoryShouldBe;
 import static com.qeevee.gq.tests.util.TestUtils.prepareMission;
 import static com.qeevee.gq.tests.util.TestUtils.startGameForTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -17,21 +18,24 @@ import android.os.CountDownTimer;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
+import com.qeevee.gq.history.TextType;
 import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.gq.tests.robolectric.GQTestRunner;
+import com.qeevee.gq.tests.util.TestUtils;
 import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.Variables;
 import edu.bonn.mobilegaming.geoquest.mission.NPCTalk;
-import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUIDefault;
+import edu.bonn.mobilegaming.geoquest.ui.NPCTalkUI;
 
 @RunWith(GQTestRunner.class)
 public class NPCTalkMissionTests {
     NPCTalk npcTalkM;
-    NPCTalkUIDefault ui;
+    NPCTalkUI ui;
     ZoomImageView imageView;
     TextView talkView;
     Button proceedBT;
@@ -39,13 +43,14 @@ public class NPCTalkMissionTests {
     private Start start;
     private NPCTalk npcTalk;
 
+    @SuppressWarnings("unchecked")
     public void initTestMission(String missionID) {
 	npcTalkM = (NPCTalk) prepareMission("NPCTalk",
 					    missionID,
 					    startGameForTest("npctalk/NPCTalkTest"));
 	npcTalkM.onCreate(null);
-	ui = (NPCTalkUIDefault) getFieldValue(npcTalkM,
-					      "ui");
+	ui = (NPCTalkUI) getFieldValue(npcTalkM,
+				       "ui");
 	imageView = (ZoomImageView) getFieldValue(ui,
 						  "charImage");
 	talkView = (TextView) getFieldValue(ui,
@@ -64,60 +69,14 @@ public class NPCTalkMissionTests {
 	History.getInstance().clear();
     }
 
-    // === TESTS FOLLOW =============================================
-
-    @Test
-    public void goThrough() {
-	History h = History.getInstance();
-	assertEquals("History should be empty before mission is loaded",
-		     0,
-		     h.numberOfItems());
-	initTestMission("Only_Text");
-	assertEquals("History should be empty directly after mission is loaded",
-		     0,
-		     h.numberOfItems());
-	letCurrentDialogItemAppearCompletely(npcTalkM);
-	assertEquals("Talk view should contain last dialog item text",
-		     "This NPCTalk mission offers just three only text dialog items.\n",
-		     talkView.getText().toString());
-	assertEquals("History should contain the first item after it has been shown.",
-		     1,
-		     h.numberOfItems());
-	assertEquals("First element in history should be a text item.",
-		     h.getItem(h.numberOfItems() - 1).getClass(),
-		     TextItem.class);
-	proceedBT.performClick();
-	letCurrentDialogItemAppearCompletely(npcTalkM);
-	assertTrue("Talk view should end with second dialog item text",
-		   talkView.getText().toString()
-			   .endsWith("This is the second dialog item.\n"));
-	assertEquals("History should contain both items now.",
-		     2,
-		     h.numberOfItems());
-	assertEquals("First element in history should be a text item.",
-		     h.getItem(h.numberOfItems() - 1).getClass(),
-		     TextItem.class);
-	proceedBT.performClick();
-	letCurrentDialogItemAppearCompletely(npcTalkM);
-	assertTrue("Talk view should end with third and last dialog item text",
-		   talkView.getText()
-			   .toString()
-			   .endsWith("This is the third and last dialog item.\n"));
-	assertEquals("History should contain three items now.",
-		     3,
-		     h.numberOfItems());
-	assertEquals("First element in history should be a text item.",
-		     h.getItem(h.numberOfItems() - 1).getClass(),
-		     TextItem.class);
-	proceedBT.performClick();
-	assertEquals("History should contain four items now.",
-		     4,
-		     h.numberOfItems());
-	assertEquals("Last element in history should be a transitional item.",
-		     h.getItem(h.numberOfItems() - 1).getClass(),
-		     TransitionItem.class);
+    @Before
+    public void prepare() {
+	TestUtils.setTestUIFactory();
     }
 
+    // === TESTS FOLLOW =============================================
+
+    @SuppressWarnings("unchecked")
     @Test
     public void testBeforeStartEvent() {
 	// GIVEN:
@@ -132,6 +91,7 @@ public class NPCTalkMissionTests {
 	shouldHave_NOT_TriggeredOnStartEvent();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testStartEvent() {
 	// GIVEN:
@@ -147,29 +107,179 @@ public class NPCTalkMissionTests {
 	shouldHaveTriggeredOnStartEvent();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
-    public void historyTransitionToNPCTalk() {
+    public void initGame() {
 	// GIVEN:
-	startGameForTest("HistoryTests/TransitionStartScreen2NPC");
+	start = startGameForTest("npctalk/NPCTalkStandard");
 
 	// WHEN:
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m1",
+					   start);
 
 	// THEN:
-	fail();
+	historyListShouldHaveLength(0);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
-    public void historyInit() {
+    public void startFirstMission() {
 	// GIVEN:
-	start = startGameForTest("npctalk/NPCTalkTest");
+	start = startGameForTest("npctalk/NPCTalkStandard");
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m1",
+					   start);
 
 	// WHEN:
+	npcTalk.onCreate(null);
 
 	// THEN:
-	fail();
+	historyListShouldHaveLength(1);
+	nthLastItemInHistoryShouldBe(1,
+				     TextItem.class,
+				     TextType.PLAIN,
+				     Actor.NPC);
+
+	nrOfDialogItemsShouldBe(3);
+	indexOfCurrentDialogItemShouldBe(1);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void secondDialogItemOfFirstMission() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkStandard");
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m1",
+					   start);
+	npcTalk.onCreate(null);
+	ui = (NPCTalkUI) getFieldValue(npcTalk,
+				       "ui");
+
+	// WHEN:
+	ui.showNextDialogItem();
+
+	// THEN:
+	historyListShouldHaveLength(2);
+	indexOfCurrentDialogItemShouldBe(2);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void thirdAndLastDialogItemOfFirstMission() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkStandard");
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m1",
+					   start);
+	npcTalk.onCreate(null);
+	ui = (NPCTalkUI) getFieldValue(npcTalk,
+				       "ui");
+	ui.showNextDialogItem();
+
+	// WHEN:
+	ui.showNextDialogItem();
+
+	// THEN:
+	historyListShouldHaveLength(3);
+	indexOfCurrentDialogItemShouldBe(3);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void noMoreDialogItemsAfterLast() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkStandard");
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m1",
+					   start);
+	npcTalk.onCreate(null);
+	ui = (NPCTalkUI) getFieldValue(npcTalk,
+				       "ui");
+	ui.showNextDialogItem();
+	ui.showNextDialogItem();
+
+	// WHEN:
+	ui.showNextDialogItem();
+
+	// THEN:
+	historyListShouldHaveLength(3);
+	indexOfCurrentDialogItemShouldBe(3);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void afterFirstMission() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkStandard");
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m1",
+					   start);
+	npcTalk.onCreate(null);
+	ui = (NPCTalkUI) getFieldValue(npcTalk,
+				       "ui");
+	ui.showNextDialogItem();
+	ui.showNextDialogItem();
+
+	// WHEN:
+	ui.finishMission();
+
+	// THEN:
+	historyListShouldHaveLength(4);
+	TestUtils.nthLastItemInHistoryShouldBe(1,
+					       TransitionItem.class,
+					       Actor.GAME);
+	TransitionItem transitionItem = (TransitionItem) History.getInstance()
+		.getNthLastItem(1);
+	shouldHavePredeccessorOfType(transitionItem,
+				     NPCTalk.class);
+	shouldHaveSucceccessorOfType(transitionItem,
+				     null);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void startSecondMission() {
+	// GIVEN:
+	start = startGameForTest("npctalk/NPCTalkStandard");
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m1",
+					   start);
+	npcTalk.onCreate(null);
+	ui = (NPCTalkUI) getFieldValue(npcTalk,
+				       "ui");
+	ui.showNextDialogItem();
+	ui.showNextDialogItem();
+	ui.finishMission();
+
+	// WHEN:
+	npcTalk = (NPCTalk) prepareMission("NPCTalk",
+					   "m2",
+					   start);
+	npcTalk.onCreate(null);
+
+	// THEN:
+	historyListShouldHaveLength(5);
+	TransitionItem transitionItem = (TransitionItem) History.getInstance()
+		.getNthLastItem(2);
+	shouldHavePredeccessorOfType(transitionItem,
+				     NPCTalk.class);
+	shouldHaveSucceccessorOfType(transitionItem,
+				     NPCTalk.class);
     }
 
     // === HELPER METHODS FOLLOW =============================================
+
+    private void indexOfCurrentDialogItemShouldBe(int expectedIndex) {
+	assertEquals(expectedIndex,
+		     npcTalk.getIndexOfCurrentDialogItem());
+    }
+
+    private void nrOfDialogItemsShouldBe(int expectedNr) {
+	assertEquals(expectedNr,
+		     npcTalk.getNumberOfDialogItems());
+    }
 
     private void shouldHaveTriggeredOnStartEvent() {
 	assertEquals(1.0,
@@ -180,4 +290,28 @@ public class NPCTalkMissionTests {
 	assertFalse(Variables.isDefined("onStart"));
     }
 
+    private void shouldHavePredeccessorOfType(TransitionItem transitionItem,
+					      Class<?> expectedType) {
+	shouldHaveNeighborOfType(transitionItem,
+				 expectedType,
+				 -1);
+    }
+
+    private void shouldHaveSucceccessorOfType(TransitionItem transitionItem,
+					      Class<NPCTalk> expectedType) {
+	shouldHaveNeighborOfType(transitionItem,
+				 expectedType,
+				 1);
+    }
+
+    private void shouldHaveNeighborOfType(TransitionItem transitionItem,
+					  Class<?> expectedType,
+					  int n) {
+	Class<?> realType = (Class<?>) callMethod(transitionItem,
+						  "getNeighborClass",
+						  new Class[] { int.class },
+						  new Object[] { n });
+	assertEquals(expectedType,
+		     realType);
+    }
 }

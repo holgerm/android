@@ -19,6 +19,6 @@ public abstract class GeoQuestUI {
      * 
      * @return
      */
-    abstract View createView();
+    abstract public View createView();
 
 }
