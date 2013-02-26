@@ -1,4 +1,4 @@
-package com.qeevee.gq.tests.mission;
+package com.qeevee.gq.tests.mission.model;
 
 import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
 import static com.qeevee.gq.tests.util.TestUtils.getResString;

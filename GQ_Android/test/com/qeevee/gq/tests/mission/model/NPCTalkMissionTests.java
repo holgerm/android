@@ -1,4 +1,4 @@
-package com.qeevee.gq.tests.mission;
+package com.qeevee.gq.tests.mission.model;
 
 import static com.qeevee.gq.tests.util.TestUtils.callMethod;
 import static com.qeevee.gq.tests.util.TestUtils.getFieldValue;
@@ -14,10 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import android.os.CountDownTimer;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.qeevee.gq.history.Actor;
 import com.qeevee.gq.history.History;
 import com.qeevee.gq.history.TextItem;
@@ -25,7 +21,6 @@ import com.qeevee.gq.history.TextType;
 import com.qeevee.gq.history.TransitionItem;
 import com.qeevee.gq.tests.robolectric.GQTestRunner;
 import com.qeevee.gq.tests.util.TestUtils;
-import com.qeevee.ui.ZoomImageView;
 
 import edu.bonn.mobilegaming.geoquest.Start;
 import edu.bonn.mobilegaming.geoquest.Variables;
@@ -34,32 +29,10 @@ import edu.bonn.mobilegaming.geoquest.ui.abstrakt.NPCTalkUI;
 
 @RunWith(GQTestRunner.class)
 public class NPCTalkMissionTests {
-    NPCTalk npcTalkM;
     NPCTalkUI ui;
-    ZoomImageView imageView;
-    TextView talkView;
-    Button proceedBT;
-    CountDownTimer timer;
     private Start start;
     private NPCTalk npcTalk;
 
-    @SuppressWarnings("unchecked")
-    public void initTestMission(String missionID) {
-	npcTalkM = (NPCTalk) prepareMission("NPCTalk",
-					    missionID,
-					    startGameForTest("npctalk/NPCTalkTest"));
-	npcTalkM.onCreate(null);
-	ui = (NPCTalkUI) getFieldValue(npcTalkM,
-				       "ui");
-	imageView = (ZoomImageView) getFieldValue(ui,
-						  "charImage");
-	talkView = (TextView) getFieldValue(ui,
-					    "dialogText");
-	proceedBT = (Button) getFieldValue(ui,
-					   "button");
-	timer = (CountDownTimer) getFieldValue(npcTalkM,
-					       "myCountDownTimer");
-    }
 
     @After
     public void cleanUp() {
@@ -71,7 +44,7 @@ public class NPCTalkMissionTests {
 
     @Before
     public void prepare() {
-	TestUtils.setTestUIFactory();
+	TestUtils.setMockUIFactory();
     }
 
     // === TESTS FOLLOW =============================================
@@ -97,7 +70,7 @@ public class NPCTalkMissionTests {
 	// GIVEN:
 	start = startGameForTest("npctalk/NPCTalkTest");
 	npcTalk = (NPCTalk) prepareMission("NPCTalk",
-					   "With_Defaults",
+					   "Empty",
 					   start);
 
 	// WHEN:
