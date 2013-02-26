@@ -44,6 +44,7 @@ import edu.bonn.mobilegaming.geoquest.HotspotListener;
 import edu.bonn.mobilegaming.geoquest.HotspotOld;
 import edu.bonn.mobilegaming.geoquest.Mission;
 import edu.bonn.mobilegaming.geoquest.R;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.MissionOrToolUI;
 
 /**
  * MapOverview mission. Based on the google map view a map view is shown in the
@@ -611,6 +612,11 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
     public void onBlockingStateUpdated(boolean isBlocking) {
 	// TODO Auto-generated method stub
 
+    }
+
+    public MissionOrToolUI getUI() {
+	// TODO Auto-generated method stub
+	return null;
     }
 
     // /////////////////////////////////////////////////////////////////////////////
