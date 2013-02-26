@@ -46,50 +46,6 @@ public class NPCTalkUIDefault extends NPCTalkUI {
     private CharSequence nextDialogButtonTextDefault;
     private int mode;
 
-    public CharSequence getNextDialogButtonTextDefault() {
-	return nextDialogButtonTextDefault;
-    }
-
-    private void refreshButton() {
-	if (getNPCTalk().hasMoreDialogItems()) {
-	    setButtonMode(MODE_NEXT_DIALOG_ITEM);
-	} else {
-	    setButtonMode(MODE_END);
-	}
-    }
-
-    private void setButtonMode(int newMode) {
-	if (mode == newMode)
-	    return;
-
-	mode = newMode;
-	switch (mode) {
-	case MODE_NEXT_DIALOG_ITEM:
-	    button.setOnClickListener(endMissionListener);
-	    setButtonTextEndMission();
-	    break;
-	case MODE_END:
-	    button.setOnClickListener(showNextDialogListener);
-	    setButtonTextNextDialogItem();
-	    break;
-	}
-
-    }
-
-    private void setButtonTextNextDialogItem() {
-	if (currentDialogItem.getNextDialogButtonText() != null)
-	    button.setText(currentDialogItem.getNextDialogButtonText());
-	else
-	    button.setText(R.string.button_text_next);
-    }
-
-    private void setButtonTextEndMission() {
-	if (getNPCTalk().getMissionAttribute("endbuttontext") != null)
-	    button.setText(getNPCTalk().getMissionAttribute("endbuttontext"));
-	else
-	    button.setText(R.string.button_text_proceed);
-    }
-
     public NPCTalkUIDefault(NPCTalk activity) {
 	super(activity);
 	setImage(getNPCTalk().getMissionAttribute("image"));
@@ -152,6 +108,50 @@ public class NPCTalkUIDefault extends NPCTalkUI {
 	dialogText.append(Html.fromHtml("<b>"
 		+ currentDialogItem.getSpeaker()
 		+ ": </b>"));
+    }
+
+    public CharSequence getNextDialogButtonTextDefault() {
+	return nextDialogButtonTextDefault;
+    }
+
+    private void refreshButton() {
+	if (getNPCTalk().hasMoreDialogItems()) {
+	    setButtonMode(MODE_NEXT_DIALOG_ITEM);
+	} else {
+	    setButtonMode(MODE_END);
+	}
+    }
+
+    private void setButtonMode(int newMode) {
+	if (mode == newMode)
+	    return;
+
+	mode = newMode;
+	switch (mode) {
+	case MODE_NEXT_DIALOG_ITEM:
+	    button.setOnClickListener(endMissionListener);
+	    setButtonTextEndMission();
+	    break;
+	case MODE_END:
+	    button.setOnClickListener(showNextDialogListener);
+	    setButtonTextNextDialogItem();
+	    break;
+	}
+
+    }
+
+    private void setButtonTextNextDialogItem() {
+	if (currentDialogItem.getNextDialogButtonText() != null)
+	    button.setText(currentDialogItem.getNextDialogButtonText());
+	else
+	    button.setText(R.string.button_text_next);
+    }
+
+    private void setButtonTextEndMission() {
+	if (getNPCTalk().getMissionAttribute("endbuttontext") != null)
+	    button.setText(getNPCTalk().getMissionAttribute("endbuttontext"));
+	else
+	    button.setText(R.string.button_text_proceed);
     }
 
     private void updateButtonText(DialogItem di) {
