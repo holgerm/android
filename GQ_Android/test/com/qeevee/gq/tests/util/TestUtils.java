@@ -62,7 +62,7 @@ public class TestUtils {
 		+ "/game.xml");
 	if (xmlFileURL == null)
 	    fail("Resource file not found for game: "
-		    + gameName);
+		    + gameName); 
 	return new File(xmlFileURL.getFile());
     }
 
@@ -71,7 +71,7 @@ public class TestUtils {
      * onCreate() method.
      * 
      * @param missionType
-     *            must be a valid mission type for which a class exists in the
+     *            must be a valid mission type for which a class exists in the 
      *            mission implementation package.
      * @param missionID
      * @return a new Activity object of the according type for the given mission
@@ -100,6 +100,7 @@ public class TestUtils {
 	startMissionIntent.putExtra("missionID",
 				    missionID);
 	Robolectric.shadowOf(missionActivity).setIntent(startMissionIntent);
+	
 	return missionActivity;
     }
 
@@ -290,7 +291,7 @@ public class TestUtils {
 	return mission;
     }
 
-    public static void setTestUIFactory() {
+    public static void setMockUIFactory() {
 	try {
 	    Field field = UIFactory.class.getDeclaredField("instance");
 	    field.setAccessible(true);
