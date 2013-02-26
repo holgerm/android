@@ -5,7 +5,7 @@
 >
 	<mission
 		type="NPCTalk"
-		id="With_Defaults"
+		id="Empty"
 		image="drawable/ploppschutz.png"
 	>
 		<onStart>
