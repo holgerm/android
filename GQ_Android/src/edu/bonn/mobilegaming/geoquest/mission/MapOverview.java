@@ -121,7 +121,8 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 	myMapView.displayZoomControls(false);
 
 	String mapKind = mission.xmlMissionNode.attributeValue("mapkind");
-	if (mapKind == null || mapKind.equals("map"))
+	if (mapKind == null
+		|| mapKind.equals("map"))
 	    myMapView.setSatellite(false);
 	else
 	    myMapView.setSatellite(true);
@@ -132,7 +133,8 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 	String zoomLevel = mission.xmlMissionNode.attributeValue("zoomlevel");
 	if (zoomLevel != null) {
 	    int zoomLevelInt = Integer.parseInt(zoomLevel);
-	    if (zoomLevelInt > 0 && zoomLevelInt < 24)
+	    if (zoomLevelInt > 0
+		    && zoomLevelInt < 24)
 		myMapCtrl.setZoom(zoomLevelInt);
 	}
 
@@ -286,8 +288,10 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
 	    startARViewBasic();
 	    break;
 	case CENTER_MAP_ON_CURRENT_LOCATION_ID:
-	    myMapCtrl
-		    .animateTo(location2GP(locationListener.getLastLocation()));
+	    Location lastLoc = locationListener.getLastLocation();
+	    if (lastLoc != null)
+		myMapCtrl.animateTo(location2GP(locationListener
+			.getLastLocation()));
 	    break;
 	}
 
@@ -390,7 +394,8 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
      */
     public void onEnterRange(HotspotOld h) {
 	Log.d(TAG,
-	      "Enter Hotspot with id: " + h.id);
+	      "Enter Hotspot with id: "
+		      + h.id);
 
 	/*
 	 * TODO: remove buttons ? //TODO: also add button when visible conditons
@@ -413,7 +418,8 @@ public class MapOverview extends GeoQuestMapActivity implements HotspotListener 
      */
     public void onLeaveRange(HotspotOld h) {
 	Log.d(TAG,
-	      "Leave Hotspot with id: " + h.id);
+	      "Leave Hotspot with id: "
+		      + h.id);
 	// Find the Child, which equals the given hotspot:
 	int numButtons = startMissionPanel.getChildCount();
 	View childView = null;

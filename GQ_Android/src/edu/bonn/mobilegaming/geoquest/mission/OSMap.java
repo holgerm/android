@@ -54,10 +54,11 @@ import edu.bonn.mobilegaming.geoquest.ui.abstrakt.MissionOrToolUI;
 public class OSMap extends GeoQuestMapActivity implements HotspotListener {
 
     private static String TAG = "MapOverview";
-    
-    //set theese two parameters to use Cloudmade Style
-    private static String APIKey = null;				//eg "6f218baf0ee44fdc9a9563c37e55851e"
-    private static String CmStyleId = null;				//eg "63694"
+
+    // set theese two parameters to use Cloudmade Style
+    private static String APIKey = null; // eg
+					 // "6f218baf0ee44fdc9a9563c37e55851e"
+    private static String CmStyleId = null; // eg "63694"
 
     // Menu IDs:
     static final private int FIRST_LOCAL_MENU_ID = GeoQuestMapActivity.MENU_ID_OFFSET;
@@ -118,10 +119,16 @@ public class OSMap extends GeoQuestMapActivity implements HotspotListener {
 	// Setup Google Map0View
 	myMapView = (MapView) findViewById(R.id.osmapview);
 	myMapView.setBuiltInZoomControls(false);
-	if(APIKey != null && CmStyleId != null){
-		myMapView.setTileSource(new XYTileSource("cmMap", null, 0, 15, 256, ".png", "http://tile.cloudmade.com/" + APIKey + "/" + CmStyleId + "/256/"));
+	if (APIKey != null
+		&& CmStyleId != null) {
+	    myMapView.setTileSource(new XYTileSource("cmMap", null, 0, 15, 256,
+		    ".png", "http://tile.cloudmade.com/"
+			    + APIKey
+			    + "/"
+			    + CmStyleId
+			    + "/256/"));
 	}
-	
+
 	// myMapView.displayZoomControls(false);
 
 	myMapCtrl = myMapView.getController();
@@ -130,7 +137,8 @@ public class OSMap extends GeoQuestMapActivity implements HotspotListener {
 	String zoomLevel = mission.xmlMissionNode.attributeValue("zoomlevel");
 	if (zoomLevel != null) {
 	    int zoomLevelInt = Integer.parseInt(zoomLevel);
-	    if (zoomLevelInt > 0 && zoomLevelInt < 24)
+	    if (zoomLevelInt > 0
+		    && zoomLevelInt < 24)
 		myMapCtrl.setZoom(zoomLevelInt);
 	}
 
@@ -281,8 +289,11 @@ public class OSMap extends GeoQuestMapActivity implements HotspotListener {
 	    }
 	    break;
 	case CENTER_MAP_ON_CURRENT_LOCATION_ID:
-	    myMapCtrl
-		    .animateTo(location2GP(locationListener.getLastLocation()));
+	    // TODO duplicated code cf. MapOverview; How to extract?
+	    Location lastLoc = locationListener.getLastLocation();
+	    if (lastLoc != null)
+		myMapCtrl.animateTo(location2GP(locationListener
+			.getLastLocation()));
 	    break;
 	}
 
@@ -323,7 +334,8 @@ public class OSMap extends GeoQuestMapActivity implements HotspotListener {
      */
     public void onEnterRange(HotspotOld h) {
 	Log.d(TAG,
-	      "Enter Hotspot with id: " + h.id);
+	      "Enter Hotspot with id: "
+		      + h.id);
 
 	/*
 	 * TODO: remove buttons ? //TODO: also add button when visible conditons
@@ -346,7 +358,8 @@ public class OSMap extends GeoQuestMapActivity implements HotspotListener {
      */
     public void onLeaveRange(HotspotOld h) {
 	Log.d(TAG,
-	      "Leave Hotspot with id: " + h.id);
+	      "Leave Hotspot with id: "
+		      + h.id);
 	// Find the Child, which equals the given hotspot:
 	int numButtons = startMissionPanel.getChildCount();
 	View childView = null;
