@@ -22,6 +22,7 @@ import com.qeevee.ui.BitmapUtil;
 import edu.bonn.mobilegaming.geoquest.Globals;
 import edu.bonn.mobilegaming.geoquest.R;
 import edu.bonn.mobilegaming.geoquest.Variables;
+import edu.bonn.mobilegaming.geoquest.ui.abstrakt.MissionOrToolUI;
 
 /**
  * QR Tag Reading Mission.
@@ -75,7 +76,7 @@ import edu.bonn.mobilegaming.geoquest.Variables;
 
 public class QRTagReadingTreasure extends InteractiveMission implements
 	OnClickListener {
-    private static final String TAG = "QRTagReading";
+    private static final String TAG = "QRTagReadingProduct";
 
     /** button to start the QRTag Reader */
     private Button okButton;
@@ -248,6 +249,11 @@ public class QRTagReadingTreasure extends InteractiveMission implements
     public void onBlockingStateUpdated(boolean blocking) {
 	// TODO Auto-generated method stub
 
+    }
+
+    public MissionOrToolUI getUI() {
+	// TODO Auto-generated method stub
+	return null;
     }
 
 }

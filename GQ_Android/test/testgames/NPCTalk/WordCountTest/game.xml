@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game
+	name="WordCountTest"
+	xmlformat="5"
+>
+	<mission
+		type="NPCTalk"
+		id="3210WordsInDialogItems"
+		image="drawable/ploppschutz.png"
+	>
+		<onEnd>
+			<rule>
+				<action
+					type="StartMission"
+					id="m2" />
+			</rule>
+		</onEnd>
+		<dialogitem>One two three</dialogitem>
+		<dialogitem>Just two</dialogitem>
+		<dialogitem>Emptyfollows</dialogitem>
+		<dialogitem></dialogitem>
+	</mission>
+	<mission
+		type="NPCTalk"
+		id="m2"
+		image="drawable/ploppschutz.png"
+	>
+		<onEnd>
+			<rule>
+				<action type="EndGame" />
+			</rule>
+		</onEnd>
+		<dialogitem>Mission 2 here.
+		</dialogitem>
+		<dialogitem>Last statement. good bye!</dialogitem>
+	</mission>
+</game>
